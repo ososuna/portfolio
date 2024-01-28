@@ -5,6 +5,7 @@
       "@components/*": ["src/components/*"],
       "@assets/*": ["src/assets/*"],
       "@layouts/*": ["src/layouts/*"],
+      "@icons/*": ["src/icons/*"],
     }
   },
   "extends": "astro/tsconfigs/strict"
