@@ -1,11 +1,16 @@
 ---
+import { Image } from 'astro:assets';
+import meImage from '@img/img-01.jpeg';
 import SectionContainer from '@components/SectionContainer.astro';
-import SocialMedia from './SocialMedia.astro';
+import SocialMedia from '@components/SocialMedia.astro';
 ---
 
-<SectionContainer class="py-44 pb-32">
-  <h1 class="text-6xl font-extrabold text-center">Oswaldo Osuna</h1>
-  <p class="text-xl text-center text-gray-500 dark:text-gray-400">
+<SectionContainer class="py-44 pb-32 w-10/12">
+  <div class="flex items-center justify-center mb-4 mx-6">
+    <h1 class="md:text-6xl text-4xl font-extrabold text-center">Oswaldo Osuna</h1>
+    <Image src={meImage} alt="Oswaldo Osuna" class="w-20 h-20 rounded-full mx-10" />
+  </div>
+  <p class="md:text-xl text-base text-center text-gray-500 dark:text-gray-400">
     Full stack developer from Queretaro, Mexico. 3 years of experience.
     Specializing in front-end technologies to create efficient and
     functional user interfaces.
