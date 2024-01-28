@@ -1,22 +1,31 @@
 ---
 import LogoIcon from '@icons/LogoIcon.astro';
+const menuOptions = [
+  {
+    name: 'Experience'
+  },
+  {
+    name: 'Projects'
+  },
+  {
+    name: 'Achievements'
+  },
+  {
+    name: 'About Me'
+  },
+];
 ---
-<header class="w-full h-16 flex items-center justify-between px-6 bg-white dark:bg-zinc-950 shadow-md">
+<header class="w-full fixed h-14 flex items-center justify-between px-6 shadow-md backdrop-blur">
   <div>
     <LogoIcon />
   </div>
   <nav class="space-x-4">
-    <a class="text-sm" href="#">
-      About Me
-    </a>
-    <a class="text-sm" href="#">
-      Projects
-    </a>
-    <a class="text-sm" href="#">
-      Skills
-    </a>
-    <a class="text-sm" href="#">
-      Contact
-    </a>
+    {
+      menuOptions.map((option) => (
+        <a class="text-sm" href="#">
+          {option.name}
+        </a>
+      ))
+    }
   </nav>
 </header>
