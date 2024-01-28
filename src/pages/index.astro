@@ -1,19 +1,14 @@
 ---
+import MainSection from '@components/MainSection.astro';
 import ProfessionalExperience from '@components/ProfessionalExperience.astro';
-import SectionContainer from '@components/SectionContainer.astro';
 import Layout from '@layouts/Layout.astro';
-
 ---
 
-<Layout title="Welcome to Astro.">
-	<main>
-		<SectionContainer class="py-44 pb-32">
-			<h1 class="text-6xl font-extrabold text-center">Welcome to Astro.</h1>
-			<p class="text-center">You're looking at a barebones Astro starter.</p>
-		</SectionContainer>
-		<ProfessionalExperience />
-	</main>
+<Layout title="Oswaldo Osuna">
+  <main>
+		<MainSection />
+    <ProfessionalExperience />
+  </main>
 </Layout>
 
-<style>
-</style>
+<style></style>
