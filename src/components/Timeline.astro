@@ -12,22 +12,23 @@ const experience = [
   {
     title: 'Software Development Intern at GE Aerospace',
     company: 'GE Aerospace',
-    date: 'June 2021',
+    date: 'July 2021',
     description:
       'Full stack developer with practical knowledge on coding, debugging and testing using technologies such as TypeScript, Vue.js, PostgreSQL, Docker, Jenkins, SonarQube, Java, JUnit and Spring Framework. Also working in an agile software development team implementing software best practices and methodologies like DevOps and CI/CD.',
   },
 ];
 ---
-
-<ol class="relative border-s border-gray-200 dark:border-gray-700">
-  {
-    experience.map((item) => (
-      <TimelineItem
-        title={item.title}
-        company={item.company}
-        date={item.date}
-        description={item.description}
-      />
-    ))
-  }
-</ol>
+<div class="mx-auto lg:ms-0 ms-6">
+  <ol class="relative border-s border-gray-200 dark:border-gray-700">
+    {
+      experience.map((item) => (
+        <TimelineItem
+          title={item.title}
+          company={item.company}
+          date={item.date}
+          description={item.description}
+        />
+      ))
+    }
+  </ol>
+</div>
