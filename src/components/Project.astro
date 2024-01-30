@@ -1,0 +1,58 @@
+---
+import { Image } from 'astro:assets';
+import ProjectLinkButton from '@components/ProjectLinkButton.astro';
+import GitHubIcon from '@icons/GitHubIcon.astro';
+import WebIcon from '@icons/WebIcon.astro';
+import projectSample from '@img/project-sample.png';
+
+interface Props {
+  title: string;
+  description: string;
+  link: string;
+  github?: string;
+  image: string;
+  tags: { name: string; class: string; icon: any }[];
+}
+
+const { title, description, link, github, image, tags } = Astro.props;
+---
+
+<div class="mb-14">
+  <h3 class="text-xl font-semibold text-gray-900 dark:text-white">
+    {title}
+  </h3>
+  <p
+    class="mt-2 md:text-base text-sm font-normal text-gray-500 dark:text-gray-400"
+  >
+    {description}
+  </p>
+  <ul class="flex gap-x-2 flex-row my-4">
+    {
+      tags.map((tag) => (
+        <li>
+          <span
+            class={`flex gap-x-2 rounded-full text-sm ${tag.class} py-1 px-2 `}
+          >
+            <tag.icon class="size-4" />
+            {tag.name}
+          </span>
+        </li>
+      ))
+    }
+  </ul>
+  <Image src={projectSample} alt="Oswaldo Osuna" class="mt-4" />
+  <footer class="flex gap-x-4 items-end justify-start mt-4">
+    {
+      github && (
+        <ProjectLinkButton href={github}>
+          <GitHubIcon class="size-4 me-2" />
+          Source code
+        </ProjectLinkButton>
+      )
+    }
+    <ProjectLinkButton href={link}>
+      <WebIcon class="size-5 me-2" />
+      Go to project
+    </ProjectLinkButton>
+  </footer>
+</div>
