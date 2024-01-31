@@ -39,16 +39,18 @@ const projects = [
 
 <SectionContainer class="py-16">
   <h2 class="text-3xl font-bold text-center mb-10">Projects</h2>
-  {
-    projects.map((project) => (
-      <Project
-        title={project.title}
-        description={project.description}
-        link={project.link}
-        github={project.github}
-        image={project.image}
-        tags={project.tags}
-      />
-    ))
-  }
+  <div class="lg:mx-0 mx-6">
+    {
+      projects.map((project) => (
+        <Project
+          title={project.title}
+          description={project.description}
+          link={project.link}
+          github={project.github}
+          image={project.image}
+          tags={project.tags}
+        />
+      ))
+    }
+  </div>
 </SectionContainer>
