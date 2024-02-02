@@ -28,8 +28,13 @@ const { title } = Astro.props;
 		color-scheme: light dark;
 	}
 	html {
-		font-family: 'Geist', sans-serif;
 		scroll-behavior: smooth;
+	}
+	@media (prefers-reduced-motion: reduce) {
+		html {
+			font-family: 'Geist', sans-serif;
+			scroll-behavior: auto;
+		}
 	}
 	@font-face {
 		font-family: 'Geist';
