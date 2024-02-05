@@ -3,12 +3,11 @@ import { Image } from 'astro:assets';
 import ProjectLinkButton from '@components/ProjectLinkButton.astro';
 import GitHubIcon from '@icons/GitHubIcon.astro';
 import WebIcon from '@icons/WebIcon.astro';
-import projectSample from '@img/project-sample.png';
 
 interface Props {
   title: string;
   description: string;
-  link: string;
+  link?: string;
   github?: string;
   image: string;
   tags: { name: string; class: string; icon: any }[];
@@ -33,14 +32,14 @@ const { title, description, link, github, image, tags } = Astro.props;
           <span
             class={`flex gap-x-2 rounded-full text-sm ${tag.class} py-1 px-2 `}
           >
-            <tag.icon class="size-4" />
+            <tag.icon class="size-4 mt-0.5" />
             {tag.name}
           </span>
         </li>
       ))
     }
   </ul>
-  <Image src={projectSample} alt="Oswaldo Osuna" class="mt-4" />
+  <Image src={`/src/assets/img/projects/${ image }`} alt="Project sample" class="mt-4" width="1920" height="1080" />
   <footer class="flex justify-center gap-x-4 items-center mt-4">
     {
       github && (
@@ -50,9 +49,13 @@ const { title, description, link, github, image, tags } = Astro.props;
         </ProjectLinkButton>
       )
     }
-    <ProjectLinkButton href={link}>
-      <WebIcon class="size-5 me-2" />
-      Go to project
-    </ProjectLinkButton>
+    {
+      link && (
+        <ProjectLinkButton href={link}>
+          <WebIcon class="size-5 me-2" />
+          Go to project
+        </ProjectLinkButton>
+      )
+    }
   </footer>
 </div>
