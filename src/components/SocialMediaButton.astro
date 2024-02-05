@@ -1,13 +1,15 @@
 ---
 interface Props {
   name: string;
+  link: string;
 }
 
-const { name } = Astro.props;
+const { name, link } = Astro.props;
 ---
 
-<button
-  type="button"
+<a
+  href={link}
+  target="_blank"
   class="text-gray-900 bg-white border border-gray-300
     focus:outline-none hover:bg-gray-100 focus:ring-4
     focus:ring-gray-200 font-medium rounded-lg
@@ -17,4 +19,4 @@ const { name } = Astro.props;
 >
   <slot name="icon" />
   {name}
-</button>
+</a>
