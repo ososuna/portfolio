@@ -1,0 +1,64 @@
+---
+import { Image } from "astro:assets";
+
+interface Props {
+  title: string;
+  description: string;
+  image: string;
+  link?: string;
+}
+const { title, description, image, link }: Props = Astro.props;
+---
+
+<div
+  class="max-w-sm md:w-1/2 bg-white border border-gray-200 rounded-lg shadow dark:bg-zinc-950 dark:border-zinc-800 mb-6"
+>
+  <Image
+    class="rounded-t-lg"
+    src={`/src/assets/img/achievements/${image}`}
+    alt={title}
+    width="1920"
+    height="1080"
+  />
+  <div class="p-5">
+    <a href={link}>
+      <h3 class="text-xl font-semibold text-gray-900 dark:text-white">
+        {title}
+      </h3>
+    </a>
+    <p class="mt-2 text-base font-normal text-gray-500 dark:text-gray-400">
+      {description}
+    </p>
+    {
+      link && (
+        <a
+          href={link}
+          target="_blank"
+          class="text-gray-900 bg-white border border-gray-300
+          focus:outline-none hover:bg-gray-100 focus:ring-4
+          focus:ring-gray-200 font-medium rounded-lg
+          text-sm px-5 py-2 text-center inline-flex items-center
+          me-2 mb-2 dark:bg-zinc-950 dark:text-white dark:border-zinc-800
+          dark:hover:bg-zinc-800 dark:focus:ring-gray-700 mt-3"
+        >
+          Read more
+          <svg
+            class="rtl:rotate-180 w-3.5 h-3.5 ms-2"
+            aria-hidden="true"
+            xmlns="http://www.w3.org/2000/svg"
+            fill="none"
+            viewBox="0 0 14 10"
+          >
+            <path
+              stroke="currentColor"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              stroke-width="2"
+              d="M1 5h12m0 0L9 1m4 4L9 9"
+            />
+          </svg>
+        </a>
+      )
+    }
+  </div>
+</div>
