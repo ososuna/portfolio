@@ -14,6 +14,8 @@ interface Props {
 }
 
 const { title, description, link, github, image, tags } = Astro.props;
+const images = import.meta.glob<{ default: ImageMetadata }>('/src/assets/img/projects/*.png');
+if (!images[image]) throw new Error(`"${image}" does not exist in glob: "/src/assets/img/projects/*.png"`);
 ---
 
 <div class="mb-14">
@@ -39,7 +41,7 @@ const { title, description, link, github, image, tags } = Astro.props;
       ))
     }
   </ul>
-  <Image src={`/src/assets/img/projects/${ image }`} alt="Project sample" class="mt-4" width="1920" height="1080" />
+  <Image src={images[image]()} alt={title} class="mt-4" width="1920" height="1080" />
   <footer class="flex justify-center gap-x-4 items-center mt-4">
     {
       github && (

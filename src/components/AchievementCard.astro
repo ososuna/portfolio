@@ -8,6 +8,9 @@ interface Props {
   link?: string;
 }
 const { title, description, image, link }: Props = Astro.props;
+
+const images = import.meta.glob<{ default: ImageMetadata }>('/src/assets/img/achievements/*.jpg');
+if (!images[image]) throw new Error(`"${image}" does not exist in glob: "/src/assets/img/achievements/*.jpg"`);
 ---
 
 <div
@@ -15,7 +18,7 @@ const { title, description, image, link }: Props = Astro.props;
 >
   <Image
     class="rounded-t-lg"
-    src={`/src/assets/img/achievements/${image}`}
+    src={images[image]()}
     alt={title}
     width="1920"
     height="1080"
