@@ -1,0 +1,53 @@
+---
+import { Image } from 'astro:assets';
+import SectionContainer from '@components/SectionContainer.astro';
+import meImage from '@img/img-01.jpeg';
+---
+
+<SectionContainer id="about-me" class="py-16">
+  <h2 class="text-3xl font-bold text-center mb-10">About Me</h2>
+  <div
+    class="flex flex-col md:flex-row items-center justify-center lg:mx-0 mx-6"
+  >
+    <div class="w-full md:w-4/12">
+      <Image
+        src={meImage}
+        alt="Profile Picture"
+        class="rounded-full w-56 h-w-56 mx-auto md:mx-0 md:mb-0 mb-6"
+      />
+    </div>
+    <div class="w-full md:w-8/12">
+      <p
+        class="text-lg font-normal text-gray-500 dark:text-gray-400 text-center md:text-left mb-2"
+      >
+        My name is <span class="font-bold text-white">Oswaldo Osuna</span> and I
+        am a <span class="font-bold text-white">Full Stack Developer</span>. I
+        have been working in the tech industry for over <span
+          class="font-bold text-white">3 years</span
+        >. I am passionate about building effective software and learning every
+        day to grow professionally in a dynamic environment.
+      </p>
+      <p
+        class="text-lg font-normal text-gray-500 dark:text-gray-400 text-center md:text-left mb-2"
+      >
+        Some of my achievements include contributing to the development of the
+        UI for <span class="font-bold text-white"
+          >Oracle Cloud Infrastructure in the Logging Analytics service</span
+        >. I have also worked on developing solutions for the <span
+          class="font-bold text-white">aerospace industry</span
+        >
+        in creating web applications for <span class="font-bold text-white"
+          >managing critical business processes</span
+        >.
+      </p>
+      <p
+        class="text-lg font-normal text-gray-500 dark:text-gray-400 text-center md:text-left"
+      >
+        As a university student, I was one of the 40 Mexican students selected
+        to participate in the <span class="font-bold text-white"
+          >Huawei Seeds for the Future 2020 program</span
+        >.
+      </p>
+    </div>
+  </div>
+</SectionContainer>
