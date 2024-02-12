@@ -1,4 +1,5 @@
 ---
+import ThemeSelector from "@components/ThemeSelector.astro";
 import LogoIcon from "@icons/LogoIcon.astro";
 const menuOptions = [
   {
@@ -25,12 +26,12 @@ const menuOptions = [
 ---
 
 <header
-  class="w-full fixed h-14 flex items-center justify-between px-6 shadow-md backdrop-blur"
+  class="w-full fixed h-14 flex items-center justify-between px-6 shadow-md backdrop-blur z-50"
 >
   <a href="/#">
     <LogoIcon />
   </a>
-  <nav class="space-x-4">
+  <nav class="flex items-center space-x-4">
     {
       menuOptions.map((option) => (
         <a
@@ -43,5 +44,6 @@ const menuOptions = [
         </a>
       ))
     }
+    <ThemeSelector />
   </nav>
 </header>
