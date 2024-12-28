@@ -12,6 +12,11 @@ import AwsIcon from "@icons/AwsIcon.astro";
 import SpringIcon from "@icons/SpringIcon.astro";
 import MySqlIcon from "@icons/MySqlIcon.astro";
 import DockerIcon from "@icons/DockerIcon.astro";
+import AstroIcon from "@icons/AstroIcon.astro";
+import ReactIcon from "@icons/ReactIcon.astro";
+import ShadcnUiIcon from "@icons/ShadcnUiIcon.astro";
+import ExpressJsIcon from "@icons/ExpressJsIcon.astro";
+import VercelIcon from "@icons/VercelIcon.astro";
 
 const tags = {
   next: {
@@ -69,23 +74,42 @@ const tags = {
     class: "bg-[#0db7ed] text-white",
     icon: DockerIcon,
   },
+  astro: {
+    name: "Astro",
+    class: "bg-[#ff5d01] text-white",
+    icon: AstroIcon,
+  },
+  react: {
+    name: "React",
+    class: "bg-[#20232a] text-white",
+    icon: ReactIcon,
+  },
+  shadcn: {
+    name: "shadcn/ui",
+    class: "bg-white text-black border-solid border border-zinc-950 dark:border-none",
+    icon: ShadcnUiIcon,
+  },
+  express: {
+    name: "Express.js",
+    class: "bg-white text-black border-solid border border-zinc-950 dark:border-none",
+    icon: ExpressJsIcon,
+  },
+  vercel: {
+    name: "Vercel",
+    class: "bg-black text-white",
+    icon: VercelIcon,
+  },
 };
 const projects = [
   {
-    title: "Spring Book API",
+    title: "ClipLink - URL Shortener",
     description:
-      "Rest API made with Spring Boot. It has CRUD operations for books. It uses Spring Data JPA and MySQL database. Spring Security implementation. SMTP and AWS S3 integration. Was deployed in AWS EC2 using Docker containers. It is consumed by a mobile application made with Ionic.",
-    github: "https://github.com/ososuna/spring-book-api",
-    image: "/src/assets/img/projects/spring-book-api.png",
-    tags: [tags.spring, tags.mysql, tags.aws, tags.docker],
-  },
-  {
-    title: "Get Loans",
-    description:
-      "Non-relational databases project. Consisted in creating a solution using an AWS Infraestructure and NoSQL Databases. Web application that allows users to request loans. Made with Vue.js and Node.js. The database used was MongoDB. The application was deployed on AWS S3 and Elastic Beanstalk.",
-    github: "https://github.com/ososuna/AdDataBasesProject",
-    image: "/src/assets/img/projects/get-loans.png",
-    tags: [tags.vue, tags.nodejs, tags.aws, tags.mongodb, tags.bootstrap],
+      "A modern URL shortener built with clean architecture, leveraging Astro's islands architecture and server-side rendering for high performance. Features include Google and GitHub authentication, seamless view transitions, dark and light mode support, pagination, and a powerful search engine. Designed for scalability and optimized for an exceptional user experience.",
+    ui: 'https://github.com/ososuna/cliplink-ui',
+    restApi: 'https://github.com/ososuna/cliplink-rest',
+    link: 'https://cliplink.app',
+    image: "/src/assets/img/projects/cliplink.png",
+    tags: [tags.astro, tags.react, tags.shadcn, tags.express, tags.nodejs, tags.vercel, tags.tailwind, tags.mongodb, tags.docker],
   },
   {
     title: "Vue Pokedex",
@@ -95,14 +119,6 @@ const projects = [
     github: "https://github.com/ososuna/pokedex",
     image: "/src/assets/img/projects/vue-pokedex.png",
     tags: [tags.vue, tags.bootstrap],
-  },
-  {
-    title: "League of Legends Matchmaking Algorithm",
-    description:
-      "Matchmaking algorithm for solo queue rankeds in League of Legends. Data Structures project. Made with Python.",
-    github: "https://github.com/ososuna/matchmaking-lol",
-    image: "/src/assets/img/projects/matchmaking-lol.png",
-    tags: [tags.python],
   },
 ];
 ---
@@ -117,6 +133,8 @@ const projects = [
           description={project.description}
           link={project.link}
           github={project.github}
+          ui={project.ui}
+          restApi={project.restApi}
           image={project.image}
           tags={project.tags}
         />

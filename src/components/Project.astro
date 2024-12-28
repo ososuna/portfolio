@@ -9,11 +9,13 @@ interface Props {
   description: string;
   link?: string;
   github?: string;
+  restApi?: string;
+  ui?: string;
   image: string;
   tags: { name: string; class: string; icon: any }[];
 }
 
-const { title, description, link, github, image, tags } = Astro.props;
+const { title, description, link, github, image, tags, restApi, ui } = Astro.props;
 const images = import.meta.glob<{ default: ImageMetadata }>('/src/assets/img/projects/*.png');
 if (!images[image]) throw new Error(`"${image}" does not exist in glob: "/src/assets/img/projects/*.png"`);
 ---
@@ -41,13 +43,35 @@ if (!images[image]) throw new Error(`"${image}" does not exist in glob: "/src/as
       ))
     }
   </ul>
-  <Image src={images[image]()} alt={title} class="mt-4" width="1920" height="1080" />
+  {
+    link ?
+      <a href={link} target="_blank">
+        <Image src={images[image]()} alt={title} class="mt-4" width="1920" height="1080" />
+      </a>
+    : <Image src={images[image]()} alt={title} class="mt-4" width="1920" height="1080" /> 
+  }
   <footer class="flex justify-center gap-x-4 items-center mt-4">
     {
       github && (
         <ProjectLinkButton href={github}>
           <GitHubIcon class="size-4 me-2" />
           Source code
+        </ProjectLinkButton>
+      )
+    }
+    {
+      ui && (
+        <ProjectLinkButton href={ui}>
+          <GitHubIcon class="size-4 me-2" />
+          UI
+        </ProjectLinkButton>
+      )
+    }
+    {
+      restApi && (
+        <ProjectLinkButton href={restApi}>
+          <GitHubIcon class="size-4 me-2" />
+          Rest API
         </ProjectLinkButton>
       )
     }

@@ -24,11 +24,9 @@ if (!images[image]) throw new Error(`"${image}" does not exist in glob: "/src/as
     height="1080"
   />
   <div class="p-5">
-    <a href={link}>
-      <h3 class="text-xl font-semibold text-gray-900 dark:text-white">
-        {title}
-      </h3>
-    </a>
+    <h3 class="text-xl font-semibold text-gray-900 dark:text-white">
+      {title}
+    </h3>
     <p class="mt-2 text-sm xss:text-base font-normal text-gray-500 dark:text-gray-400">
       {description}
     </p>
@@ -44,7 +42,7 @@ if (!images[image]) throw new Error(`"${image}" does not exist in glob: "/src/as
           me-2 mb-2 dark:bg-zinc-950 dark:text-white dark:border-zinc-800
           dark:hover:bg-zinc-800 dark:focus:ring-gray-700 mt-3"
         >
-          Read more
+          Learn more about this topic
           <svg
             class="rtl:rotate-180 w-3.5 h-3.5 ms-2"
             aria-hidden="true"
