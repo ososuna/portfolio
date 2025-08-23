@@ -1,0 +1,19 @@
+[
+  {
+    "title": "ClipLink - URL Shortener",
+    "description": "A modern URL shortener built with clean architecture, leveraging Astro's islands architecture and server-side rendering for high performance. Features include Google and GitHub authentication, seamless view transitions, dark and light mode support, pagination, and a powerful search engine. Designed for scalability and optimized for an exceptional user experience. Additionally, the project includes a comprehensive suite of unit tests that ensure code reliability, maintainability, and long-term stability.",
+    "ui": "https://github.com/ososuna/cliplink-ui",
+    "restApi": "https://github.com/ososuna/cliplink-rest",
+    "link": "https://cliplink.app",
+    "image": "/src/assets/img/projects/cliplink.png",
+    "tags": ["astro", "react", "shadcn", "express", "nodejs", "vercel", "tailwind", "mongodb", "docker", "vitest"]
+  },
+  {
+    "title": "Vue Pokedex",
+    "description": "Pokedex made with Vue 3 and Bootstrap consuming PokeAPI. It has a search engine, infinite scroll and a detail page for each Pokemon. Responsive design. It is deployed on Vercel.",
+    "link": "https://pokedex-umber-pi.vercel.app/#/",
+    "github": "https://github.com/ososuna/pokedex",
+    "image": "/src/assets/img/projects/vue-pokedex.png",
+    "tags": ["vue", "bootstrap", "vercel"]
+  }
+]

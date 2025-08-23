@@ -1,0 +1,14 @@
+[
+  {
+    "title": "Software Engineer at Oracle",
+    "company": "Oracle",
+    "date": "March 2023 - August 2025",
+    "description": "Front end Developer in Log Analytics service at Oracle Cloud Infrastructure, utilizing Oracle JET, JavaScript, and TypeScript. Responsible for developing and maintaining front end components, ensuring seamless integration with back-end services. Proficient in creating intuitive user interfaces, conducting thorough testing, and incorporating user feedback. Achievements include contributions to the development of new features for enhanced logs analysis capabilities."
+  },
+  {
+    "title": "Software Development Intern at GE Aerospace",
+    "company": "GE Aerospace",
+    "date": "July 2021 - March 2023",
+    "description": "Full stack developer with practical knowledge on coding, debugging and testing using technologies such as TypeScript, Vue.js, PostgreSQL, Docker, Jenkins, SonarQube, Java, JUnit and Spring Framework. Also working in an agile software development team implementing software best practices and methodologies like DevOps and CI/CD."
+  }
+]
