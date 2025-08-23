@@ -17,6 +17,7 @@ import ReactIcon from "@icons/ReactIcon.astro";
 import ShadcnUiIcon from "@icons/ShadcnUiIcon.astro";
 import ExpressJsIcon from "@icons/ExpressJsIcon.astro";
 import VercelIcon from "@icons/VercelIcon.astro";
+import VitestIcon from "@icons/VitestIcon.astro";
 
 const tags = {
   next: {
@@ -99,17 +100,22 @@ const tags = {
     class: "bg-black text-white",
     icon: VercelIcon,
   },
+  vitest: {
+    name: "Vitest",
+    class: "bg-[#003159] text-white",
+    icon: VitestIcon,
+  },
 };
 const projects = [
   {
     title: "ClipLink - URL Shortener",
     description:
-      "A modern URL shortener built with clean architecture, leveraging Astro's islands architecture and server-side rendering for high performance. Features include Google and GitHub authentication, seamless view transitions, dark and light mode support, pagination, and a powerful search engine. Designed for scalability and optimized for an exceptional user experience.",
+      "A modern URL shortener built with clean architecture, leveraging Astro's islands architecture and server-side rendering for high performance. Features include Google and GitHub authentication, seamless view transitions, dark and light mode support, pagination, and a powerful search engine. Designed for scalability and optimized for an exceptional user experience. Additionally, the project includes a comprehensive suite of unit tests that ensure code reliability, maintainability, and long-term stability.",
     ui: 'https://github.com/ososuna/cliplink-ui',
     restApi: 'https://github.com/ososuna/cliplink-rest',
     link: 'https://cliplink.app',
     image: "/src/assets/img/projects/cliplink.png",
-    tags: [tags.astro, tags.react, tags.shadcn, tags.express, tags.nodejs, tags.vercel, tags.tailwind, tags.mongodb, tags.docker],
+    tags: [tags.astro, tags.react, tags.shadcn, tags.express, tags.nodejs, tags.vercel, tags.tailwind, tags.mongodb, tags.docker, tags.vitest],
   },
   {
     title: "Vue Pokedex",
