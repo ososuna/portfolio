@@ -1,14 +1,26 @@
 [
   {
-    "title": "Software Engineer at Oracle",
+    "title": "Full Stack Developer at Oracle",
     "company": "Oracle",
-    "date": "March 2023 - August 2025",
-    "description": "Front end Developer in Log Analytics service at Oracle Cloud Infrastructure, utilizing Oracle JET, JavaScript, and TypeScript. Responsible for developing and maintaining front end components, ensuring seamless integration with back-end services. Proficient in creating intuitive user interfaces, conducting thorough testing, and incorporating user feedback. Achievements include contributions to the development of new features for enhanced logs analysis capabilities."
+    "date": "March 2023 - Present",
+    "bulletPoints": [
+      "Reduced log source retrieval latency by 40% by introducing Redis hierarchical cache and lazy loading of nested properties.",
+      "Increased log source ingestion throughput by 35% by refactoring Spring Boot pipelines to leverage asynchronous execution and JDBC batch operations.",
+      "Optimized page load time by 80% by implementing deferred loading strategies and asynchronous API handling.",
+      "Reduced unit test runtime by 95% by introducing a UI-independent testing approach.",
+      "Integrated React components into an MVVM architecture, developing reusable implementations adopted across multiple OCI services.",
+      "Conducted testing for all added features, including unit, integration, and end-to-end tests."
+    ]
   },
   {
-    "title": "Software Development Intern at GE Aerospace",
+    "title": "Full Stack Developer at GE Aerospace",
     "company": "GE Aerospace",
-    "date": "July 2021 - March 2023",
-    "description": "Full stack developer with practical knowledge on coding, debugging and testing using technologies such as TypeScript, Vue.js, PostgreSQL, Docker, Jenkins, SonarQube, Java, JUnit and Spring Framework. Also working in an agile software development team implementing software best practices and methodologies like DevOps and CI/CD."
+    "date": "April 2021 - March 2023",
+    "bulletPoints": [
+      "Implemented Java algorithms that reduced employee quality-metrics tracking time by 50%.",
+      "Improved REST API performance by ~60% by integrating Elasticsearch, enabling faster and more efficient data retrieval.",
+      "Contributed to microservices-based development using Spring Boot and Node.js.",
+      "Created and managed ETL processes to centralize data into a data warehouse."
+    ]
   }
 ]
