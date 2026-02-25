@@ -1,17 +1,18 @@
 ---
 import OracleIcon from '@icons/OracleIcon.astro';
 import GEIcon from '@icons/GEIcon.astro';
-
+import ArcosIcon from '@icons/ArcosIcon.astro';
 interface Props {
   date: string;
   title: string;
-  bulletPoints: string[];
+  bulletPoints?: string[];
   company: string;
 }
 const { date, title, bulletPoints, company } = Astro.props;
 ---
 <li class="mb-10 ms-8 me-6 lg:me-0">
   <span class="absolute flex items-center justify-center p-0.5 w-6 h-6 dark:bg-white bg-zinc-50 rounded-full -start-3">
+    { company === 'ARCOS LLC' && ( <ArcosIcon /> ) }
     { company === 'Oracle' && ( <OracleIcon /> ) }
     { company === 'GE Aerospace' && ( <GEIcon /> ) }
   </span>
@@ -21,8 +22,8 @@ const { date, title, bulletPoints, company } = Astro.props;
   <h3 class="text-lg font-semibold text-gray-900 dark:text-white">
     {title}
   </h3>
-  <ul class="text-sm xss:text-base font-normal text-gray-500 dark:text-gray-400 list-disc list-inside space-y-1">
-    {bulletPoints.map((point) => (
+  <ul class="text-sm xss:text-base font-normal text-gray-500 dark:text-gray-400 list-disc list-outside pl-4 space-y-1">
+    {bulletPoints?.map((point) => (
       <li>{point}</li>
     ))}
   </ul>

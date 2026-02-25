@@ -1,8 +1,17 @@
 [
   {
+    "title": "Full Stack Developer at ARCOS LLC",
+    "company": "ARCOS LLC",
+    "date": "October 2025 - Present",
+    "bulletPoints": [
+      "Accelerated team delivery by 80% by pioneering agentic coding workflows — subagents, skills, MCP servers, rules, and commands — resulting in faster feature cycles and measurably higher output quality",
+      "Reduced user login time by 70% by implementing a secure biometric authentication system for iOS and Android, resulting in a faster and frictionless experience in a critical mobile application."
+    ]
+  },
+  {
     "title": "Full Stack Developer at Oracle",
     "company": "Oracle",
-    "date": "March 2023 - Present",
+    "date": "March 2023 - October 2025",
     "bulletPoints": [
       "Reduced log source retrieval latency by 40% by introducing Redis hierarchical cache and lazy loading of nested properties.",
       "Increased log source ingestion throughput by 35% by refactoring Spring Boot pipelines to leverage asynchronous execution and JDBC batch operations.",
@@ -15,7 +24,7 @@
   {
     "title": "Full Stack Developer at GE Aerospace",
     "company": "GE Aerospace",
-    "date": "April 2021 - March 2023",
+    "date": "November 2020 - March 2023",
     "bulletPoints": [
       "Implemented Java algorithms that reduced employee quality-metrics tracking time by 50%.",
       "Improved REST API performance by ~60% by integrating Elasticsearch, enabling faster and more efficient data retrieval.",
