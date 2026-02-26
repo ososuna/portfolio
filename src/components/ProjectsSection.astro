@@ -1,25 +1,36 @@
 ---
-import projectsData from "@data/projects/projects.json";
+import en from '@data/projects/en.json';
+import es from '@data/projects/es.json';
+import { useTranslations } from '@data/i18n/ui';
+import type { Lang } from '@data/i18n/utils';
 
-import SectionContainer from "@components/SectionContainer.astro";
-import Project from "@components/Project.astro";
-import NextJSIcon from "@icons/NextJSIcon.astro";
-import TailwindIcon from "@icons/TailwindIcon.astro";
-import VueIcon from "@icons/VueIcon.astro";
-import BootstrapIcon from "@icons/BootstrapIcon.astro";
-import PythonIcon from "@icons/PythonIcon.astro";
-import MongoDbIcon from "@icons/MongoDbIcon.astro";
-import NodeJsIcon from "@icons/NodeJsIcon.astro";
-import AwsIcon from "@icons/AwsIcon.astro";
-import SpringIcon from "@icons/SpringIcon.astro";
-import MySqlIcon from "@icons/MySqlIcon.astro";
-import DockerIcon from "@icons/DockerIcon.astro";
-import AstroIcon from "@icons/AstroIcon.astro";
-import ReactIcon from "@icons/ReactIcon.astro";
-import ShadcnUiIcon from "@icons/ShadcnUiIcon.astro";
-import ExpressJsIcon from "@icons/ExpressJsIcon.astro";
-import VercelIcon from "@icons/VercelIcon.astro";
-import VitestIcon from "@icons/VitestIcon.astro";
+import SectionContainer from '@components/SectionContainer.astro';
+import Project from '@components/Project.astro';
+import NextJSIcon from '@icons/NextJSIcon.astro';
+import TailwindIcon from '@icons/TailwindIcon.astro';
+import VueIcon from '@icons/VueIcon.astro';
+import BootstrapIcon from '@icons/BootstrapIcon.astro';
+import PythonIcon from '@icons/PythonIcon.astro';
+import MongoDbIcon from '@icons/MongoDbIcon.astro';
+import NodeJsIcon from '@icons/NodeJsIcon.astro';
+import AwsIcon from '@icons/AwsIcon.astro';
+import SpringIcon from '@icons/SpringIcon.astro';
+import MySqlIcon from '@icons/MySqlIcon.astro';
+import DockerIcon from '@icons/DockerIcon.astro';
+import AstroIcon from '@icons/AstroIcon.astro';
+import ReactIcon from '@icons/ReactIcon.astro';
+import ShadcnUiIcon from '@icons/ShadcnUiIcon.astro';
+import ExpressJsIcon from '@icons/ExpressJsIcon.astro';
+import VercelIcon from '@icons/VercelIcon.astro';
+import VitestIcon from '@icons/VitestIcon.astro';
+
+interface Props {
+  lang: Lang;
+}
+
+const { lang } = Astro.props;
+const t = useTranslations(lang);
+const projectsData = lang === 'es' ? es : en;
 
 const tags = {
   next: {
@@ -116,7 +127,7 @@ const projects = projectsData.map(project => ({
 ---
 
 <SectionContainer id="projects" class="py-16">
-  <h2 class="text-zinc-950 dark:text-white xss:text-3xl text-2xl font-bold text-center mb-10">Projects</h2>
+  <h2 class="text-zinc-950 dark:text-white xss:text-3xl text-2xl font-bold text-center mb-10">{t('sections', 'projects')}</h2>
   <div class="lg:mx-0 mx-6">
     {
       projects.map((project) => (
@@ -129,6 +140,7 @@ const projects = projectsData.map(project => ({
           restApi={project.restApi}
           image={project.image}
           tags={project.tags}
+          lang={lang}
         />
       ))
     }

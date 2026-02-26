@@ -1,15 +1,26 @@
 ---
 import AchievementCard from '@components/AchievementCard.astro';
 import SectionContainer from '@components/SectionContainer.astro';
-import achievements from '@data/achievements/achievements.json';
+import en from '@data/achievements/en.json';
+import es from '@data/achievements/es.json';
+import { useTranslations } from '@data/i18n/ui';
+import type { Lang } from '@data/i18n/utils';
+
+interface Props {
+  lang: Lang;
+}
+
+const { lang } = Astro.props;
+const t = useTranslations(lang);
+const achievements = lang === 'es' ? es : en;
 ---
 
 <SectionContainer id="achievements" class="py-16">
-  <h2 class="text-zinc-950 dark:text-white xss:text-3xl text-2xl font-bold text-center mb-10">Achievements</h2>
+  <h2 class="text-zinc-950 dark:text-white xss:text-3xl text-2xl font-bold text-center mb-10">{t('sections', 'achievements')}</h2>
   <div class="flex md:flex-row flex-col justify-center md:items-start items-center lg:space-x-8 md:space-x-4">
     {
       achievements.map(({title, description, image, link}) => (
-        <AchievementCard title={title} description={description} image={image} link={link} />
+        <AchievementCard title={title} description={description} image={image} link={link} lang={lang} />
       ))
     }
   </div>

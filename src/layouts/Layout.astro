@@ -2,49 +2,69 @@
 import '../styles/global.css';
 import Navbar from '@components/Navbar.astro';
 import Analytics from '@vercel/analytics/astro';
+import type { Lang } from '@data/i18n/utils';
 
 interface Props {
-	title: string;
-	description: string;
+  title: string;
+  description: string;
+  lang: Lang;
 }
 
 const { title, description } = Astro.props;
 ---
 
 <!doctype html>
-<html lang="en">
-	<head>
-		<meta charset="UTF-8" />
-		<meta name="description" content={description} />
-		<meta name="viewport" content="width=device-width" />
-		<link rel="icon" type="image/svg" href="/favicon.svg" />
-		<meta name="generator" content={Astro.generator} />
-		<title>{title}</title>
-	</head>
-	<body class="bg-white dark:bg-zinc-950">
-		<Navbar />
-		<slot />
-		<Analytics />
-	</body>
+<html lang={Astro.props.lang}>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="description" content={description} />
+    <meta name="viewport" content="width=device-width" />
+    <link rel="icon" type="image/svg" href="/favicon.svg" />
+    <meta name="generator" content={Astro.generator} />
+    <title>{title}</title>
+    <script is:inline>
+      (() => {
+        const storageKey = 'lang';
+        const preferred = localStorage.getItem(storageKey);
+
+        if (preferred) {
+          return;
+        }
+
+        const preferredBrowserLang = navigator.language.toLowerCase().startsWith('es') ? 'es' : 'en';
+        localStorage.setItem(storageKey, preferredBrowserLang);
+
+        const pathname = window.location.pathname;
+        if (preferredBrowserLang === 'es' && pathname === '/') {
+          window.location.replace('/es/');
+        }
+      })();
+    </script>
+  </head>
+  <body class="bg-white dark:bg-zinc-950">
+    <Navbar lang={Astro.props.lang} />
+    <slot />
+    <Analytics />
+  </body>
 </html>
 <style is:global>
-	:root {
-		color-scheme: light dark;
-	}
-	html {
-		scroll-behavior: smooth;
-	}
-	@media (prefers-reduced-motion: reduce) {
-		html {
-			font-family: 'Geist', sans-serif;
-			scroll-behavior: auto;
-		}
-	}
-	@font-face {
-		font-family: 'Geist';
-		src: url('/fonts/Geist-Regular.woff2') format('woff2');
-		font-weight: normal;
-		font-style: normal;
-		font-display: swap;
-	}
+  :root {
+    color-scheme: light dark;
+  }
+  html {
+    scroll-behavior: smooth;
+  }
+  @media (prefers-reduced-motion: reduce) {
+    html {
+      font-family: 'Geist', sans-serif;
+      scroll-behavior: auto;
+    }
+  }
+  @font-face {
+    font-family: 'Geist';
+    src: url('/fonts/Geist-Regular.woff2') format('woff2');
+    font-weight: normal;
+    font-style: normal;
+    font-display: swap;
+  }
 </style>

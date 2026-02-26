@@ -1,14 +1,24 @@
 ---
-import { Image } from "astro:assets";
-import SectionContainer from "@components/SectionContainer.astro";
-import meImage from "@img/oswaldo-osuna-02.png";
+import { Image } from 'astro:assets';
+import SectionContainer from '@components/SectionContainer.astro';
+import meImage from '@img/oswaldo-osuna-02.png';
+import en from '@data/about/en.json';
+import es from '@data/about/es.json';
+import type { Lang } from '@data/i18n/utils';
+
+interface Props {
+  lang: Lang;
+}
+
+const { lang } = Astro.props;
+const aboutData = lang === 'es' ? es : en;
 ---
 
 <SectionContainer id="about-me" class="py-16">
   <h2
     class="text-zinc-950 dark:text-white xss:text-3xl text-2xl font-bold text-center mb-10"
   >
-    About Me
+    {aboutData.title}
   </h2>
   <div
     class="flex flex-col md:flex-row items-center justify-center lg:mx-0 mx-6"
@@ -16,47 +26,57 @@ import meImage from "@img/oswaldo-osuna-02.png";
     <div class="w-full md:w-4/12">
       <Image
         src={meImage}
-        alt="Profile Picture"
+        alt={aboutData.imageAlt}
         class="rounded-full w-56 h-w-56 mx-auto md:mx-0 md:mb-0 mb-6"
       />
     </div>
     <div class="w-full md:w-8/12">
+      {
+        aboutData.paragraphs[0] && (
       <p
         class="text-base xss:text-lg font-normal text-gray-500 dark:text-gray-400 text-center md:text-left mb-2"
       >
-        My name is <span class="text-zinc-950 dark:text-white font-bold"
-          >Oswaldo Osuna</span
-        > and I am a <span class="text-zinc-950 dark:text-white font-bold"
-          >Full Stack Developer</span
-        >. I have been working in the tech industry for over <span
-          class="text-zinc-950 dark:text-white font-bold">5 years</span
-        >. I am passionate about building effective software and learning every
-        day to grow professionally in a dynamic environment.
+        {aboutData.paragraphs[0].preName}<span class="text-zinc-950 dark:text-white font-bold"
+          >{aboutData.paragraphs[0].name}</span
+        >{aboutData.paragraphs[0].afterName}<span class="text-zinc-950 dark:text-white font-bold"
+          >{aboutData.paragraphs[0].role}</span
+        >{aboutData.paragraphs[0].afterRole}<span
+          class="text-zinc-950 dark:text-white font-bold">{aboutData.paragraphs[0].years}</span
+        >{aboutData.paragraphs[0].afterYears}
       </p>
+        )
+      }
+      {
+        aboutData.paragraphs[1] && (
       <p
         class="text-base xss:text-lg font-normal text-gray-500 dark:text-gray-400 text-center md:text-left mb-2"
       >
-        At <span class="text-zinc-950 dark:text-white font-bold">Arcos LLC</span
-        >, I pioneered <span class="text-zinc-950 dark:text-white font-bold"
-          >agentic coding workflows</span
-        > that significantly accelerated delivery and raised the quality bar across
-        the team. Prior to that, I led full stack development for <span
+        {aboutData.paragraphs[1].preCompany}<span class="text-zinc-950 dark:text-white font-bold">{aboutData.paragraphs[1].company}</span
+        >{aboutData.paragraphs[1].afterCompany}<span class="text-zinc-950 dark:text-white font-bold"
+          >{aboutData.paragraphs[1].focus}</span
+        >{aboutData.paragraphs[1].afterFocus}<span
           class="text-zinc-950 dark:text-white font-bold"
-          >Oracle Cloud Infrastructure in the Log Analytics service</span
-        >.
+          >{aboutData.paragraphs[1].platform}</span
+        >{aboutData.paragraphs[1].afterPlatform}
       </p>
+        )
+      }
+      {
+        aboutData.paragraphs[2] && (
       <p
         class="text-base xss:text-lg font-normal text-gray-500 dark:text-gray-400 text-center md:text-left"
       >
-        I have also worked on developing solutions for the <span
+        {aboutData.paragraphs[2].preIndustry}<span
           class="text-zinc-950 dark:text-white font-bold"
-          >aerospace industry</span
+          >{aboutData.paragraphs[2].industry}</span
         >
-        in creating web applications for <span
+        {aboutData.paragraphs[2].afterIndustry}<span
           class="text-zinc-950 dark:text-white font-bold"
-          >managing critical business processes</span
-        >.
+          >{aboutData.paragraphs[2].outcome}</span
+        >{aboutData.paragraphs[2].afterOutcome}
       </p>
+        )
+      }
     </div>
   </div>
 </SectionContainer>

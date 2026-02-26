@@ -1,0 +1,91 @@
+---
+import { useTranslations } from '@data/i18n/ui';
+import type { Lang } from '@data/i18n/utils';
+
+interface Props {
+  lang: Lang;
+}
+
+const { lang } = Astro.props;
+const t = useTranslations(lang);
+---
+
+<button id="langToggle" aria-label={t('controls', 'switchLanguage')}>
+  <svg width="18px" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+    <path
+      class="globe"
+      d="M12 2a10 10 0 1 0 0 20 10 10 0 0 0 0-20Zm7.9 9h-3.1a15.7 15.7 0 0 0-1.2-5 8.1 8.1 0 0 1 4.3 5Zm-7.9 9a13.7 13.7 0 0 1-1.8-4h3.6a13.7 13.7 0 0 1-1.8 4Zm-2.1-6a11.6 11.6 0 0 1 0-4h4.2a11.6 11.6 0 0 1 0 4H9.9Zm-5.8-2a8.1 8.1 0 0 1 4.3-5 15.7 15.7 0 0 0-1.2 5H4.1Zm4.3 7a8.1 8.1 0 0 1-4.3-5h3.1a15.7 15.7 0 0 0 1.2 5Zm1.8-8a13.7 13.7 0 0 1 1.8-4 13.7 13.7 0 0 1 1.8 4h-3.6Zm5.4 8a15.7 15.7 0 0 0 1.2-5h3.1a8.1 8.1 0 0 1-4.3 5Z"
+    ></path>
+  </svg>
+  <span class="language-code">{lang.toUpperCase()}</span>
+</button>
+
+<style>
+  #langToggle {
+    border: 0;
+    background: none;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.25rem;
+  }
+
+  .globe {
+    fill: #71717a;
+    transition: fill 0.2s ease;
+  }
+
+  .language-code {
+    color: #71717a;
+    font-size: 0.75rem;
+    font-weight: 600;
+    line-height: 1;
+    letter-spacing: 0.03em;
+    transition: color 0.2s ease;
+  }
+
+  #langToggle:hover .globe {
+    fill: #52525b;
+  }
+
+  #langToggle:hover .language-code {
+    color: #52525b;
+  }
+
+  :global(.dark) .globe {
+    fill: #a1a1aa;
+  }
+
+  :global(.dark) .language-code {
+    color: #a1a1aa;
+  }
+
+  :global(.dark) #langToggle:hover .globe {
+    fill: #d4d4d8;
+  }
+
+  :global(.dark) #langToggle:hover .language-code {
+    color: #d4d4d8;
+  }
+</style>
+
+<script is:inline>
+  const getLangPath = (pathname, search, hash) => {
+    if (pathname.startsWith('/es')) {
+      const normalized = pathname.replace(/^\/es/, '') || '/';
+      return `${normalized}${search}${hash}`;
+    }
+
+    return `/es${pathname === '/' ? '/' : pathname}${search}${hash}`;
+  };
+
+  const handleLanguageToggle = () => {
+    const { pathname, search, hash } = window.location;
+    const nextPath = getLangPath(pathname, search, hash);
+    const nextLang = pathname.startsWith('/es') ? 'en' : 'es';
+
+    localStorage.setItem('lang', nextLang);
+    window.location.assign(nextPath);
+  };
+
+  document.getElementById('langToggle')?.addEventListener('click', handleLanguageToggle);
+</script>

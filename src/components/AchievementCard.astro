@@ -1,13 +1,17 @@
 ---
-import { Image } from "astro:assets";
+import { Image } from 'astro:assets';
+import { useTranslations } from '@data/i18n/ui';
+import type { Lang } from '@data/i18n/utils';
 
 interface Props {
   title: string;
   description: string;
   image: string;
   link?: string;
+  lang: Lang;
 }
-const { title, description, image, link }: Props = Astro.props;
+const { title, description, image, link, lang }: Props = Astro.props;
+const t = useTranslations(lang);
 
 const images = import.meta.glob<{ default: ImageMetadata }>('/src/assets/img/achievements/*.jpg');
 if (!images[image]) throw new Error(`"${image}" does not exist in glob: "/src/assets/img/achievements/*.jpg"`);
@@ -42,7 +46,7 @@ if (!images[image]) throw new Error(`"${image}" does not exist in glob: "/src/as
           me-2 mb-2 dark:bg-zinc-950 dark:text-white dark:border-zinc-800
           dark:hover:bg-zinc-800 dark:focus:ring-gray-700 mt-3"
         >
-          Learn more about this topic
+          {t('achievement', 'learnMore')}
           <svg
             class="rtl:rotate-180 w-3.5 h-3.5 ms-2"
             aria-hidden="true"

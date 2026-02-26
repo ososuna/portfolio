@@ -3,6 +3,8 @@ import { Image } from 'astro:assets';
 import ProjectLinkButton from '@components/ProjectLinkButton.astro';
 import GitHubIcon from '@icons/GitHubIcon.astro';
 import WebIcon from '@icons/WebIcon.astro';
+import { useTranslations } from '@data/i18n/ui';
+import type { Lang } from '@data/i18n/utils';
 
 interface Props {
   title: string;
@@ -12,10 +14,12 @@ interface Props {
   restApi?: string;
   ui?: string;
   image: string;
+  lang: Lang;
   tags: { name: string; class: string; icon: any }[];
 }
 
-const { title, description, link, github, image, tags, restApi, ui } = Astro.props;
+const { title, description, link, github, image, tags, restApi, ui, lang } = Astro.props;
+const t = useTranslations(lang);
 const images = import.meta.glob<{ default: ImageMetadata }>('/src/assets/img/projects/*.png');
 if (!images[image]) throw new Error(`"${image}" does not exist in glob: "/src/assets/img/projects/*.png"`);
 ---
@@ -55,7 +59,7 @@ if (!images[image]) throw new Error(`"${image}" does not exist in glob: "/src/as
       github && (
         <ProjectLinkButton href={github}>
           <GitHubIcon class="size-4 me-2" />
-          Source code
+          {t('project', 'sourceCode')}
         </ProjectLinkButton>
       )
     }
@@ -63,7 +67,7 @@ if (!images[image]) throw new Error(`"${image}" does not exist in glob: "/src/as
       ui && (
         <ProjectLinkButton href={ui}>
           <GitHubIcon class="size-4 me-2" />
-          UI
+          {t('project', 'ui')}
         </ProjectLinkButton>
       )
     }
@@ -71,7 +75,7 @@ if (!images[image]) throw new Error(`"${image}" does not exist in glob: "/src/as
       restApi && (
         <ProjectLinkButton href={restApi}>
           <GitHubIcon class="size-4 me-2" />
-          Rest API
+          {t('project', 'restApi')}
         </ProjectLinkButton>
       )
     }
@@ -79,7 +83,7 @@ if (!images[image]) throw new Error(`"${image}" does not exist in glob: "/src/as
       link && (
         <ProjectLinkButton href={link}>
           <WebIcon class="size-5 me-2" />
-          Go to project
+          {t('project', 'goToProject')}
         </ProjectLinkButton>
       )
     }
