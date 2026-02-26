@@ -1,0 +1,35 @@
+[
+  {
+    "title": "Desarrollador Full Stack en ARCOS LLC",
+    "company": "ARCOS LLC",
+    "date": "Octubre 2025 - Presente",
+    "bulletPoints": [
+      "Aceleré la entrega del equipo en 80% al impulsar flujos de trabajo de codificación basada en agentes - subagentes, skills, servidores MCP, reglas y comandos - logrando ciclos de entrega más rápidos y mejor calidad.",
+      "Reduje el tiempo de inicio de sesión de usuarios en 70% al implementar autenticación biométrica segura para iOS y Android, brindando una experiencia más rápida y sin fricción en una aplicación crítica."
+    ]
+  },
+  {
+    "title": "Desarrollador Full Stack en Oracle",
+    "company": "Oracle",
+    "date": "Marzo 2023 - Octubre 2025",
+    "bulletPoints": [
+      "Reduje la latencia de obtención de fuentes de logs en 40% al introducir caché jerárquica con Redis y carga perezosa de propiedades anidadas.",
+      "Aumenté el rendimiento de ingesta de fuentes de logs en 35% al refactorizar pipelines de Spring Boot para usar ejecución asíncrona y operaciones por lotes con JDBC.",
+      "Optimicé el tiempo de carga de página en 80% al implementar estrategias de carga diferida y manejo asíncrono de APIs.",
+      "Reduje el tiempo de ejecución de pruebas unitarias en 95% al introducir un enfoque de pruebas independiente de UI.",
+      "Integré componentes de React en una arquitectura MVVM, desarrollando implementaciones reutilizables adoptadas por múltiples servicios de OCI.",
+      "Realicé pruebas de todas las funcionalidades agregadas, incluyendo pruebas unitarias, de integración y end-to-end."
+    ]
+  },
+  {
+    "title": "Desarrollador Full Stack en GE Aerospace",
+    "company": "GE Aerospace",
+    "date": "Noviembre 2020 - Marzo 2023",
+    "bulletPoints": [
+      "Implementé algoritmos en Java que redujeron en 50% el tiempo de seguimiento de métricas de calidad de empleados.",
+      "Mejoré el rendimiento de APIs REST en ~60% al integrar Elasticsearch, permitiendo recuperación de datos más rápida y eficiente.",
+      "Contribuí al desarrollo basado en microservicios usando Spring Boot y Node.js.",
+      "Creé y administré procesos ETL para centralizar datos en un data warehouse."
+    ]
+  }
+]

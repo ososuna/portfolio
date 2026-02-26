@@ -1,0 +1,31 @@
+{
+  "title": "About Me",
+  "imageAlt": "Profile Picture",
+  "paragraphs": [
+    {
+      "preName": "My name is ",
+      "name": "Oswaldo Osuna",
+      "afterName": " and I am a ",
+      "role": "Full Stack Developer",
+      "afterRole": ". I have been working in the tech industry for over ",
+      "years": "5 years",
+      "afterYears": ". I am passionate about building effective software and learning every day to grow professionally in a dynamic environment."
+    },
+    {
+      "preCompany": "At ",
+      "company": "Arcos LLC",
+      "afterCompany": ", I pioneered ",
+      "focus": "agentic coding workflows",
+      "afterFocus": " that significantly accelerated delivery and raised the quality bar across the team. Prior to that, I led full stack development for ",
+      "platform": "Oracle Cloud Infrastructure in the Log Analytics service",
+      "afterPlatform": "."
+    },
+    {
+      "preIndustry": "I have also worked on developing solutions for the ",
+      "industry": "aerospace industry",
+      "afterIndustry": " in creating web applications for ",
+      "outcome": "managing critical business processes",
+      "afterOutcome": "."
+    }
+  ]
+}

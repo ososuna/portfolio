@@ -1,0 +1,13 @@
+[
+  {
+    "title": "Huawei Seeds for the Future",
+    "description": "Seleccionado como uno de los 40 mejores estudiantes para participar en al menos 13 horas de aprendizaje, con cursos exclusivos sobre Huawei y las tecnologías más recientes (5G, IA, cómputo en la nube y HMS), para conocer el ecosistema tecnológico en China y aprender de expertos líderes de la industria.",
+    "image": "/src/assets/img/achievements/seeds-for-the-future.jpg",
+    "link": "https://www.huawei.com/minisite/seeds-for-the-future/index.html"
+  },
+  {
+    "title": "Licenciatura en Ingeniería de Software",
+    "description": "Licenciatura en Ingeniería de Software por la Universidad Anáhuac Querétaro. Mi trayectoria académica me dio una base sólida en principios de ingeniería de software, lenguajes de programación y tecnologías emergentes. Trabajar en proyectos colaborativos fortaleció mi experiencia en desarrollo web, diseño de bases de datos y arquitectura de software.",
+    "image": "/src/assets/img/achievements/anahuac-queretaro.jpg"
+  }
+]

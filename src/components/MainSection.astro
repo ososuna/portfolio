@@ -3,17 +3,27 @@ import { Image } from 'astro:assets';
 import meImage from '@img/oswaldo-osuna-01.jpeg';
 import SectionContainer from '@components/SectionContainer.astro';
 import SocialMedia from '@components/SocialMedia.astro';
+import en from '@data/main/en.json';
+import es from '@data/main/es.json';
+import type { Lang } from '@data/i18n/utils';
+
+interface Props {
+  lang: Lang;
+}
+
+const { lang } = Astro.props;
+const mainData = lang === 'es' ? es : en;
 ---
 
 <SectionContainer class="py-44 pb-32 w-10/12">
   <div class="mx-6 lg:mx-0">
     <div class="flex items-center justify-center mb-4">
-      <h1 class="text-zinc-950 dark:text-white md:text-6xl xss:text-4xl text-3xl font-extrabold text-center">Oswaldo Osuna</h1>
-      <Image src={meImage} alt="Oswaldo Osuna" class="xss:size-20 size-16 rounded-full xss:mx-10 mx-6" />
+      <h1 class="text-zinc-950 dark:text-white md:text-6xl xss:text-4xl text-3xl font-extrabold text-center">{mainData.name}</h1>
+      <Image src={meImage} alt={mainData.photoAlt} class="xss:size-20 size-16 rounded-full xss:mx-10 mx-6" />
     </div>
     <p class="md:text-xl xs:text-lg text-base text-center text-zinc-500 dark:text-zinc-400">
-      Full Stack developer from Guadalajara, Mexico. 5 years of experience.
-      Specialized in building scalable systems and high-performance applications.
+      {mainData.summary.lineOne}
+      {mainData.summary.lineTwo}
     </p>
     <SocialMedia />
   </div>

@@ -1,26 +1,37 @@
 ---
-import ThemeSelector from "@components/ThemeSelector.astro";
-import LogoIcon from "@icons/LogoIcon.astro";
+import ThemeSelector from '@components/ThemeSelector.astro';
+import LanguageSelector from '@components/LanguageSelector.astro';
+import LogoIcon from '@icons/LogoIcon.astro';
+import { useTranslations } from '@data/i18n/ui';
+import type { Lang } from '@data/i18n/utils';
+
+interface Props {
+  lang: Lang;
+}
+
+const { lang } = Astro.props;
+const t = useTranslations(lang);
+
 const menuOptions = [
   {
-    name: "Experience",
-    label: "experience",
-    url: "/#experience",
+    name: t('nav', 'experience'),
+    label: t('nav', 'experience').toLowerCase(),
+    url: lang === 'es' ? '/es/#experience' : '/#experience',
   },
   {
-    name: "Projects",
-    label: "projects",
-    url: "/#projects",
+    name: t('nav', 'projects'),
+    label: t('nav', 'projects').toLowerCase(),
+    url: lang === 'es' ? '/es/#projects' : '/#projects',
   },
   {
-    name: "Achievements",
-    label: "achievements",
-    url: "/#achievements",
+    name: t('nav', 'achievements'),
+    label: t('nav', 'achievements').toLowerCase(),
+    url: lang === 'es' ? '/es/#achievements' : '/#achievements',
   },
   {
-    name: "About Me",
-    label: "about me",
-    url: "/#about-me",
+    name: t('nav', 'about'),
+    label: t('nav', 'about').toLowerCase(),
+    url: lang === 'es' ? '/es/#about-me' : '/#about-me',
   },
 ];
 ---
@@ -28,7 +39,7 @@ const menuOptions = [
 <header
   class="w-full fixed h-14 flex items-center xs:justify-between justify-center xs:px-6 shadow-sm backdrop-blur z-50"
 >
-  <a href="/#" aria-label="Home" class="xss:hidden xs:block block">
+  <a href={lang === 'es' ? '/es/#' : '/#'} aria-label={t('nav', 'home')} class="xss:hidden xs:block block">
     <LogoIcon />
   </a>
   <nav class="flex items-center xs:space-x-4 space-x-3">
@@ -44,6 +55,7 @@ const menuOptions = [
         </a>
       ))
     }
-    <ThemeSelector />
+    <LanguageSelector lang={lang} />
+    <ThemeSelector lang={lang} />
   </nav>
 </header>

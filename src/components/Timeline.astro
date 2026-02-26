@@ -1,6 +1,15 @@
 ---
 import TimelineItem from '@components/TimelineItem.astro';
-import experience from "@data/experience/experience.json";
+import en from '@data/experience/en.json';
+import es from '@data/experience/es.json';
+import type { Lang } from '@data/i18n/utils';
+
+interface Props {
+  lang: Lang;
+}
+
+const { lang } = Astro.props;
+const experience = lang === 'es' ? es : en;
 ---
 <div class="mx-auto lg:ms-0 ms-6">
   <ol class="relative border-s border-gray-200 dark:border-gray-700">
