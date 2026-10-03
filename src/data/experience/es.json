@@ -2,20 +2,20 @@
   {
     "title": "AI Engineer en ARCOS LLC",
     "company": "ARCOS LLC",
-    "date": "Octubre 2025 - Presente",
+    "date": "octubre 2025 - presente",
     "bulletPoints": [
       "Entregué la plataforma MCP de la empresa sobre una arquitectura escalable con AWS AgentCore Gateway, brindando a clientes y empleados acceso seguro con IA a los sistemas de ARCOS. Los nuevos servidores MCP reutilizan su autenticación y observabilidad compartidas.",
       "Diseñé una base de observabilidad con OpenTelemetry para funcionalidades agénticas y servidores MCP, enviando trazas de GenAI y de llamadas a herramientas MCP de todos los ambientes a través de un OTel Collector hacia Langfuse autoalojado para visibilidad de agentes de extremo a extremo.",
-      "Construí un framework de evals que califica funcionalidades agénticas con aserciones deterministas de trayectoria y evaluación LLM-as-a-judge, y conecté los resultados a un Langfuse autoalojado.",
+      "Construí un framework de evals que califica funcionalidades agénticas con aserciones deterministas de trayectoria y evaluación LLM-as-a-judge, y conecté los resultados a la misma instancia de Langfuse autoalojado.",
       "Establecí un repositorio de contexto compartido con más de 50 artefactos (decisiones de arquitectura, aprendizajes, roadmaps, conocimiento del dominio) usado por producto, ingeniería y agentes de IA, logrando roadmaps alineados, onboarding más rápido y trabajo generado por IA más preciso.",
       "Lideré las mejores prácticas de flujos de trabajo agénticos para más de 20 ingenieros y product managers aplicando context engineering y harness engineering.",
-      "Aceleré la entrega del equipo en 80% al impulsar flujos de trabajo de codificación agéntica con subagentes, skills y servidores MCP, logrando ciclos de entrega más rápidos y una calidad medible más alta."
+      "Aceleré la entrega del equipo en 80% al impulsar flujos de trabajo de codificación agéntica con subagentes, skills y servidores MCP, logrando ciclos de entrega más rápidos y una calidad de entrega mediblemente superior."
     ]
   },
   {
-    "title": "Desarrollador Full Stack en Oracle",
+    "title": "Full Stack Developer en Oracle",
     "company": "Oracle",
-    "date": "Marzo 2023 - Octubre 2025",
+    "date": "marzo 2023 - octubre 2025",
     "bulletPoints": [
       "Reduje la latencia de obtención de fuentes de logs en 40% al introducir caché jerárquica con Redis y carga perezosa de propiedades anidadas.",
       "Aumenté el rendimiento de ingesta de fuentes de logs en 35% al refactorizar pipelines de Spring Boot para usar ejecución asíncrona y operaciones por lotes con JDBC.",
@@ -26,9 +26,9 @@
     ]
   },
   {
-    "title": "Desarrollador Full Stack en GE Aerospace",
+    "title": "Full Stack Developer en GE Aerospace",
     "company": "GE Aerospace",
-    "date": "Noviembre 2020 - Marzo 2023",
+    "date": "noviembre 2020 - marzo 2023",
     "bulletPoints": [
       "Implementé algoritmos en Java que redujeron en 50% el tiempo de seguimiento de métricas de calidad de empleados.",
       "Mejoré el rendimiento de APIs REST en ~60% al integrar Elasticsearch, permitiendo recuperación de datos más rápida y eficiente.",
