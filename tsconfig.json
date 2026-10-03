@@ -8,6 +8,7 @@
       "@icons/*": ["src/icons/*"],
       "@data/*": ["src/data/*"],
       "@img/*": ["src/assets/img/*"],
+      "@styles/*": ["src/styles/*"],
     }
   },
   "extends": "astro/tsconfigs/strict"
