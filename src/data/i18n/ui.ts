@@ -22,7 +22,7 @@ export const ui = {
     project: {
       sourceCode: 'Source code',
       ui: 'UI',
-      restApi: 'Rest API',
+      restApi: 'REST API',
       goToProject: 'Go to project',
     },
     achievement: {

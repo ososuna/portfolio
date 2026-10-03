@@ -1,7 +1,7 @@
 [
   {
     "title": "ClipLink - Acortador de URLs",
-    "description": "Un acortador de URLs moderno construido con arquitectura limpia, aprovechando la arquitectura de islas de Astro y renderizado del lado del servidor para alto rendimiento. Incluye autenticación con Google y GitHub, transiciones fluidas, soporte para modo claro y oscuro, paginación y un motor de búsqueda potente. Está diseñado para escalar y ofrecer una excelente experiencia de usuario. Además, incluye una suite completa de pruebas unitarias que garantiza confiabilidad, mantenibilidad y estabilidad a largo plazo.",
+    "description": "Un acortador de URLs moderno construido con arquitectura limpia, aprovechando la arquitectura de islas de Astro y renderizado del lado del servidor para alto rendimiento. Incluye autenticación con Google y GitHub, transiciones de vista fluidas, soporte para modo claro y oscuro, paginación y un motor de búsqueda potente. Está diseñado para escalar y ofrecer una excelente experiencia de usuario. Además, incluye una suite completa de pruebas unitarias que garantiza confiabilidad, mantenibilidad y estabilidad a largo plazo.",
     "ui": "https://github.com/ososuna/cliplink-ui",
     "restApi": "https://github.com/ososuna/cliplink-rest",
     "link": "https://cliplink.app",
