@@ -1,11 +1,15 @@
 [
   {
-    "title": "Full Stack Developer at ARCOS LLC",
+    "title": "AI Engineer at ARCOS LLC",
     "company": "ARCOS LLC",
     "date": "October 2025 - Present",
     "bulletPoints": [
-      "Accelerated team delivery by 80% by pioneering agentic coding workflows - subagents, skills, MCP servers, rules, and commands - resulting in faster feature cycles and measurably higher output quality.",
-      "Reduced user login time by 70% by implementing a secure biometric authentication system for iOS and Android, resulting in a faster and frictionless experience in a critical mobile application."
+      "Delivered the company MCP platform on a scalable AWS AgentCore Gateway architecture, giving customers and employees secure AI access to ARCOS systems. New MCP servers reuse its shared authentication and observability.",
+      "Architected an OpenTelemetry observability foundation for agentic features and MCP servers, routing GenAI and MCP tool-call traces from all environments through an OTel Collector to self-hosted Langfuse for end-to-end agent visibility.",
+      "Built an evals framework that scores agentic features with deterministic trajectory assertions and LLM-as-a-judge grading, and connected the scores to a self-hosted Langfuse.",
+      "Established a shared context repository with 50+ artifacts (architecture decisions, learnings, roadmaps, domain knowledge) used by product, engineering and AI agents, resulting in aligned roadmaps, faster onboarding and more accurate AI-generated work.",
+      "Led agentic workflow best practices for 20+ engineers and product managers by applying context engineering and harness engineering.",
+      "Accelerated team delivery by 80% by pioneering agentic coding workflows with subagents, skills and MCP servers, resulting in faster feature cycles and measurably higher output quality."
     ]
   },
   {

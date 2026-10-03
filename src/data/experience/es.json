@@ -1,11 +1,15 @@
 [
   {
-    "title": "Desarrollador Full Stack en ARCOS LLC",
+    "title": "AI Engineer en ARCOS LLC",
     "company": "ARCOS LLC",
     "date": "Octubre 2025 - Presente",
     "bulletPoints": [
-      "Aceleré la entrega del equipo en 80% al impulsar flujos de trabajo de codificación basada en agentes - subagentes, skills, servidores MCP, reglas y comandos - logrando ciclos de entrega más rápidos y mejor calidad.",
-      "Reduje el tiempo de inicio de sesión de usuarios en 70% al implementar autenticación biométrica segura para iOS y Android, brindando una experiencia más rápida y sin fricción en una aplicación crítica."
+      "Entregué la plataforma MCP de la empresa sobre una arquitectura escalable con AWS AgentCore Gateway, brindando a clientes y empleados acceso seguro con IA a los sistemas de ARCOS. Los nuevos servidores MCP reutilizan su autenticación y observabilidad compartidas.",
+      "Diseñé una base de observabilidad con OpenTelemetry para funcionalidades agénticas y servidores MCP, enviando trazas de GenAI y de llamadas a herramientas MCP de todos los ambientes a través de un OTel Collector hacia Langfuse autoalojado para visibilidad de agentes de extremo a extremo.",
+      "Construí un framework de evals que califica funcionalidades agénticas con aserciones deterministas de trayectoria y evaluación LLM-as-a-judge, y conecté los resultados a un Langfuse autoalojado.",
+      "Establecí un repositorio de contexto compartido con más de 50 artefactos (decisiones de arquitectura, aprendizajes, roadmaps, conocimiento del dominio) usado por producto, ingeniería y agentes de IA, logrando roadmaps alineados, onboarding más rápido y trabajo generado por IA más preciso.",
+      "Lideré las mejores prácticas de flujos de trabajo agénticos para más de 20 ingenieros y product managers aplicando context engineering y harness engineering.",
+      "Aceleré la entrega del equipo en 80% al impulsar flujos de trabajo de codificación agéntica con subagentes, skills y servidores MCP, logrando ciclos de entrega más rápidos y una calidad medible más alta."
     ]
   },
   {
