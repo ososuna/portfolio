@@ -2,6 +2,9 @@
   "name": "portfolio",
   "type": "module",
   "version": "1.1.0",
+  "engines": {
+    "node": "24.x"
+  },
   "scripts": {
     "dev": "astro dev",
     "start": "astro dev",
