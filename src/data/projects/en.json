@@ -4,7 +4,7 @@
     "description": "An AI-powered personal finance assistant that answers questions about your money in plain language. Instead of doing arithmetic itself, the LLM plans and calls deterministic, database-backed tools, so every figure it shows comes from real data, and each answer lets you expand the evidence it read. It also imports bank statements from CSV files, where the LLM suggests categories that you review before anything is saved, and includes a dashboard with income, expenses, and spending by category. Visitors can try a private 24-hour demo with a sample household, no sign-in required. Built as a TypeScript monorepo with Next.js and PostgreSQL, and backed by unit, integration, and end-to-end tests, an evaluation suite across real models, and LLM tracing.",
     "link": "https://finance-assistant.ososuna.dev/",
     "image": "/src/assets/img/projects/finance-assistant.png",
-    "tags": ["next", "react", "typescript", "tailwind", "shadcn", "postgresql", "openai", "vercel", "docker", "vitest"]
+    "tags": ["aisdk", "next", "react", "typescript", "tailwind", "shadcn", "postgresql", "openai", "vercel", "docker", "vitest"]
   },
   {
     "title": "ClipLink - URL Shortener",
