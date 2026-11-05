@@ -1,5 +1,12 @@
 [
   {
+    "title": "Asistente Financiero",
+    "description": "Un asistente de finanzas personales impulsado por IA que responde preguntas sobre tu dinero en lenguaje natural. En lugar de hacer cálculos por sí mismo, el LLM planea y llama herramientas deterministas respaldadas por la base de datos, de modo que cada cifra que muestra proviene de datos reales, y cada respuesta permite expandir la evidencia que consultó. También importa estados de cuenta desde archivos CSV, donde el LLM sugiere categorías que revisas antes de guardar cualquier movimiento, e incluye un panel con ingresos, gastos y gasto por categoría. Los visitantes pueden probar una demo privada de 24 horas con un hogar de ejemplo, sin necesidad de iniciar sesión. Está construido como un monorepo en TypeScript con Next.js y PostgreSQL, respaldado por pruebas unitarias, de integración y de extremo a extremo, una suite de evaluación con modelos reales y trazabilidad del LLM.",
+    "link": "https://finance-assistant.ososuna.dev/",
+    "image": "/src/assets/img/projects/finance-assistant.png",
+    "tags": ["next", "react", "typescript", "tailwind", "shadcn", "postgresql", "openai", "vercel", "docker", "vitest"]
+  },
+  {
     "title": "ClipLink - Acortador de URLs",
     "description": "Un acortador de URLs moderno construido con arquitectura limpia, aprovechando la arquitectura de islas de Astro y renderizado del lado del servidor para alto rendimiento. Incluye autenticación con Google y GitHub, transiciones de vista fluidas, soporte para modo claro y oscuro, paginación y un motor de búsqueda potente. Está diseñado para escalar y ofrecer una excelente experiencia de usuario. Además, incluye una suite completa de pruebas unitarias que garantiza confiabilidad, mantenibilidad y estabilidad a largo plazo.",
     "ui": "https://github.com/ososuna/cliplink-ui",
