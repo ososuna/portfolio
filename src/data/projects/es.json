@@ -14,13 +14,5 @@
     "link": "https://cliplink.app",
     "image": "/src/assets/img/projects/cliplink.png",
     "tags": ["astro", "react", "shadcn", "express", "nodejs", "vercel", "tailwind", "mongodb", "docker", "vitest"]
-  },
-  {
-    "title": "Vue Pokedex",
-    "description": "Pokedex creada con Vue 3 y Bootstrap consumiendo PokeAPI. Tiene buscador, scroll infinito y una página de detalle para cada Pokémon. Diseño responsivo y desplegada en Vercel.",
-    "link": "https://pokedex-umber-pi.vercel.app/#/",
-    "github": "https://github.com/ososuna/pokedex",
-    "image": "/src/assets/img/projects/vue-pokedex.png",
-    "tags": ["vue", "bootstrap", "vercel"]
   }
 ]
