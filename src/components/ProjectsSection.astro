@@ -26,6 +26,8 @@ import VitestIcon from '@icons/VitestIcon.astro';
 import TypeScriptIcon from '@icons/TypeScriptIcon.astro';
 import PostgreSqlIcon from '@icons/PostgreSqlIcon.astro';
 import OpenAiIcon from '@icons/OpenAiIcon.astro';
+import LangfuseIcon from '@icons/LangfuseIcon.astro';
+import OpenTelemetryIcon from '@icons/OpenTelemetryIcon.astro';
 
 interface Props {
   lang: Lang;
@@ -140,6 +142,16 @@ const tags = {
     name: "Vercel AI SDK",
     class: "bg-black text-white",
     icon: VercelIcon,
+  },
+  langfuse: {
+    name: "Langfuse",
+    class: "bg-white text-black border-solid border border-zinc-950 dark:border-none",
+    icon: LangfuseIcon,
+  },
+  opentelemetry: {
+    name: "OpenTelemetry",
+    class: "bg-[#425cc7] text-white",
+    icon: OpenTelemetryIcon,
   },
 };
 

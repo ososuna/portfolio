@@ -4,7 +4,7 @@
     "description": "An AI personal finance assistant that answers questions about your money in plain language. Built on the Vercel AI SDK as a tool-use agent: the LLM picks from ten typed, read-only tools and never does arithmetic itself, so every figure comes from a tool result and each answer shows its evidence. Demo sessions are traced end to end in Langfuse. An evaluation suite scores real models on tool selection and numeric accuracy, with an LLM as a judge grading answer quality.",
     "link": "https://finance-assistant.ososuna.dev/",
     "image": "/src/assets/img/projects/finance-assistant.png",
-    "tags": ["aisdk", "next", "react", "typescript", "tailwind", "shadcn", "postgresql", "openai", "vercel", "docker", "vitest"]
+    "tags": ["aisdk", "langfuse", "opentelemetry", "next", "react", "typescript", "tailwind", "shadcn", "postgresql", "openai", "vercel", "docker", "vitest"]
   },
   {
     "title": "ClipLink - URL Shortener",
