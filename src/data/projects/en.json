@@ -1,5 +1,12 @@
 [
   {
+    "title": "Finance Assistant",
+    "description": "An AI personal finance assistant that answers questions about your money in plain language. Built on the Vercel AI SDK as a tool-use agent: the LLM picks from ten typed, read-only tools and never does arithmetic itself, so every figure comes from a tool result and each answer shows its evidence. Demo sessions are traced end to end in Langfuse. An evaluation suite scores real models on tool selection and numeric accuracy, with an LLM as a judge grading answer quality.",
+    "link": "https://finance-assistant.ososuna.dev/",
+    "image": "/src/assets/img/projects/finance-assistant.png",
+    "tags": ["aisdk", "langfuse", "opentelemetry", "next", "react", "typescript", "tailwind", "shadcn", "postgresql", "openai", "vercel", "docker", "vitest"]
+  },
+  {
     "title": "ClipLink - URL Shortener",
     "description": "A modern URL shortener built with clean architecture, leveraging Astro's islands architecture and server-side rendering for high performance. Features include Google and GitHub authentication, seamless view transitions, dark and light mode support, pagination, and a powerful search engine. Designed for scalability and optimized for an exceptional user experience. Additionally, the project includes a comprehensive suite of unit tests that ensure code reliability, maintainability, and long-term stability.",
     "ui": "https://github.com/ososuna/cliplink-ui",
@@ -7,13 +14,5 @@
     "link": "https://cliplink.app",
     "image": "/src/assets/img/projects/cliplink.png",
     "tags": ["astro", "react", "shadcn", "express", "nodejs", "vercel", "tailwind", "mongodb", "docker", "vitest"]
-  },
-  {
-    "title": "Vue Pokedex",
-    "description": "Pokedex made with Vue 3 and Bootstrap consuming PokeAPI. It has a search engine, infinite scroll and a detail page for each Pokémon. Responsive and deployed on Vercel.",
-    "link": "https://pokedex-umber-pi.vercel.app/#/",
-    "github": "https://github.com/ososuna/pokedex",
-    "image": "/src/assets/img/projects/vue-pokedex.png",
-    "tags": ["vue", "bootstrap", "vercel"]
   }
 ]
