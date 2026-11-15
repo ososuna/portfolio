@@ -28,17 +28,16 @@
     },
     {
       "title": "ClipLink - Acortador de URLs",
-      "description": "Un acortador de URLs moderno construido con arquitectura limpia, aprovechando la arquitectura de islas de Astro y renderizado del lado del servidor para alto rendimiento. Incluye autenticación con Google y GitHub, transiciones de vista fluidas, soporte para modo claro y oscuro, paginación y un motor de búsqueda potente. Está diseñado para escalar y ofrecer una excelente experiencia de usuario. Además, incluye una suite completa de pruebas unitarias que garantiza confiabilidad, mantenibilidad y estabilidad a largo plazo.",
+      "description": "Un acortador de URLs moderno construido como una sola app de Astro, con renderizado del lado del servidor e islas de React para alto rendimiento, respaldado por Postgres en Neon a través de Drizzle. Cualquiera puede acortar un enlace, y quienes inician sesión con Google o GitHub también pueden nombrar, buscar, paginar y eliminar sus propios enlaces. Incluye transiciones de vista fluidas y soporte para modo claro y oscuro. El código está organizado en módulos profundos por funcionalidad, y su suite de pruebas se ejecuta contra una base de datos Postgres real en lugar de mocks, junto con pruebas end-to-end con Playwright, lo que garantiza confiabilidad, mantenibilidad y estabilidad a largo plazo.",
       "image": "../../assets/img/projects/cliplink.png",
       "technologies": [
         "astro",
         "react",
+        "typescript",
         "shadcn",
-        "express",
-        "nodejs",
-        "vercel",
         "tailwind",
-        "mongodb",
+        "postgresql",
+        "vercel",
         "docker",
         "vitest"
       ],

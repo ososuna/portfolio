@@ -28,17 +28,16 @@
     },
     {
       "title": "ClipLink - URL Shortener",
-      "description": "A modern URL shortener built with clean architecture, leveraging Astro's islands architecture and server-side rendering for high performance. Features include Google and GitHub authentication, seamless view transitions, dark and light mode support, pagination, and a powerful search engine. Designed for scalability and optimized for an exceptional user experience. Additionally, the project includes a comprehensive suite of unit tests that ensure code reliability, maintainability, and long-term stability.",
+      "description": "A modern URL shortener built as a single Astro app, using server-side rendering and React islands for high performance, backed by Postgres on Neon through Drizzle. Anyone can shorten a link, and users who sign in with Google or GitHub can also name, search, page through and delete the links they own. Features include seamless view transitions and dark and light mode support. The code is organized into deep feature modules, and its test suite runs against a real Postgres database instead of mocks, alongside Playwright end-to-end tests, ensuring reliability, maintainability, and long-term stability.",
       "image": "../../assets/img/projects/cliplink.png",
       "technologies": [
         "astro",
         "react",
+        "typescript",
         "shadcn",
-        "express",
-        "nodejs",
-        "vercel",
         "tailwind",
-        "mongodb",
+        "postgresql",
+        "vercel",
         "docker",
         "vitest"
       ],

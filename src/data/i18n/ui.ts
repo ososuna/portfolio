@@ -22,8 +22,6 @@ export const ui = {
     project: {
       live: 'Go to project',
       source: 'Source code',
-      'ui-source': 'UI',
-      'api-source': 'REST API',
     },
     achievement: {
       learnMore: 'Learn more about this topic',
@@ -58,8 +56,6 @@ export const ui = {
     project: {
       live: 'Ir al proyecto',
       source: 'Código fuente',
-      'ui-source': 'UI',
-      'api-source': 'API REST',
     },
     achievement: {
       learnMore: 'Conoce más sobre este tema',
