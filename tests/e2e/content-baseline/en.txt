@@ -1,0 +1,154 @@
+Title: Oswaldo Osuna - AI Engineer
+
+# Section order
+- Section 1: Oswaldo Osuna
+- Section 2: Professional Experience
+- Section 3: Projects
+- Section 4: Achievements
+- Section 5: About Me
+
+# Outside Sections
+
+## Text
+- Experience
+- Projects
+- Achievements
+- About Me
+- EN
+
+## Links
+- /#
+- /#experience
+- /#projects
+- /#achievements
+- /#about-me
+
+## Image alt text
+(none)
+
+# Section 1: Oswaldo Osuna
+
+## Text
+- Oswaldo Osuna
+- AI Engineer from Guadalajara, Mexico. 6 years of experience. Building scalable systems on solid engineering fundamentals, powered by agentic AI.
+- GitHub
+- LinkedIn
+
+## Links
+- https://github.com/ososuna
+- https://www.linkedin.com/in/ososuna/
+
+## Image alt text
+- Oswaldo Osuna
+
+# Section 2: Professional Experience
+
+## Text
+- Professional Experience
+- October 2025 - Present
+- AI Engineer at ARCOS LLC
+- Delivered the company's MCP platform on a scalable AWS AgentCore Gateway architecture, giving customers and employees secure AI access to ARCOS systems. New MCP servers reuse its shared authentication and observability.
+- Architected an OpenTelemetry observability foundation for agentic features and MCP servers, routing GenAI and MCP tool-call traces from all environments through an OTel Collector to self-hosted Langfuse for end-to-end agent visibility.
+- Built an evals framework that scores agentic features with deterministic trajectory assertions and LLM-as-a-judge grading, and connected the scores to the same self-hosted Langfuse instance.
+- Established a shared context repository with 50+ artifacts (architecture decisions, learnings, roadmaps, domain knowledge) used by product, engineering and AI agents, resulting in aligned roadmaps, faster onboarding and more accurate AI-generated work.
+- Led agentic workflow best practices for 20+ engineers and product managers by applying context engineering and harness engineering.
+- Accelerated team delivery by 80% by pioneering agentic coding workflows with subagents, skills and MCP servers, resulting in faster feature cycles and measurably higher output quality.
+- March 2023 - October 2025
+- Full Stack Developer at Oracle
+- Reduced log source retrieval latency by 40% by introducing Redis hierarchical cache and lazy loading of nested properties.
+- Increased log source ingestion throughput by 35% by refactoring Spring Boot pipelines to leverage asynchronous execution and JDBC batch operations.
+- Optimized page load time by 80% by implementing deferred loading strategies and asynchronous API handling.
+- Reduced unit test runtime by 95% by introducing a UI-independent testing approach.
+- Integrated React components into an MVVM architecture, developing reusable implementations adopted across multiple OCI services.
+- Conducted testing for all added features, including unit, integration and end-to-end tests.
+- November 2020 - March 2023
+- Full Stack Developer at GE Aerospace
+- Implemented Java algorithms that reduced employee quality-metrics tracking time by 50%.
+- Improved REST API performance by ~60% by integrating Elasticsearch, enabling faster and more efficient data retrieval.
+- Contributed to microservices-based development using Spring Boot and Node.js.
+- Created and managed ETL processes to centralize data into a data warehouse.
+
+## Links
+(none)
+
+## Image alt text
+(none)
+
+# Section 3: Projects
+
+## Text
+- Projects
+- Finance Assistant
+- An AI personal finance assistant that answers questions about your money in plain language. Built on the Vercel AI SDK as a tool-use agent: the LLM picks from ten typed, read-only tools and never does arithmetic itself, so every figure comes from a tool result and each answer shows its evidence. Demo sessions are traced end to end in Langfuse. An evaluation suite scores real models on tool selection and numeric accuracy, with an LLM as a judge grading answer quality.
+- Vercel AI SDK
+- Langfuse
+- OpenTelemetry
+- Next.js
+- React
+- TypeScript
+- Tailwind CSS
+- shadcn/ui
+- PostgreSQL
+- OpenAI
+- Vercel
+- Docker
+- Vitest
+- Go to project
+- ClipLink - URL Shortener
+- A modern URL shortener built with clean architecture, leveraging Astro's islands architecture and server-side rendering for high performance. Features include Google and GitHub authentication, seamless view transitions, dark and light mode support, pagination, and a powerful search engine. Designed for scalability and optimized for an exceptional user experience. Additionally, the project includes a comprehensive suite of unit tests that ensure code reliability, maintainability, and long-term stability.
+- Astro
+- React
+- shadcn/ui
+- Express.js
+- Node.js
+- Vercel
+- Tailwind CSS
+- MongoDB
+- Docker
+- Vitest
+- UI
+- REST API
+- Go to project
+
+## Links
+- https://finance-assistant.ososuna.dev/
+- https://finance-assistant.ososuna.dev/
+- https://cliplink.app
+- https://github.com/ososuna/cliplink-ui
+- https://github.com/ososuna/cliplink-rest
+- https://cliplink.app
+
+## Image alt text
+- Finance Assistant
+- ClipLink - URL Shortener
+
+# Section 4: Achievements
+
+## Text
+- Achievements
+- Huawei Seeds for the Future
+- Selected as one of the top 40 students to complete at least 13 hours of exclusive courses on Huawei and the latest technologies (5G, AI, cloud computing and HMS), to discover the technology ecosystem in China and to learn from the best experts in the industry.
+- Learn more about this topic
+- Software Engineering Bachelor's Degree
+- Bachelor's Degree in Software Engineering from Universidad Anáhuac Querétaro. My academic journey has equipped me with a solid foundation in software engineering principles, programming languages and emerging technologies. Engaging in collaborative projects has honed my expertise in web development, database design and software architecture.
+
+## Links
+- https://www.huawei.com/minisite/seeds-for-the-future/index.html
+
+## Image alt text
+- Huawei Seeds for the Future
+- Software Engineering Bachelor's Degree
+
+# Section 5: About Me
+
+## Text
+- About Me
+- My name is Oswaldo Osuna and I am an AI Engineer. I have been working in the tech industry for over 6 years. I am passionate about building effective software and learning every day to grow professionally in a dynamic environment.
+- At ARCOS LLC, I delivered the company's MCP platform on a scalable architecture while also introducing agentic coding workflows that significantly accelerated delivery and raised the quality bar across the team. Prior to that, I led full stack development for Oracle Cloud Infrastructure in the Log Analytics service.
+- I have also developed solutions for the aerospace industry , building web applications for managing critical business processes.
+
+## Links
+(none)
+
+## Image alt text
+- Profile Picture

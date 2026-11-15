@@ -1,0 +1,154 @@
+Title: Oswaldo Osuna - AI Engineer
+
+# Section order
+- Section 1: Oswaldo Osuna
+- Section 2: Experiencia profesional
+- Section 3: Proyectos
+- Section 4: Logros
+- Section 5: Sobre mí
+
+# Outside Sections
+
+## Text
+- Experiencia
+- Proyectos
+- Logros
+- Sobre mí
+- ES
+
+## Links
+- /es/#
+- /es/#experience
+- /es/#projects
+- /es/#achievements
+- /es/#about-me
+
+## Image alt text
+(none)
+
+# Section 1: Oswaldo Osuna
+
+## Text
+- Oswaldo Osuna
+- AI Engineer de Guadalajara, México. 6 años de experiencia. Construyo sistemas escalables sobre fundamentos sólidos de ingeniería, potenciados con IA agéntica.
+- GitHub
+- LinkedIn
+
+## Links
+- https://github.com/ososuna
+- https://www.linkedin.com/in/ososuna/
+
+## Image alt text
+- Oswaldo Osuna
+
+# Section 2: Experiencia profesional
+
+## Text
+- Experiencia profesional
+- octubre 2025 - presente
+- AI Engineer en ARCOS LLC
+- Entregué la plataforma MCP de la empresa sobre una arquitectura escalable con AWS AgentCore Gateway, brindando a clientes y empleados acceso seguro con IA a los sistemas de ARCOS. Los nuevos servidores MCP reutilizan su autenticación y observabilidad compartidas.
+- Diseñé una base de observabilidad con OpenTelemetry para funcionalidades agénticas y servidores MCP, enviando trazas de GenAI y de llamadas a herramientas MCP de todos los ambientes a través de un OTel Collector hacia Langfuse autoalojado para visibilidad de agentes de extremo a extremo.
+- Construí un framework de evals que califica funcionalidades agénticas con aserciones deterministas de trayectoria y evaluación LLM-as-a-judge, y conecté los resultados a la misma instancia de Langfuse autoalojado.
+- Establecí un repositorio de contexto compartido con más de 50 artefactos (decisiones de arquitectura, aprendizajes, roadmaps, conocimiento del dominio) usado por producto, ingeniería y agentes de IA, logrando roadmaps alineados, onboarding más rápido y trabajo generado por IA más preciso.
+- Lideré las mejores prácticas de flujos de trabajo agénticos para más de 20 ingenieros y product managers aplicando context engineering y harness engineering.
+- Aceleré la entrega del equipo en 80% al impulsar flujos de trabajo de codificación agéntica con subagentes, skills y servidores MCP, logrando ciclos de entrega más rápidos y una calidad de entrega mediblemente superior.
+- marzo 2023 - octubre 2025
+- Full Stack Developer en Oracle
+- Reduje la latencia de obtención de fuentes de logs en 40% al introducir caché jerárquica con Redis y carga perezosa de propiedades anidadas.
+- Aumenté el rendimiento de ingesta de fuentes de logs en 35% al refactorizar pipelines de Spring Boot para usar ejecución asíncrona y operaciones por lotes con JDBC.
+- Optimicé el tiempo de carga de página en 80% al implementar estrategias de carga diferida y manejo asíncrono de APIs.
+- Reduje el tiempo de ejecución de pruebas unitarias en 95% al introducir un enfoque de pruebas independiente de UI.
+- Integré componentes de React en una arquitectura MVVM, desarrollando implementaciones reutilizables adoptadas por múltiples servicios de OCI.
+- Realicé pruebas de todas las funcionalidades agregadas, incluyendo pruebas unitarias, de integración y end-to-end.
+- noviembre 2020 - marzo 2023
+- Full Stack Developer en GE Aerospace
+- Implementé algoritmos en Java que redujeron en 50% el tiempo de seguimiento de métricas de calidad de empleados.
+- Mejoré el rendimiento de APIs REST en ~60% al integrar Elasticsearch, permitiendo recuperación de datos más rápida y eficiente.
+- Contribuí al desarrollo basado en microservicios usando Spring Boot y Node.js.
+- Creé y administré procesos ETL para centralizar datos en un data warehouse.
+
+## Links
+(none)
+
+## Image alt text
+(none)
+
+# Section 3: Proyectos
+
+## Text
+- Proyectos
+- Asistente Financiero
+- Un asistente de finanzas personales con IA que responde preguntas sobre tu dinero en lenguaje natural. Construido con el Vercel AI SDK como un agente con herramientas: el LLM elige entre diez herramientas tipadas de solo lectura y nunca hace cálculos por sí mismo, así que cada cifra proviene del resultado de una herramienta y cada respuesta muestra su evidencia. Las sesiones de demo se trazan de principio a fin en Langfuse. Una suite de evaluación califica modelos reales en selección de herramientas y precisión numérica, con un LLM como juez que evalúa la calidad de las respuestas.
+- Vercel AI SDK
+- Langfuse
+- OpenTelemetry
+- Next.js
+- React
+- TypeScript
+- Tailwind CSS
+- shadcn/ui
+- PostgreSQL
+- OpenAI
+- Vercel
+- Docker
+- Vitest
+- Ir al proyecto
+- ClipLink - Acortador de URLs
+- Un acortador de URLs moderno construido con arquitectura limpia, aprovechando la arquitectura de islas de Astro y renderizado del lado del servidor para alto rendimiento. Incluye autenticación con Google y GitHub, transiciones de vista fluidas, soporte para modo claro y oscuro, paginación y un motor de búsqueda potente. Está diseñado para escalar y ofrecer una excelente experiencia de usuario. Además, incluye una suite completa de pruebas unitarias que garantiza confiabilidad, mantenibilidad y estabilidad a largo plazo.
+- Astro
+- React
+- shadcn/ui
+- Express.js
+- Node.js
+- Vercel
+- Tailwind CSS
+- MongoDB
+- Docker
+- Vitest
+- UI
+- API REST
+- Ir al proyecto
+
+## Links
+- https://finance-assistant.ososuna.dev/
+- https://finance-assistant.ososuna.dev/
+- https://cliplink.app
+- https://github.com/ososuna/cliplink-ui
+- https://github.com/ososuna/cliplink-rest
+- https://cliplink.app
+
+## Image alt text
+- Asistente Financiero
+- ClipLink - Acortador de URLs
+
+# Section 4: Logros
+
+## Text
+- Logros
+- Huawei Seeds for the Future
+- Seleccionado como uno de los 40 mejores estudiantes para participar en al menos 13 horas de aprendizaje, con cursos exclusivos sobre Huawei y las tecnologías más recientes (5G, IA, cómputo en la nube y HMS), para conocer el ecosistema tecnológico en China y aprender de expertos líderes de la industria.
+- Conoce más sobre este tema
+- Licenciatura en Ingeniería de Software
+- Licenciatura en Ingeniería de Software por la Universidad Anáhuac Querétaro. Mi trayectoria académica me dio una base sólida en principios de ingeniería de software, lenguajes de programación y tecnologías emergentes. Trabajar en proyectos colaborativos fortaleció mi experiencia en desarrollo web, diseño de bases de datos y arquitectura de software.
+
+## Links
+- https://www.huawei.com/minisite/seeds-for-the-future/index.html
+
+## Image alt text
+- Huawei Seeds for the Future
+- Licenciatura en Ingeniería de Software
+
+# Section 5: Sobre mí
+
+## Text
+- Sobre mí
+- Mi nombre es Oswaldo Osuna y soy AI Engineer. Llevo más de 6 años trabajando en la industria tecnológica. Me apasiona crear software efectivo y aprender cada día para crecer profesionalmente en un entorno dinámico.
+- En ARCOS LLC, entregué la plataforma MCP de la empresa sobre una arquitectura escalable, al mismo tiempo que introduje flujos de trabajo de codificación basados en agentes que aceleraron de forma significativa la entrega y elevaron la calidad en el equipo. Antes de eso, lideré el desarrollo full stack para Oracle Cloud Infrastructure en el servicio de Log Analytics.
+- También he trabajado en el desarrollo de soluciones para la industria aeroespacial creando aplicaciones web para gestionar procesos de negocio críticos.
+
+## Links
+(none)
+
+## Image alt text
+- Foto de perfil
