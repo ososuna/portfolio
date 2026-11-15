@@ -6,7 +6,7 @@ All content is in Astro content collections: schemas in `src/content.config.ts`,
 
 - **Per Locale**: Hero, Roles, Projects, Achievements and About hold one file per Locale (`en.json`, `es.json`), each with an ordered list, read with `getLocalized({ collection, locale })` from `@lib/content`. Keep both Locale files structurally identical (same entries, same order, same keys); only the text differs. Entries render in data order.
 - **Shared by every Locale**: Social Links, Companies and Technologies, one `file()` collection each (`src/content/{social-links,companies,technologies}.json`).
-- **References**: a Role's `company` and a Project's `technologies` are ids into the shared collections. Resolve them with `getReferenced` from `@lib/content`: Astro only logs an unknown `reference()` id and still exits 0, while `getReferenced` throws.
+- **References**: a Role's `company` and a Project's `technologies` are ids into the shared collections. Resolve each one with `getReferenced(ref)` from `@lib/content`: Astro only logs an unknown `reference()` id and still exits 0, while `getReferenced` throws.
 - **Icons**: `icon` and `logo` fields are names from `src/icons/names.ts`, rendered through the registry in `src/icons/index.ts`. A new name goes in both files.
 - **Images**: `image()` fields hold a path relative to the JSON file, pointing into `src/assets/img/`.
 

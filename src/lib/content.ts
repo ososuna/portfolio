@@ -17,18 +17,22 @@ export const getLocalized = async <C extends LocalizedCollection>({
 };
 
 /**
- * The data of each referenced entry, in order. An unknown id fails the build: Astro only
- * logs an invalid `reference()` during content sync and still exits 0.
+ * The data of a referenced entry. Resolve every `reference()` through this, not `getEntry`:
+ * Astro 7.4 only logs an unknown `reference()` id and still exits 0, so this throw is what
+ * fails the build.
  */
-export const getReferenced = async <C extends CollectionKey>(
-  refs: { collection: C; id: string }[],
-): Promise<CollectionEntry<C>['data'][]> =>
-  Promise.all(
-    refs.map(async ({ collection, id }) => {
-      const entry = await getEntry(collection, id);
-      if (!entry) throw new Error(`Collection "${collection}" has no entry with id "${id}"`);
-      return entry.data;
-    }),
-  );
+export const getReferenced = async <C extends CollectionKey>({
+  collection,
+  id,
+}: {
+  collection: C;
+  id: string;
+}): Promise<CollectionEntry<C>['data']> => {
+  const entry = await getEntry(collection, id);
+  if (!entry) throw new Error(`Collection "${collection}" has no entry with id "${id}"`);
+  return entry.data;
+};
 
+export type Role = CollectionEntry<'roles'>['data']['roles'][number];
+export type Project = CollectionEntry<'projects'>['data']['projects'][number];
 export type Achievement = CollectionEntry<'achievements'>['data']['achievements'][number];

@@ -1,7 +1,7 @@
 ---
 import { useTranslations } from '@data/i18n/ui';
 import type { Locale } from '@data/i18n/locales';
-import { getLocalized, getReferenced } from '@lib/content';
+import { getLocalized } from '@lib/content';
 import SectionContainer from '@components/SectionContainer.astro';
 import Project from '@components/Project.astro';
 
@@ -16,17 +16,6 @@ const { projects } = await getLocalized({ collection: 'projects', locale });
 
 <SectionContainer id="projects" class="py-16" heading={t('sections.projects')}>
   <div class="mx-6 lg:mx-0">
-    {
-      projects.map(async (project) => (
-        <Project
-          title={project.title}
-          description={project.description}
-          image={project.image}
-          technologies={await getReferenced(project.technologies)}
-          links={project.links}
-          locale={locale}
-        />
-      ))
-    }
+    {projects.map((project) => <Project project={project} locale={locale} />)}
   </div>
 </SectionContainer>

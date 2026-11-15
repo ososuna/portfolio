@@ -5,22 +5,19 @@ import { buttonVariants } from '@/components/ui/button';
 import { cn } from '@/lib/utils';
 import { useTranslations } from '@data/i18n/ui';
 import type { Locale } from '@data/i18n/locales';
-import type { ProjectLinkKind } from '@lib/project-links';
+import { getReferenced, type Project } from '@lib/content';
 import { icons } from '@icons/index';
-import type { IconName } from '@icons/names';
 import GitHubIcon from '@icons/GitHubIcon.astro';
 import WebIcon from '@icons/WebIcon.astro';
 
 interface Props {
-  title: string;
-  description: string;
-  image: ImageMetadata;
-  technologies: { name: string; icon: IconName }[];
-  links: { kind: ProjectLinkKind; url: string }[];
+  project: Project;
   locale: Locale;
 }
 
-const { title, description, image, technologies, links, locale } = Astro.props;
+const { project, locale } = Astro.props;
+const { title, description, image, links } = project;
+const technologies = await Promise.all(project.technologies.map(getReferenced));
 const t = useTranslations(locale);
 
 const liveUrl = links.find(({ kind }) => kind === 'live')?.url;

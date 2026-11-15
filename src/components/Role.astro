@@ -1,15 +1,14 @@
 ---
-import type { CollectionEntry } from 'astro:content';
 import { Separator } from '@/components/ui/separator';
 import { icons } from '@icons/index';
+import { getReferenced, type Role } from '@lib/content';
 
 interface Props {
-  period: string;
-  title: string;
-  bulletPoints?: string[];
-  company: CollectionEntry<'companies'>['data'];
+  role: Role;
 }
-const { period, title, bulletPoints, company } = Astro.props;
+
+const { role } = Astro.props;
+const company = await getReferenced(role.company);
 const Logo = icons[company.logo];
 ---
 
@@ -26,10 +25,10 @@ const Logo = icons[company.logo];
     </div>
   </div>
   <div class="min-w-0 flex-1 pb-10">
-    <time class="block text-sm leading-7 text-muted-foreground">{period}</time>
-    <h3 class="mb-2 text-lg font-semibold">{title}</h3>
+    <time class="block text-sm leading-7 text-muted-foreground">{role.period}</time>
+    <h3 class="mb-2 text-lg font-semibold">{role.title}</h3>
     <ul class="list-outside list-disc space-y-1 ps-4 text-sm text-muted-foreground xss:text-base">
-      {bulletPoints?.map((point) => <li>{point}</li>)}
+      {role.bulletPoints.map((point) => <li>{point}</li>)}
     </ul>
   </div>
 </li>

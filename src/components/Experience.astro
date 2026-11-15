@@ -1,8 +1,9 @@
 ---
 import SectionContainer from '@components/SectionContainer.astro';
-import Timeline from '@components/Timeline.astro';
+import Role from '@components/Role.astro';
 import { useTranslations } from '@data/i18n/ui';
 import type { Locale } from '@data/i18n/locales';
+import { getLocalized } from '@lib/content';
 
 interface Props {
   locale: Locale;
@@ -10,8 +11,11 @@ interface Props {
 
 const { locale } = Astro.props;
 const t = useTranslations(locale);
+const { roles } = await getLocalized({ collection: 'roles', locale });
 ---
 
 <SectionContainer id="experience" class="py-16" heading={t('sections.experience')}>
-  <Timeline locale={locale} />
+  <ol class="mx-6 lg:mx-0">
+    {roles.map((role) => <Role role={role} />)}
+  </ol>
 </SectionContainer>
