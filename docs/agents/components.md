@@ -18,7 +18,7 @@ const { title, link } = Astro.props;
 
 Section components take `locale: Locale` (from `@data/i18n/locales`) and pass it down to children that render text.
 
-Client JS is `<script is:inline>` only (theme toggle, language detection in `Layout.astro`). There is no client framework.
+Shadcn components (React, `src/components/ui/`) render on the server and ship no JS. The only client islands are `ThemeToggle` and `LocaleToggle` (`client:load`, ADR-0001). The theme and Locale detection scripts are `<script is:inline>` in `Layout.astro`. Style links as buttons with `cn(buttonVariants(...))` on a plain `<a>`, since `<Button asChild>` does not work from `.astro`.
 
 ## Icons
 

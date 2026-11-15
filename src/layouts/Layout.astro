@@ -23,6 +23,17 @@ const { title, description, locale } = Astro.props;
     <meta name="generator" content={Astro.generator} />
     <title>{title}</title>
     <script is:inline>
+      // Runs before first paint so the page never flashes the wrong theme. The first visit stores
+      // the system preference, so the theme only changes afterwards through the toggle.
+      (() => {
+        const stored = localStorage.getItem('theme');
+        const theme =
+          stored ?? (matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light');
+        document.documentElement.classList.toggle('dark', theme === 'dark');
+        localStorage.setItem('theme', theme);
+      })();
+    </script>
+    <script is:inline>
       (() => {
         // The 'lang' key is returning visitors' stored choice: renaming it would reset it.
         const storageKey = 'lang';
@@ -42,30 +53,19 @@ const { title, description, locale } = Astro.props;
       })();
     </script>
   </head>
-  <body class="bg-white dark:bg-zinc-950">
+  <body>
     <Navbar locale={locale} />
     <slot />
     <Analytics />
   </body>
 </html>
 <style is:global>
-  :root {
-    color-scheme: light dark;
-  }
   html {
     scroll-behavior: smooth;
   }
   @media (prefers-reduced-motion: reduce) {
     html {
-      font-family: 'Geist', sans-serif;
       scroll-behavior: auto;
     }
-  }
-  @font-face {
-    font-family: 'Geist';
-    src: url('/fonts/Geist-Regular.woff2') format('woff2');
-    font-weight: normal;
-    font-style: normal;
-    font-display: swap;
   }
 </style>

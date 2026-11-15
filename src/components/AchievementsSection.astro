@@ -1,5 +1,6 @@
 ---
-import AchievementCard from '@components/AchievementCard.astro';
+import { getImage } from 'astro:assets';
+import Achievement from '@components/Achievement';
 import SectionContainer from '@components/SectionContainer.astro';
 import { useTranslations } from '@data/i18n/ui';
 import type { Locale } from '@data/i18n/locales';
@@ -12,23 +13,28 @@ interface Props {
 const { locale } = Astro.props;
 const t = useTranslations(locale);
 const { achievements } = await getLocalized('achievements', locale);
+// The Card is React, which cannot use Astro's <Image>, so the optimized image is built here.
+const imageSize = { width: 1920, height: 1080 };
+const images = await Promise.all(
+  achievements.map(({ image }) => getImage({ src: image, ...imageSize })),
+);
 ---
 
 <SectionContainer id="achievements" class="py-16">
-  <h2 class="mb-10 text-center text-2xl font-bold text-zinc-950 xss:text-3xl dark:text-white">
+  <h2 class="mb-10 text-center text-2xl font-bold text-foreground xss:text-3xl">
     {t('sections', 'achievements')}
   </h2>
   <div
     class="flex flex-col items-center justify-center md:flex-row md:items-start md:space-x-4 lg:space-x-8"
   >
     {
-      achievements.map(({ title, description, image, link }) => (
-        <AchievementCard
+      achievements.map(({ title, description, link }, index) => (
+        <Achievement
           title={title}
           description={description}
-          image={image}
+          image={{ src: images[index].src, ...imageSize }}
           link={link}
-          locale={locale}
+          learnMoreLabel={t('achievement', 'learnMore')}
         />
       ))
     }

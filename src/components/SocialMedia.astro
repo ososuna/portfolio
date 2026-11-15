@@ -1,19 +1,25 @@
 ---
 import { getCollection } from 'astro:content';
-import SocialMediaButton from '@components/SocialMediaButton.astro';
+import { buttonVariants } from '@/components/ui/button';
+import { cn } from '@/lib/utils';
 import { icons } from '@icons/index';
 
 const socialLinks = await getCollection('socialLinks');
 ---
 
-<div class="mt-8 flex justify-center">
+<div class="mt-8 flex justify-center gap-2">
   {
     socialLinks.map(({ data }) => {
       const Icon = icons[data.icon];
       return (
-        <SocialMediaButton name={data.name} link={data.url}>
-          <Icon slot="icon" class="me-2 h-4 w-4" />
-        </SocialMediaButton>
+        <a
+          href={data.url}
+          target="_blank"
+          class={cn(buttonVariants({ variant: 'outline', size: 'lg' }))}
+        >
+          <Icon class="size-4" aria-hidden="true" />
+          {data.name}
+        </a>
       );
     })
   }

@@ -1,6 +1,8 @@
 ---
-import ThemeSelector from '@components/ThemeSelector.astro';
-import LocaleToggle from '@components/LocaleToggle.astro';
+import { buttonVariants } from '@/components/ui/button';
+import { cn } from '@/lib/utils';
+import ThemeToggle from '@components/ThemeToggle';
+import LocaleToggle from '@components/LocaleToggle';
 import LogoIcon from '@icons/LogoIcon.astro';
 import { useTranslations } from '@data/i18n/ui';
 import type { Locale } from '@data/i18n/locales';
@@ -37,7 +39,7 @@ const menuOptions = [
 ---
 
 <header
-  class="fixed z-50 flex h-14 w-full items-center justify-center shadow-sm backdrop-blur xs:justify-between xs:px-6"
+  class="fixed z-50 flex h-14 w-full items-center justify-center border-b bg-background/80 backdrop-blur xs:justify-between xs:px-6"
 >
   <a
     href={locale === 'es' ? '/es/#' : '/#'}
@@ -46,11 +48,14 @@ const menuOptions = [
   >
     <LogoIcon />
   </a>
-  <nav class="flex items-center space-x-3 xs:space-x-4">
+  <nav class="flex items-center gap-1 xs:gap-2">
     {
       menuOptions.map((option) => (
         <a
-          class="hidden text-sm text-zinc-500 transition-all hover:text-zinc-600 xss:block dark:text-zinc-400 dark:hover:text-zinc-300"
+          class={cn(
+            buttonVariants({ variant: 'ghost', size: 'sm' }),
+            'hidden text-muted-foreground xss:inline-flex',
+          )}
           aria-label={option.label}
           href={option.url}
         >
@@ -58,7 +63,7 @@ const menuOptions = [
         </a>
       ))
     }
-    <LocaleToggle locale={locale} />
-    <ThemeSelector locale={locale} />
+    <LocaleToggle client:load locale={locale} label={t('controls', 'switchLocale')} />
+    <ThemeToggle client:load label={t('controls', 'toggleTheme')} />
   </nav>
 </header>

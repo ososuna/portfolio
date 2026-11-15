@@ -16,7 +16,7 @@ const about = await getLocalized('about', locale);
 ---
 
 <SectionContainer id="about-me" class="py-16">
-  <h2 class="mb-10 text-center text-2xl font-bold text-zinc-950 xss:text-3xl dark:text-white">
+  <h2 class="mb-10 text-center text-2xl font-bold text-foreground xss:text-3xl">
     {t('sections', 'about')}
   </h2>
   <div class="mx-6 flex flex-col items-center justify-center md:flex-row lg:mx-0">
@@ -32,14 +32,14 @@ const about = await getLocalized('about', locale);
         about.paragraphs.map((paragraph, index) => (
           <p
             class:list={[
-              'text-center text-base font-normal text-gray-500 xss:text-lg md:text-left dark:text-gray-400',
+              'text-center text-base font-normal text-muted-foreground xss:text-lg md:text-left',
               { 'mb-2': index < about.paragraphs.length - 1 },
             ]}
           >
             {/* `set:text` keeps the Highlight free of the whitespace a formatter adds. */}
             {parseHighlights(paragraph).map(({ text, highlighted }) =>
               highlighted ? (
-                <span class="font-bold text-zinc-950 dark:text-white" set:text={text} />
+                <span class="font-bold text-foreground" set:text={text} />
               ) : (
                 <Fragment set:text={text} />
               ),
