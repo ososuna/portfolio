@@ -14,38 +14,25 @@ interface Props {
 const { locale } = Astro.props;
 const t = useTranslations(locale);
 
-const menuOptions = [
-  {
-    name: t('nav.experience'),
-    label: t('nav.experience').toLowerCase(),
-    url: locale === 'es' ? '/es/#experience' : '/#experience',
-  },
-  {
-    name: t('nav.projects'),
-    label: t('nav.projects').toLowerCase(),
-    url: locale === 'es' ? '/es/#projects' : '/#projects',
-  },
-  {
-    name: t('nav.achievements'),
-    label: t('nav.achievements').toLowerCase(),
-    url: locale === 'es' ? '/es/#achievements' : '/#achievements',
-  },
-  {
-    name: t('nav.about'),
-    label: t('nav.about').toLowerCase(),
-    url: locale === 'es' ? '/es/#about-me' : '/#about-me',
-  },
-];
+const homePath = locale === 'es' ? '/es/' : '/';
+
+const menuOptions = (
+  [
+    { navKey: 'experience', sectionId: 'experience' },
+    { navKey: 'projects', sectionId: 'projects' },
+    { navKey: 'achievements', sectionId: 'achievements' },
+    { navKey: 'about', sectionId: 'about-me' },
+  ] as const
+).map(({ navKey, sectionId }) => {
+  const name = t(`nav.${navKey}`);
+  return { name, label: name.toLowerCase(), url: `${homePath}#${sectionId}` };
+});
 ---
 
 <header
   class="fixed z-50 flex h-14 w-full items-center justify-center border-b bg-background/80 backdrop-blur xs:justify-between xs:px-6"
 >
-  <a
-    href={locale === 'es' ? '/es/#' : '/#'}
-    aria-label={t('nav.home')}
-    class="block xss:hidden xs:block"
-  >
+  <a href={`${homePath}#`} aria-label={t('nav.home')} class="block xss:hidden xs:block">
     <LogoIcon />
   </a>
   <nav class="flex items-center gap-1 xs:gap-2">
