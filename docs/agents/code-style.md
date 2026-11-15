@@ -8,7 +8,7 @@ Order: framework (`astro:assets`, `@vercel/analytics`), then data and i18n, then
 
 ## Naming
 
-- Components: PascalCase `.astro` (`ProjectLinkButton.astro`).
+- Components: PascalCase `.astro` (`SectionContainer.astro`).
 - Icons: `{Name}Icon.astro`.
 - Variables and functions: camelCase.
 

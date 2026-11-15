@@ -1,5 +1,6 @@
 ---
 import type { CollectionEntry } from 'astro:content';
+import { Separator } from '@/components/ui/separator';
 import { icons } from '@icons/index';
 
 interface Props {
@@ -12,21 +13,23 @@ const { period, title, bulletPoints, company } = Astro.props;
 const Logo = icons[company.logo];
 ---
 
-<li class="ms-8 me-6 mb-10 lg:me-0">
-  <span
-    class="absolute -start-3 flex h-6 w-6 items-center justify-center rounded-full bg-zinc-50 p-0.5 dark:bg-white"
-  >
-    <Logo />
-  </span>
-  <time class="mb-1 text-sm leading-none font-normal text-zinc-400 dark:text-gray-400">
-    {period}
-  </time>
-  <h3 class="text-lg font-semibold text-gray-900 dark:text-white">
-    {title}
-  </h3>
-  <ul
-    class="list-outside list-disc space-y-1 pl-4 text-sm font-normal text-gray-500 xss:text-base dark:text-gray-400"
-  >
-    {bulletPoints?.map((point) => <li>{point}</li>)}
-  </ul>
+<li class="flex gap-x-4">
+  <div class="flex flex-col items-center">
+    <!-- Company logos are drawn in black, so the dot stays light in dark mode too. -->
+    <span
+      class="flex size-7 shrink-0 items-center justify-center rounded-full border bg-background p-1 shadow-xs dark:bg-foreground"
+    >
+      <Logo />
+    </span>
+    <div class="flex flex-1 justify-center py-2">
+      <Separator orientation="vertical" />
+    </div>
+  </div>
+  <div class="min-w-0 flex-1 pb-10">
+    <time class="block text-sm leading-7 text-muted-foreground">{period}</time>
+    <h3 class="mb-2 text-lg font-semibold">{title}</h3>
+    <ul class="list-outside list-disc space-y-1 ps-4 text-sm text-muted-foreground xss:text-base">
+      {bulletPoints?.map((point) => <li>{point}</li>)}
+    </ul>
+  </div>
 </li>

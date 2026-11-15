@@ -12,17 +12,15 @@ const { roles } = await getLocalized('roles', locale);
 const companies = await getReferenced(roles.map((role) => role.company));
 ---
 
-<div class="mx-auto ms-6 lg:ms-0">
-  <ol class="relative border-s border-gray-200 dark:border-gray-700">
-    {
-      roles.map((role, index) => (
-        <TimelineItem
-          title={role.title}
-          company={companies[index]!}
-          period={role.period}
-          bulletPoints={role.bulletPoints}
-        />
-      ))
-    }
-  </ol>
-</div>
+<ol class="mx-6 lg:mx-0">
+  {
+    roles.map((role, index) => (
+      <TimelineItem
+        title={role.title}
+        company={companies[index]!}
+        period={role.period}
+        bulletPoints={role.bulletPoints}
+      />
+    ))
+  }
+</ol>

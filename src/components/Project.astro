@@ -1,6 +1,8 @@
 ---
 import { Image } from 'astro:assets';
-import ProjectLinkButton from '@components/ProjectLinkButton.astro';
+import { badgeVariants } from '@/components/ui/badge';
+import { buttonVariants } from '@/components/ui/button';
+import { cn } from '@/lib/utils';
 import { useTranslations } from '@data/i18n/ui';
 import type { Locale } from '@data/i18n/locales';
 import type { ProjectLinkKind } from '@lib/project-links';
@@ -32,21 +34,26 @@ const linkLabelKeys = {
 const liveUrl = links.find(({ kind }) => kind === 'live')?.url;
 ---
 
-<div class="mb-14">
-  <h3 class="text-xl font-semibold text-gray-900 dark:text-white">
+<article class="mb-14">
+  <h3 class="text-xl font-semibold">
     {title}
   </h3>
-  <p class="mt-2 text-sm font-normal text-gray-500 xss:text-base dark:text-gray-400">
+  <p class="mt-2 text-sm text-muted-foreground xss:text-base">
     {description}
   </p>
-  <ul class="flex flex-row flex-wrap gap-x-2">
+  <ul class="mt-4 flex flex-wrap gap-2">
     {
       technologies.map(({ name, icon }) => {
         const Icon = icons[icon];
         return (
-          <li class="mt-4">
-            <span class="flex gap-x-2 rounded-full border border-gray-300 px-2 py-1 text-sm text-gray-900 dark:border-zinc-800 dark:text-white">
-              <Icon class="mt-0.5 size-4" />
+          <li>
+            <span
+              class={cn(
+                badgeVariants({ variant: 'outline' }),
+                'h-6 gap-1.5 px-2.5 text-sm [&>svg]:size-3.5!',
+              )}
+            >
+              <Icon aria-hidden="true" />
               {name}
             </span>
           </li>
@@ -56,21 +63,21 @@ const liveUrl = links.find(({ kind }) => kind === 'live')?.url;
   </ul>
   {
     liveUrl ? (
-      <a href={liveUrl} target="_blank">
-        <Image src={image} alt={title} class="mt-4" width="1920" height="1080" />
+      <a href={liveUrl} target="_blank" class="mt-4 block overflow-hidden rounded-lg border">
+        <Image src={image} alt={title} width="1920" height="1080" />
       </a>
     ) : (
-      <Image src={image} alt={title} class="mt-4" width="1920" height="1080" />
+      <Image src={image} alt={title} class="mt-4 rounded-lg border" width="1920" height="1080" />
     )
   }
-  <footer class="mt-4 flex items-center justify-center gap-x-4">
+  <footer class="mt-4 flex flex-wrap items-center justify-center gap-2">
     {
       links.map(({ kind, url }) => (
-        <ProjectLinkButton href={url}>
-          {kind === 'live' ? <WebIcon class="me-2 size-5" /> : <GitHubIcon class="me-2 size-4" />}
+        <a href={url} target="_blank" class={cn(buttonVariants({ variant: 'outline' }))}>
+          {kind === 'live' ? <WebIcon aria-hidden="true" /> : <GitHubIcon aria-hidden="true" />}
           {t('project', linkLabelKeys[kind])}
-        </ProjectLinkButton>
+        </a>
       ))
     }
   </footer>
-</div>
+</article>
