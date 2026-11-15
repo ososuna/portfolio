@@ -28,6 +28,14 @@ export const ui = {
     achievement: {
       learnMore: 'Learn more about this topic',
     },
+    notFound: {
+      title: '404 - Page Not Found',
+      description: 'The page you are looking for does not exist.',
+      eyebrow: '404 ERROR',
+      heading: 'Page not found',
+      message: 'The page you are trying to reach does not exist or has been moved.',
+      home: 'Return to home page',
+    },
   },
   es: {
     nav: {
@@ -55,6 +63,14 @@ export const ui = {
     },
     achievement: {
       learnMore: 'Conoce más sobre este tema',
+    },
+    notFound: {
+      title: '404 - Página no encontrada',
+      description: 'La página que buscas no existe.',
+      eyebrow: 'ERROR 404',
+      heading: 'Página no encontrada',
+      message: 'La página que intentas abrir no existe o se ha movido.',
+      home: 'Volver a la página de inicio',
     },
   },
 } as const;
