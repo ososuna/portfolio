@@ -16,7 +16,7 @@ const { title, link } = Astro.props;
 ---
 ```
 
-Section components take `lang: Lang` (from `@data/i18n/utils`) and pass it down to children that render text.
+Section components take `locale: Locale` (from `@data/i18n/locales`) and pass it down to children that render text.
 
 Client JS is `<script is:inline>` only (theme toggle, language detection in `Layout.astro`). There is no client framework.
 

@@ -1,16 +1,16 @@
 ---
 import { useTranslations } from '@data/i18n/ui';
-import type { Lang } from '@data/i18n/utils';
+import type { Locale } from '@data/i18n/locales';
 
 interface Props {
-  lang: Lang;
+  locale: Locale;
 }
 
-const { lang } = Astro.props;
-const t = useTranslations(lang);
+const { locale } = Astro.props;
+const t = useTranslations(locale);
 ---
 
-<button id="langToggle" aria-label={t('controls', 'switchLanguage')}>
+<button id="localeToggle" aria-label={t('controls', 'switchLocale')}>
   <svg
     width="18px"
     xmlns="http://www.w3.org/2000/svg"
@@ -23,11 +23,11 @@ const t = useTranslations(lang);
       d="M12 2a10 10 0 1 0 0 20 10 10 0 0 0 0-20Zm7.9 9h-3.1a15.7 15.7 0 0 0-1.2-5 8.1 8.1 0 0 1 4.3 5Zm-7.9 9a13.7 13.7 0 0 1-1.8-4h3.6a13.7 13.7 0 0 1-1.8 4Zm-2.1-6a11.6 11.6 0 0 1 0-4h4.2a11.6 11.6 0 0 1 0 4H9.9Zm-5.8-2a8.1 8.1 0 0 1 4.3-5 15.7 15.7 0 0 0-1.2 5H4.1Zm4.3 7a8.1 8.1 0 0 1-4.3-5h3.1a15.7 15.7 0 0 0 1.2 5Zm1.8-8a13.7 13.7 0 0 1 1.8-4 13.7 13.7 0 0 1 1.8 4h-3.6Zm5.4 8a15.7 15.7 0 0 0 1.2-5h3.1a8.1 8.1 0 0 1-4.3 5Z"
     ></path>
   </svg>
-  <span class="language-code">{lang.toUpperCase()}</span>
+  <span class="locale-code">{locale.toUpperCase()}</span>
 </button>
 
 <style>
-  #langToggle {
+  #localeToggle {
     border: 0;
     background: none;
     display: inline-flex;
@@ -40,7 +40,7 @@ const t = useTranslations(lang);
     transition: fill 0.2s ease;
   }
 
-  .language-code {
+  .locale-code {
     color: #71717a;
     font-size: 0.75rem;
     font-weight: 600;
@@ -49,11 +49,11 @@ const t = useTranslations(lang);
     transition: color 0.2s ease;
   }
 
-  #langToggle:hover .globe {
+  #localeToggle:hover .globe {
     fill: #52525b;
   }
 
-  #langToggle:hover .language-code {
+  #localeToggle:hover .locale-code {
     color: #52525b;
   }
 
@@ -61,21 +61,21 @@ const t = useTranslations(lang);
     fill: #a1a1aa;
   }
 
-  :global(.dark) .language-code {
+  :global(.dark) .locale-code {
     color: #a1a1aa;
   }
 
-  :global(.dark) #langToggle:hover .globe {
+  :global(.dark) #localeToggle:hover .globe {
     fill: #d4d4d8;
   }
 
-  :global(.dark) #langToggle:hover .language-code {
+  :global(.dark) #localeToggle:hover .locale-code {
     color: #d4d4d8;
   }
 </style>
 
 <script is:inline>
-  const getLangPath = (pathname, search, hash) => {
+  const getLocalePath = (pathname, search, hash) => {
     if (pathname.startsWith('/es')) {
       const normalized = pathname.replace(/^\/es/, '') || '/';
       return `${normalized}${search}${hash}`;
@@ -84,14 +84,15 @@ const t = useTranslations(lang);
     return `/es${pathname === '/' ? '/' : pathname}${search}${hash}`;
   };
 
-  const handleLanguageToggle = () => {
+  const handleLocaleToggle = () => {
     const { pathname, search, hash } = window.location;
-    const nextPath = getLangPath(pathname, search, hash);
-    const nextLang = pathname.startsWith('/es') ? 'en' : 'es';
+    const nextPath = getLocalePath(pathname, search, hash);
+    const nextLocale = pathname.startsWith('/es') ? 'en' : 'es';
 
-    localStorage.setItem('lang', nextLang);
+    // The 'lang' key is returning visitors' stored choice: renaming it would reset it.
+    localStorage.setItem('lang', nextLocale);
     window.location.assign(nextPath);
   };
 
-  document.getElementById('langToggle')?.addEventListener('click', handleLanguageToggle);
+  document.getElementById('localeToggle')?.addEventListener('click', handleLocaleToggle);
 </script>

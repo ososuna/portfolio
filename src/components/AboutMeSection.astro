@@ -4,14 +4,14 @@ import SectionContainer from '@components/SectionContainer.astro';
 import meImage from '@img/oswaldo-osuna-02.png';
 import en from '@data/about/en.json';
 import es from '@data/about/es.json';
-import type { Lang } from '@data/i18n/utils';
+import type { Locale } from '@data/i18n/locales';
 
 interface Props {
-  lang: Lang;
+  locale: Locale;
 }
 
-const { lang } = Astro.props;
-const aboutData = lang === 'es' ? es : en;
+const { locale } = Astro.props;
+const aboutData = locale === 'es' ? es : en;
 ---
 
 <SectionContainer id="about-me" class="py-16">

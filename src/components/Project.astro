@@ -4,7 +4,7 @@ import ProjectLinkButton from '@components/ProjectLinkButton.astro';
 import GitHubIcon from '@icons/GitHubIcon.astro';
 import WebIcon from '@icons/WebIcon.astro';
 import { useTranslations } from '@data/i18n/ui';
-import type { Lang } from '@data/i18n/utils';
+import type { Locale } from '@data/i18n/locales';
 
 interface Props {
   title: string;
@@ -14,12 +14,12 @@ interface Props {
   restApi?: string;
   ui?: string;
   image: string;
-  lang: Lang;
+  locale: Locale;
   tags: { name: string; class: string; icon: typeof GitHubIcon }[];
 }
 
-const { title, description, link, github, image, tags, restApi, ui, lang } = Astro.props;
-const t = useTranslations(lang);
+const { title, description, link, github, image, tags, restApi, ui, locale } = Astro.props;
+const t = useTranslations(locale);
 const images = import.meta.glob<{ default: ImageMetadata }>('/src/assets/img/projects/*.png');
 if (!images[image])
   throw new Error(`"${image}" does not exist in glob: "/src/assets/img/projects/*.png"`);

@@ -6,6 +6,7 @@
       "@layouts/*": ["src/layouts/*"],
       "@icons/*": ["src/icons/*"],
       "@data/*": ["src/data/*"],
+      "@lib/*": ["src/lib/*"],
       "@img/*": ["src/assets/img/*"],
       "@styles/*": ["src/styles/*"]
     }

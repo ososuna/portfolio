@@ -1,13 +1,13 @@
 ---
 import { useTranslations } from '@data/i18n/ui';
-import type { Lang } from '@data/i18n/utils';
+import type { Locale } from '@data/i18n/locales';
 
 interface Props {
-  lang: Lang;
+  locale: Locale;
 }
 
-const { lang } = Astro.props;
-const t = useTranslations(lang);
+const { locale } = Astro.props;
+const t = useTranslations(locale);
 ---
 
 <button id="themeToggle" aria-label={t('controls', 'toggleTheme')}>

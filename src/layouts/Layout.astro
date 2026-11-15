@@ -2,19 +2,19 @@
 import '@styles/global.css';
 import Navbar from '@components/Navbar.astro';
 import Analytics from '@vercel/analytics/astro';
-import type { Lang } from '@data/i18n/utils';
+import type { Locale } from '@data/i18n/locales';
 
 interface Props {
   title: string;
   description: string;
-  lang: Lang;
+  locale: Locale;
 }
 
-const { title, description } = Astro.props;
+const { title, description, locale } = Astro.props;
 ---
 
 <!doctype html>
-<html lang={Astro.props.lang}>
+<html lang={locale}>
   <head>
     <meta charset="UTF-8" />
     <meta name="description" content={description} />
@@ -24,6 +24,7 @@ const { title, description } = Astro.props;
     <title>{title}</title>
     <script is:inline>
       (() => {
+        // The 'lang' key is returning visitors' stored choice: renaming it would reset it.
         const storageKey = 'lang';
         const preferred = localStorage.getItem(storageKey);
 
@@ -31,20 +32,18 @@ const { title, description } = Astro.props;
           return;
         }
 
-        const preferredBrowserLang = navigator.language.toLowerCase().startsWith('es')
-          ? 'es'
-          : 'en';
-        localStorage.setItem(storageKey, preferredBrowserLang);
+        const preferredLocale = navigator.language.toLowerCase().startsWith('es') ? 'es' : 'en';
+        localStorage.setItem(storageKey, preferredLocale);
 
         const pathname = window.location.pathname;
-        if (preferredBrowserLang === 'es' && pathname === '/') {
+        if (preferredLocale === 'es' && pathname === '/') {
           window.location.replace('/es/');
         }
       })();
     </script>
   </head>
   <body class="bg-white dark:bg-zinc-950">
-    <Navbar lang={Astro.props.lang} />
+    <Navbar locale={locale} />
     <slot />
     <Analytics />
   </body>

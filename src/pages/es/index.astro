@@ -1,22 +1,22 @@
 ---
 import Layout from '@layouts/Layout.astro';
 import AchievementsSection from '@components/AchievementsSection.astro';
-import MainSection from '@components/MainSection.astro';
-import ProfessionalExperience from '@components/ProfessionalExperience.astro';
+import Hero from '@components/Hero.astro';
+import Experience from '@components/Experience.astro';
 import ProjectsSection from '@components/ProjectsSection.astro';
 import AboutMeSection from '@components/AboutMeSection.astro';
 ---
 
 <Layout
-  lang="es"
+  locale="es"
   title="Oswaldo Osuna - AI Engineer"
   description="Mi nombre es Oswaldo Adrián Osuna Rizo. AI Engineer de Guadalajara, México. Trabajo con LangChain, Python, TypeScript, AWS, Strands, Vercel AI SDK y Claude. ARCOS LLC. Universidad Anáhuac Querétaro."
 >
   <main>
-    <MainSection lang="es" />
-    <ProfessionalExperience lang="es" />
-    <ProjectsSection lang="es" />
-    <AchievementsSection lang="es" />
-    <AboutMeSection lang="es" />
+    <Hero locale="es" />
+    <Experience locale="es" />
+    <ProjectsSection locale="es" />
+    <AchievementsSection locale="es" />
+    <AboutMeSection locale="es" />
   </main>
 </Layout>

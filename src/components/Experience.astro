@@ -2,19 +2,19 @@
 import SectionContainer from '@components/SectionContainer.astro';
 import Timeline from '@components/Timeline.astro';
 import { useTranslations } from '@data/i18n/ui';
-import type { Lang } from '@data/i18n/utils';
+import type { Locale } from '@data/i18n/locales';
 
 interface Props {
-  lang: Lang;
+  locale: Locale;
 }
 
-const { lang } = Astro.props;
-const t = useTranslations(lang);
+const { locale } = Astro.props;
+const t = useTranslations(locale);
 ---
 
 <SectionContainer id="experience" class="py-16">
   <h2 class="mb-10 text-center text-2xl font-bold text-zinc-950 xss:text-3xl dark:text-white">
     {t('sections', 'experience')}
   </h2>
-  <Timeline lang={lang} />
+  <Timeline locale={locale} />
 </SectionContainer>

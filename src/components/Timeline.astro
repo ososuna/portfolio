@@ -1,26 +1,26 @@
 ---
+import type { Locale } from '@data/i18n/locales';
+import { getLocalized, getReferenced } from '@lib/content';
 import TimelineItem from '@components/TimelineItem.astro';
-import en from '@data/experience/en.json';
-import es from '@data/experience/es.json';
-import type { Lang } from '@data/i18n/utils';
 
 interface Props {
-  lang: Lang;
+  locale: Locale;
 }
 
-const { lang } = Astro.props;
-const experience = lang === 'es' ? es : en;
+const { locale } = Astro.props;
+const { roles } = await getLocalized('roles', locale);
+const companies = await getReferenced(roles.map((role) => role.company));
 ---
 
 <div class="mx-auto ms-6 lg:ms-0">
   <ol class="relative border-s border-gray-200 dark:border-gray-700">
     {
-      experience.map((item) => (
+      roles.map((role, index) => (
         <TimelineItem
-          title={item.title}
-          company={item.company}
-          date={item.date}
-          bulletPoints={item.bulletPoints}
+          title={role.title}
+          company={companies[index]!}
+          period={role.period}
+          bulletPoints={role.bulletPoints}
         />
       ))
     }

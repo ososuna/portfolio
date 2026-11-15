@@ -1,18 +1,16 @@
 ---
 import { Image } from 'astro:assets';
-import meImage from '@img/oswaldo-osuna-01.jpeg';
+import type { Locale } from '@data/i18n/locales';
+import { getLocalized } from '@lib/content';
 import SectionContainer from '@components/SectionContainer.astro';
 import SocialMedia from '@components/SocialMedia.astro';
-import en from '@data/main/en.json';
-import es from '@data/main/es.json';
-import type { Lang } from '@data/i18n/utils';
 
 interface Props {
-  lang: Lang;
+  locale: Locale;
 }
 
-const { lang } = Astro.props;
-const mainData = lang === 'es' ? es : en;
+const { locale } = Astro.props;
+const hero = await getLocalized('hero', locale);
 ---
 
 <SectionContainer class="w-10/12 py-44 pb-32">
@@ -21,17 +19,17 @@ const mainData = lang === 'es' ? es : en;
       <h1
         class="text-center text-3xl font-extrabold text-zinc-950 xss:text-4xl md:text-6xl dark:text-white"
       >
-        {mainData.name}
+        {hero.name}
       </h1>
       <Image
-        src={meImage}
-        alt={mainData.photoAlt}
+        src={hero.photo}
+        alt={hero.photoAlt}
         class="mx-6 size-16 rounded-full xss:mx-10 xss:size-20"
       />
     </div>
     <p class="text-center text-base text-zinc-500 xs:text-lg md:text-xl dark:text-zinc-400">
-      {mainData.summary.lineOne}
-      {mainData.summary.lineTwo}
+      {hero.summary.lineOne}
+      {hero.summary.lineTwo}
     </p>
     <SocialMedia />
   </div>

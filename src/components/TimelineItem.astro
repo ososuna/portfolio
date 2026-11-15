@@ -1,26 +1,25 @@
 ---
-import OracleIcon from '@icons/OracleIcon.astro';
-import GEIcon from '@icons/GEIcon.astro';
-import ArcosIcon from '@icons/ArcosIcon.astro';
+import type { CollectionEntry } from 'astro:content';
+import { icons } from '@icons/index';
+
 interface Props {
-  date: string;
+  period: string;
   title: string;
   bulletPoints?: string[];
-  company: string;
+  company: CollectionEntry<'companies'>['data'];
 }
-const { date, title, bulletPoints, company } = Astro.props;
+const { period, title, bulletPoints, company } = Astro.props;
+const Logo = icons[company.logo];
 ---
 
 <li class="ms-8 me-6 mb-10 lg:me-0">
   <span
     class="absolute -start-3 flex h-6 w-6 items-center justify-center rounded-full bg-zinc-50 p-0.5 dark:bg-white"
   >
-    {company === 'ARCOS LLC' && <ArcosIcon />}
-    {company === 'Oracle' && <OracleIcon />}
-    {company === 'GE Aerospace' && <GEIcon />}
+    <Logo />
   </span>
   <time class="mb-1 text-sm leading-none font-normal text-zinc-400 dark:text-gray-400">
-    {date}
+    {period}
   </time>
   <h3 class="text-lg font-semibold text-gray-900 dark:text-white">
     {title}

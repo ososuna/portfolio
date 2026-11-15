@@ -1,18 +1,17 @@
 ---
 import AchievementCard from '@components/AchievementCard.astro';
 import SectionContainer from '@components/SectionContainer.astro';
-import en from '@data/achievements/en.json';
-import es from '@data/achievements/es.json';
 import { useTranslations } from '@data/i18n/ui';
-import type { Lang } from '@data/i18n/utils';
+import type { Locale } from '@data/i18n/locales';
+import { getLocalized } from '@lib/content';
 
 interface Props {
-  lang: Lang;
+  locale: Locale;
 }
 
-const { lang } = Astro.props;
-const t = useTranslations(lang);
-const achievements = lang === 'es' ? es : en;
+const { locale } = Astro.props;
+const t = useTranslations(locale);
+const { achievements } = await getLocalized('achievements', locale);
 ---
 
 <SectionContainer id="achievements" class="py-16">
@@ -29,7 +28,7 @@ const achievements = lang === 'es' ? es : en;
           description={description}
           image={image}
           link={link}
-          lang={lang}
+          locale={locale}
         />
       ))
     }

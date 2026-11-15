@@ -1,4 +1,4 @@
-import { defaultLang, type Lang } from '@data/i18n/utils';
+import { defaultLocale, type Locale } from '@data/i18n/locales';
 
 export const ui = {
   en: {
@@ -17,7 +17,7 @@ export const ui = {
     },
     controls: {
       toggleTheme: 'Toggle theme',
-      switchLanguage: 'Switch language',
+      switchLocale: 'Switch language',
     },
     project: {
       sourceCode: 'Source code',
@@ -45,7 +45,7 @@ export const ui = {
     },
     controls: {
       toggleTheme: 'Cambiar tema',
-      switchLanguage: 'Cambiar idioma',
+      switchLocale: 'Cambiar idioma',
     },
     project: {
       sourceCode: 'Código fuente',
@@ -59,14 +59,14 @@ export const ui = {
   },
 } as const;
 
-type TranslationMap = (typeof ui)[typeof defaultLang];
+type TranslationMap = (typeof ui)[typeof defaultLocale];
 type SectionKey = keyof TranslationMap;
 type TranslationKey<T extends SectionKey> = keyof TranslationMap[T];
 
-export const useTranslations = (lang: Lang) => {
+export const useTranslations = (locale: Locale) => {
   return <T extends SectionKey>(section: T, key: TranslationKey<T>) => {
-    const selectedLang = ui[lang][section][key];
-    const fallbackLang = ui[defaultLang][section][key];
-    return selectedLang ?? fallbackLang;
+    const selected = ui[locale][section][key];
+    const fallback = ui[defaultLocale][section][key];
+    return selected ?? fallback;
   };
 };

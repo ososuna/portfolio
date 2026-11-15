@@ -2,7 +2,7 @@
 import en from '@data/projects/en.json';
 import es from '@data/projects/es.json';
 import { useTranslations } from '@data/i18n/ui';
-import type { Lang } from '@data/i18n/utils';
+import type { Locale } from '@data/i18n/locales';
 
 import SectionContainer from '@components/SectionContainer.astro';
 import Project from '@components/Project.astro';
@@ -30,11 +30,11 @@ import LangfuseIcon from '@icons/LangfuseIcon.astro';
 import OpenTelemetryIcon from '@icons/OpenTelemetryIcon.astro';
 
 interface Props {
-  lang: Lang;
+  locale: Locale;
 }
 
-const { lang } = Astro.props;
-const t = useTranslations(lang);
+const { locale } = Astro.props;
+const t = useTranslations(locale);
 interface ProjectData {
   title: string;
   description: string;
@@ -46,7 +46,7 @@ interface ProjectData {
   tags: string[];
 }
 
-const projectsData: ProjectData[] = lang === 'es' ? es : en;
+const projectsData: ProjectData[] = locale === 'es' ? es : en;
 
 const tags = {
   next: {
@@ -188,7 +188,7 @@ const projects = projectsData.map((project) => ({
           restApi={project.restApi}
           image={project.image}
           tags={project.tags}
-          lang={lang}
+          locale={locale}
         />
       ))
     }

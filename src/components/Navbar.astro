@@ -1,37 +1,37 @@
 ---
 import ThemeSelector from '@components/ThemeSelector.astro';
-import LanguageSelector from '@components/LanguageSelector.astro';
+import LocaleToggle from '@components/LocaleToggle.astro';
 import LogoIcon from '@icons/LogoIcon.astro';
 import { useTranslations } from '@data/i18n/ui';
-import type { Lang } from '@data/i18n/utils';
+import type { Locale } from '@data/i18n/locales';
 
 interface Props {
-  lang: Lang;
+  locale: Locale;
 }
 
-const { lang } = Astro.props;
-const t = useTranslations(lang);
+const { locale } = Astro.props;
+const t = useTranslations(locale);
 
 const menuOptions = [
   {
     name: t('nav', 'experience'),
     label: t('nav', 'experience').toLowerCase(),
-    url: lang === 'es' ? '/es/#experience' : '/#experience',
+    url: locale === 'es' ? '/es/#experience' : '/#experience',
   },
   {
     name: t('nav', 'projects'),
     label: t('nav', 'projects').toLowerCase(),
-    url: lang === 'es' ? '/es/#projects' : '/#projects',
+    url: locale === 'es' ? '/es/#projects' : '/#projects',
   },
   {
     name: t('nav', 'achievements'),
     label: t('nav', 'achievements').toLowerCase(),
-    url: lang === 'es' ? '/es/#achievements' : '/#achievements',
+    url: locale === 'es' ? '/es/#achievements' : '/#achievements',
   },
   {
     name: t('nav', 'about'),
     label: t('nav', 'about').toLowerCase(),
-    url: lang === 'es' ? '/es/#about-me' : '/#about-me',
+    url: locale === 'es' ? '/es/#about-me' : '/#about-me',
   },
 ];
 ---
@@ -40,7 +40,7 @@ const menuOptions = [
   class="fixed z-50 flex h-14 w-full items-center justify-center shadow-sm backdrop-blur xs:justify-between xs:px-6"
 >
   <a
-    href={lang === 'es' ? '/es/#' : '/#'}
+    href={locale === 'es' ? '/es/#' : '/#'}
     aria-label={t('nav', 'home')}
     class="block xss:hidden xs:block"
   >
@@ -58,7 +58,7 @@ const menuOptions = [
         </a>
       ))
     }
-    <LanguageSelector lang={lang} />
-    <ThemeSelector lang={lang} />
+    <LocaleToggle locale={locale} />
+    <ThemeSelector locale={locale} />
   </nav>
 </header>
