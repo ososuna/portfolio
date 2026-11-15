@@ -21,7 +21,7 @@ export default defineConfig([
   { languageOptions: { globals: { ...globals.node } } },
   {
     // TypeScript already reports undefined names, and knows Astro's ambient types (ImageMetadata).
-    files: ['**/*.ts', '**/*.astro'],
+    files: ['**/*.ts', '**/*.tsx', '**/*.astro'],
     rules: { 'no-undef': 'off' },
   },
   {

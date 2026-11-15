@@ -8,8 +8,11 @@
       "@data/*": ["src/data/*"],
       "@lib/*": ["src/lib/*"],
       "@img/*": ["src/assets/img/*"],
-      "@styles/*": ["src/styles/*"]
-    }
+      "@styles/*": ["src/styles/*"],
+      "@/*": ["./src/*"]
+    },
+    "jsx": "react-jsx",
+    "jsxImportSource": "react"
   },
   "extends": "astro/tsconfigs/strict"
 }

@@ -9,5 +9,7 @@ export default {
   plugins: ['prettier-plugin-astro', 'prettier-plugin-tailwindcss'],
   // Tailwind v4 reads the theme and custom breakpoints (xss, xs) from the CSS entry point.
   tailwindStylesheet: './src/styles/global.css',
+  // Sort classes passed to the Shadcn helpers, not only class attributes.
+  tailwindFunctions: ['cn', 'cva'],
   overrides: [{ files: '*.astro', options: { parser: 'astro' } }],
 };
