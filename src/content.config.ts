@@ -85,7 +85,6 @@ const projects = defineCollection({
           image: image(),
           // Resolve with `getReferenced`: an unknown id only fails the build when resolved.
           technologies: z.array(reference('technologies')),
-          // Rendered in data order; labels come from the `project` UI strings.
           links: z.array(z.object({ kind: z.enum(projectLinkKinds), url: z.url() })),
         }),
       ),

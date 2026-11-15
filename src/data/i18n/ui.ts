@@ -20,10 +20,10 @@ export const ui = {
       switchLocale: 'Switch language',
     },
     project: {
-      sourceCode: 'Source code',
-      ui: 'UI',
-      restApi: 'REST API',
-      goToProject: 'Go to project',
+      live: 'Go to project',
+      source: 'Source code',
+      'ui-source': 'UI',
+      'api-source': 'REST API',
     },
     achievement: {
       learnMore: 'Learn more about this topic',
@@ -56,10 +56,10 @@ export const ui = {
       switchLocale: 'Cambiar idioma',
     },
     project: {
-      sourceCode: 'Código fuente',
-      ui: 'UI',
-      restApi: 'API REST',
-      goToProject: 'Ir al proyecto',
+      live: 'Ir al proyecto',
+      source: 'Código fuente',
+      'ui-source': 'UI',
+      'api-source': 'API REST',
     },
     achievement: {
       learnMore: 'Conoce más sobre este tema',

@@ -23,14 +23,6 @@ interface Props {
 const { title, description, image, technologies, links, locale } = Astro.props;
 const t = useTranslations(locale);
 
-const linkLabelKeys = {
-  live: 'goToProject',
-  source: 'sourceCode',
-  'ui-source': 'ui',
-  'api-source': 'restApi',
-} as const satisfies Record<ProjectLinkKind, string>;
-
-// The live site also wraps the Project image.
 const liveUrl = links.find(({ kind }) => kind === 'live')?.url;
 ---
 
@@ -75,7 +67,7 @@ const liveUrl = links.find(({ kind }) => kind === 'live')?.url;
       links.map(({ kind, url }) => (
         <a href={url} target="_blank" class={cn(buttonVariants({ variant: 'outline' }))}>
           {kind === 'live' ? <WebIcon aria-hidden="true" /> : <GitHubIcon aria-hidden="true" />}
-          {t(`project.${linkLabelKeys[kind]}`)}
+          {t(`project.${kind}`)}
         </a>
       ))
     }
