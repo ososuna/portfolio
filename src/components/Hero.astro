@@ -3,7 +3,7 @@ import { Image } from 'astro:assets';
 import type { Locale } from '@data/i18n/locales';
 import { getLocalized } from '@lib/content';
 import SectionContainer from '@components/SectionContainer.astro';
-import SocialMedia from '@components/SocialMedia.astro';
+import SocialLinks from '@components/SocialLinks.astro';
 
 interface Props {
   locale: Locale;
@@ -29,6 +29,6 @@ const hero = await getLocalized({ collection: 'hero', locale });
       {hero.summary.lineOne}
       {hero.summary.lineTwo}
     </p>
-    <SocialMedia />
+    <SocialLinks />
   </div>
 </SectionContainer>
