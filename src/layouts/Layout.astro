@@ -2,19 +2,19 @@
 import '@styles/global.css';
 import Navbar from '@components/Navbar.astro';
 import Analytics from '@vercel/analytics/astro';
-import type { Lang } from '@data/i18n/utils';
+import type { Locale } from '@data/i18n/locales';
 
 interface Props {
   title: string;
   description: string;
-  lang: Lang;
+  locale: Locale;
 }
 
-const { title, description } = Astro.props;
+const { title, description, locale } = Astro.props;
 ---
 
 <!doctype html>
-<html lang={Astro.props.lang}>
+<html lang={locale}>
   <head>
     <meta charset="UTF-8" />
     <meta name="description" content={description} />
@@ -23,7 +23,19 @@ const { title, description } = Astro.props;
     <meta name="generator" content={Astro.generator} />
     <title>{title}</title>
     <script is:inline>
+      // Runs before first paint so the page never flashes the wrong theme. The first visit stores
+      // the system preference, so the theme only changes afterwards through the toggle.
       (() => {
+        const stored = localStorage.getItem('theme');
+        const theme =
+          stored ?? (matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light');
+        document.documentElement.classList.toggle('dark', theme === 'dark');
+        localStorage.setItem('theme', theme);
+      })();
+    </script>
+    <script is:inline>
+      (() => {
+        // The 'lang' key is returning visitors' stored choice: renaming it would reset it.
         const storageKey = 'lang';
         const preferred = localStorage.getItem(storageKey);
 
@@ -31,40 +43,29 @@ const { title, description } = Astro.props;
           return;
         }
 
-        const preferredBrowserLang = navigator.language.toLowerCase().startsWith('es') ? 'es' : 'en';
-        localStorage.setItem(storageKey, preferredBrowserLang);
+        const preferredLocale = navigator.language.toLowerCase().startsWith('es') ? 'es' : 'en';
+        localStorage.setItem(storageKey, preferredLocale);
 
         const pathname = window.location.pathname;
-        if (preferredBrowserLang === 'es' && pathname === '/') {
+        if (preferredLocale === 'es' && pathname === '/') {
           window.location.replace('/es/');
         }
       })();
     </script>
   </head>
-  <body class="bg-white dark:bg-zinc-950">
-    <Navbar lang={Astro.props.lang} />
+  <body>
+    <Navbar locale={locale} />
     <slot />
     <Analytics />
   </body>
 </html>
 <style is:global>
-  :root {
-    color-scheme: light dark;
-  }
   html {
     scroll-behavior: smooth;
   }
   @media (prefers-reduced-motion: reduce) {
     html {
-      font-family: 'Geist', sans-serif;
       scroll-behavior: auto;
     }
-  }
-  @font-face {
-    font-family: 'Geist';
-    src: url('/fonts/Geist-Regular.woff2') format('woff2');
-    font-weight: normal;
-    font-style: normal;
-    font-display: swap;
   }
 </style>

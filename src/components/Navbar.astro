@@ -1,53 +1,48 @@
 ---
-import ThemeSelector from '@components/ThemeSelector.astro';
-import LanguageSelector from '@components/LanguageSelector.astro';
+import { buttonVariants } from '@/components/ui/button';
+import { cn } from '@/lib/utils';
+import ThemeToggle from '@components/ThemeToggle';
+import LocaleToggle from '@components/LocaleToggle';
 import LogoIcon from '@icons/LogoIcon.astro';
 import { useTranslations } from '@data/i18n/ui';
-import type { Lang } from '@data/i18n/utils';
+import type { Locale } from '@data/i18n/locales';
 
 interface Props {
-  lang: Lang;
+  locale: Locale;
 }
 
-const { lang } = Astro.props;
-const t = useTranslations(lang);
+const { locale } = Astro.props;
+const t = useTranslations(locale);
 
-const menuOptions = [
-  {
-    name: t('nav', 'experience'),
-    label: t('nav', 'experience').toLowerCase(),
-    url: lang === 'es' ? '/es/#experience' : '/#experience',
-  },
-  {
-    name: t('nav', 'projects'),
-    label: t('nav', 'projects').toLowerCase(),
-    url: lang === 'es' ? '/es/#projects' : '/#projects',
-  },
-  {
-    name: t('nav', 'achievements'),
-    label: t('nav', 'achievements').toLowerCase(),
-    url: lang === 'es' ? '/es/#achievements' : '/#achievements',
-  },
-  {
-    name: t('nav', 'about'),
-    label: t('nav', 'about').toLowerCase(),
-    url: lang === 'es' ? '/es/#about-me' : '/#about-me',
-  },
-];
+const homePath = locale === 'es' ? '/es/' : '/';
+
+const menuOptions = (
+  [
+    { navKey: 'experience', sectionId: 'experience' },
+    { navKey: 'projects', sectionId: 'projects' },
+    { navKey: 'achievements', sectionId: 'achievements' },
+    { navKey: 'about', sectionId: 'about-me' },
+  ] as const
+).map(({ navKey, sectionId }) => {
+  const name = t(`nav.${navKey}`);
+  return { name, label: name.toLowerCase(), url: `${homePath}#${sectionId}` };
+});
 ---
 
 <header
-  class="w-full fixed h-14 flex items-center xs:justify-between justify-center xs:px-6 shadow-sm backdrop-blur z-50"
+  class="fixed z-50 flex h-14 w-full items-center justify-center border-b bg-background/80 backdrop-blur xs:justify-between xs:px-6"
 >
-  <a href={lang === 'es' ? '/es/#' : '/#'} aria-label={t('nav', 'home')} class="xss:hidden xs:block block">
+  <a href={`${homePath}#`} aria-label={t('nav.home')} class="block xss:hidden xs:block">
     <LogoIcon />
   </a>
-  <nav class="flex items-center xs:space-x-4 space-x-3">
+  <nav class="flex items-center gap-1 xs:gap-2">
     {
       menuOptions.map((option) => (
         <a
-          class="text-sm text-zinc-500 dark:text-zinc-400
-            hover:text-zinc-600 dark:hover:text-zinc-300 transition-all xss:block hidden"
+          class={cn(
+            buttonVariants({ variant: 'ghost', size: 'sm' }),
+            'hidden text-muted-foreground xss:inline-flex',
+          )}
           aria-label={option.label}
           href={option.url}
         >
@@ -55,7 +50,7 @@ const menuOptions = [
         </a>
       ))
     }
-    <LanguageSelector lang={lang} />
-    <ThemeSelector lang={lang} />
+    <LocaleToggle client:load locale={locale} label={t('controls.switchLocale')} />
+    <ThemeToggle client:load label={t('controls.toggleTheme')} />
   </nav>
 </header>

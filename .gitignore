@@ -22,3 +22,7 @@ pnpm-debug.log*
 
 # vercel build output (generated on deploy)
 .vercel/
+
+# playwright
+test-results/
+playwright-report/

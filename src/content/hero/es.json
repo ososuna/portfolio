@@ -1,0 +1,9 @@
+{
+  "name": "Oswaldo Osuna",
+  "photo": "../../assets/img/oswaldo-osuna-01.jpeg",
+  "photoAlt": "Oswaldo Osuna",
+  "summary": {
+    "lineOne": "AI Engineer de Guadalajara, México. 6 años de experiencia.",
+    "lineTwo": "Construyo sistemas escalables sobre fundamentos sólidos de ingeniería, potenciados con IA agéntica."
+  }
+}

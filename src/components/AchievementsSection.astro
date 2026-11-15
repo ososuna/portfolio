@@ -1,26 +1,33 @@
 ---
-import AchievementCard from '@components/AchievementCard.astro';
+import { getImage } from 'astro:assets';
+import Achievement from '@components/Achievement';
 import SectionContainer from '@components/SectionContainer.astro';
-import en from '@data/achievements/en.json';
-import es from '@data/achievements/es.json';
 import { useTranslations } from '@data/i18n/ui';
-import type { Lang } from '@data/i18n/utils';
+import type { Locale } from '@data/i18n/locales';
+import { getLocalized } from '@lib/content';
 
 interface Props {
-  lang: Lang;
+  locale: Locale;
 }
 
-const { lang } = Astro.props;
-const t = useTranslations(lang);
-const achievements = lang === 'es' ? es : en;
+const { locale } = Astro.props;
+const t = useTranslations(locale);
+const { achievements } = await getLocalized({ collection: 'achievements', locale });
+// The Card is React, which cannot use Astro's <Image>, so the optimized image is built here.
+const optimize = (src: ImageMetadata) => getImage({ src, width: 1920, height: 1080 });
 ---
 
-<SectionContainer id="achievements" class="py-16">
-  <h2 class="text-zinc-950 dark:text-white xss:text-3xl text-2xl font-bold text-center mb-10">{t('sections', 'achievements')}</h2>
-  <div class="flex md:flex-row flex-col justify-center md:items-start items-center lg:space-x-8 md:space-x-4">
+<SectionContainer id="achievements" class="py-16" heading={t('sections.achievements')}>
+  <div
+    class="flex flex-col items-center justify-center md:flex-row md:items-start md:space-x-4 lg:space-x-8"
+  >
     {
-      achievements.map(({title, description, image, link}) => (
-        <AchievementCard title={title} description={description} image={image} link={link} lang={lang} />
+      achievements.map(async (achievement) => (
+        <Achievement
+          achievement={achievement}
+          image={await optimize(achievement.image)}
+          learnMoreLabel={t('achievement.learnMore')}
+        />
       ))
     }
   </div>

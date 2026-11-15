@@ -1,4 +1,4 @@
-import { defaultLang, type Lang } from '@data/i18n/utils';
+import { defaultLocale, type Locale } from '@data/i18n/locales';
 
 export const ui = {
   en: {
@@ -17,16 +17,24 @@ export const ui = {
     },
     controls: {
       toggleTheme: 'Toggle theme',
-      switchLanguage: 'Switch language',
+      switchLocale: 'Switch language',
     },
     project: {
-      sourceCode: 'Source code',
-      ui: 'UI',
-      restApi: 'REST API',
-      goToProject: 'Go to project',
+      live: 'Go to project',
+      source: 'Source code',
+      'ui-source': 'UI',
+      'api-source': 'REST API',
     },
     achievement: {
       learnMore: 'Learn more about this topic',
+    },
+    notFound: {
+      title: '404 - Page Not Found',
+      description: 'The page you are looking for does not exist.',
+      eyebrow: '404 ERROR',
+      heading: 'Page not found',
+      message: 'The page you are trying to reach does not exist or has been moved.',
+      home: 'Return to home page',
     },
   },
   es: {
@@ -45,28 +53,43 @@ export const ui = {
     },
     controls: {
       toggleTheme: 'Cambiar tema',
-      switchLanguage: 'Cambiar idioma',
+      switchLocale: 'Cambiar idioma',
     },
     project: {
-      sourceCode: 'Código fuente',
-      ui: 'UI',
-      restApi: 'API REST',
-      goToProject: 'Ir al proyecto',
+      live: 'Ir al proyecto',
+      source: 'Código fuente',
+      'ui-source': 'UI',
+      'api-source': 'API REST',
     },
     achievement: {
       learnMore: 'Conoce más sobre este tema',
     },
+    notFound: {
+      title: '404 - Página no encontrada',
+      description: 'La página que buscas no existe.',
+      eyebrow: 'ERROR 404',
+      heading: 'Página no encontrada',
+      message: 'La página que intentas abrir no existe o se ha movido.',
+      home: 'Volver a la página de inicio',
+    },
   },
 } as const;
 
-type TranslationMap = typeof ui[typeof defaultLang];
+type TranslationMap = (typeof ui)[typeof defaultLocale];
 type SectionKey = keyof TranslationMap;
-type TranslationKey<T extends SectionKey> = keyof TranslationMap[T];
+type Translations = { [S in SectionKey]: Record<keyof TranslationMap[S], string> };
 
-export const useTranslations = (lang: Lang) => {
-  return <T extends SectionKey>(section: T, key: TranslationKey<T>) => {
-    const selectedLang = ui[lang][section][key];
-    const fallbackLang = ui[defaultLang][section][key];
-    return selectedLang ?? fallbackLang;
+// Fails to compile when a Locale is missing a key the Default Locale has.
+const translations: Record<Locale, Translations> = ui;
+
+/** A UI string's path, `section.key` (for example `nav.home`). */
+export type TranslationKey = {
+  [S in SectionKey]: `${S}.${keyof TranslationMap[S] & string}`;
+}[SectionKey];
+
+export const useTranslations = (locale: Locale) => {
+  return (path: TranslationKey): string => {
+    const [section, key] = path.split('.') as [SectionKey, string];
+    return (translations[locale][section] as Record<string, string>)[key]!;
   };
 };

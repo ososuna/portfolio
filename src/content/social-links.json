@@ -1,0 +1,9 @@
+[
+  { "id": "github", "name": "GitHub", "url": "https://github.com/ososuna", "icon": "github" },
+  {
+    "id": "linkedin",
+    "name": "LinkedIn",
+    "url": "https://www.linkedin.com/in/ososuna/",
+    "icon": "linkedin"
+  }
+]

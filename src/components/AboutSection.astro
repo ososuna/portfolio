@@ -1,0 +1,49 @@
+---
+import { Image } from 'astro:assets';
+import { useTranslations } from '@data/i18n/ui';
+import type { Locale } from '@data/i18n/locales';
+import { getLocalized } from '@lib/content';
+import { parseHighlights } from '@lib/highlights';
+import SectionContainer from '@components/SectionContainer.astro';
+
+interface Props {
+  locale: Locale;
+}
+
+const { locale } = Astro.props;
+const t = useTranslations(locale);
+const about = await getLocalized({ collection: 'about', locale });
+---
+
+<SectionContainer id="about-me" class="py-16" heading={t('sections.about')}>
+  <div class="mx-6 flex flex-col items-center justify-center md:flex-row lg:mx-0">
+    <div class="w-full md:w-4/12">
+      <Image
+        src={about.photo}
+        alt={about.photoAlt}
+        class="h-w-56 mx-auto mb-6 w-56 rounded-full md:mx-0 md:mb-0"
+      />
+    </div>
+    <div class="w-full md:w-8/12">
+      {
+        about.paragraphs.map((paragraph, index) => (
+          <p
+            class:list={[
+              'text-center text-base font-normal text-muted-foreground xss:text-lg md:text-left',
+              { 'mb-2': index < about.paragraphs.length - 1 },
+            ]}
+          >
+            {/* `set:text` keeps the Highlight free of the whitespace a formatter adds. */}
+            {parseHighlights(paragraph).map(({ text, highlighted }) =>
+              highlighted ? (
+                <span class="font-bold text-foreground" set:text={text} />
+              ) : (
+                <Fragment set:text={text} />
+              ),
+            )}
+          </p>
+        ))
+      }
+    </div>
+  </div>
+</SectionContainer>

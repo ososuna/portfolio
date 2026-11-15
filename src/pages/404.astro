@@ -1,24 +1,31 @@
 ---
 import Layout from '@layouts/Layout.astro';
+import { defaultLocale } from '@data/i18n/locales';
+import { useTranslations } from '@data/i18n/ui';
+import { buttonVariants } from '@/components/ui/button';
+import { cn } from '@/lib/utils';
+
+// The 404 page is only published in the Default Locale.
+const locale = defaultLocale;
+const t = useTranslations(locale);
 ---
 
-<Layout
-  lang="en"
-  title="404 - Page Not Found"
-  description="The page you are looking for does not exist."
->
-  <main class="mx-auto w-10/12 lg:w-[760px] min-h-screen flex items-center justify-center px-6 pt-14">
+<Layout locale={locale} title={t('notFound.title')} description={t('notFound.description')}>
+  <main
+    class="mx-auto flex min-h-screen w-10/12 items-center justify-center px-6 pt-14 lg:w-[760px]"
+  >
     <section class="w-full text-center">
-      <p class="text-sm font-medium tracking-widest text-zinc-500 dark:text-zinc-400">404 ERROR</p>
-      <h1 class="mt-3 text-4xl xss:text-5xl md:text-6xl font-extrabold text-zinc-950 dark:text-white">Page not found</h1>
-      <p class="mt-4 text-base xss:text-lg text-zinc-500 dark:text-zinc-400">
-        The page you are trying to reach does not exist or has been moved.
+      <p class="text-sm font-medium tracking-widest text-muted-foreground">
+        {t('notFound.eyebrow')}
       </p>
-      <a
-        href="/"
-        class="mt-8 inline-flex items-center justify-center rounded-lg border border-gray-300 bg-white px-5 py-2 text-sm font-medium text-gray-900 transition-all hover:bg-gray-100 focus:outline-none focus:ring-4 focus:ring-gray-200 dark:border-zinc-800 dark:bg-zinc-950 dark:text-white dark:hover:bg-zinc-800 dark:focus:ring-gray-700"
-      >
-        Return to home page
+      <h1 class="mt-3 text-4xl font-extrabold text-foreground xss:text-5xl md:text-6xl">
+        {t('notFound.heading')}
+      </h1>
+      <p class="mt-4 text-base text-muted-foreground xss:text-lg">
+        {t('notFound.message')}
+      </p>
+      <a href="/" class={cn(buttonVariants({ variant: 'outline', size: 'lg' }), 'mt-8 px-5')}>
+        {t('notFound.home')}
       </a>
     </section>
   </main>
