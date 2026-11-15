@@ -15,7 +15,7 @@ Composing Shadcn from `.astro`:
 
 ## `.astro` structure
 
-Order: frontmatter (imports, `interface Props`, logic), template, optional `<style>`, optional `<script is:inline>`. Components that take props declare `interface Props` and destructure `Astro.props`. Section components take `locale: Locale` (from `@data/i18n/locales`) and pass it to children that render text.
+Order: frontmatter (imports, `interface Props`, logic), template, optional `<style>`, optional `<script is:inline>`. Components that take props declare `interface Props` and destructure `Astro.props`. Section components take `locale: Locale` (from `@data/i18n/locales`) and pass it to children that render text. They render inside `SectionContainer`, passing the Section heading as its `heading` prop.
 
 ## Icons
 

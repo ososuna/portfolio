@@ -15,10 +15,7 @@ const t = useTranslations(locale);
 const about = await getLocalized({ collection: 'about', locale });
 ---
 
-<SectionContainer id="about-me" class="py-16">
-  <h2 class="mb-10 text-center text-2xl font-bold text-foreground xss:text-3xl">
-    {t('sections.about')}
-  </h2>
+<SectionContainer id="about-me" class="py-16" heading={t('sections.about')}>
   <div class="mx-6 flex flex-col items-center justify-center md:flex-row lg:mx-0">
     <div class="w-full md:w-4/12">
       <Image

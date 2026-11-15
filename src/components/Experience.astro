@@ -12,9 +12,6 @@ const { locale } = Astro.props;
 const t = useTranslations(locale);
 ---
 
-<SectionContainer id="experience" class="py-16">
-  <h2 class="mb-10 text-center text-2xl font-bold text-foreground xss:text-3xl">
-    {t('sections.experience')}
-  </h2>
+<SectionContainer id="experience" class="py-16" heading={t('sections.experience')}>
   <Timeline locale={locale} />
 </SectionContainer>

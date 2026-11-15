@@ -20,10 +20,7 @@ const images = await Promise.all(
 );
 ---
 
-<SectionContainer id="achievements" class="py-16">
-  <h2 class="mb-10 text-center text-2xl font-bold text-foreground xss:text-3xl">
-    {t('sections.achievements')}
-  </h2>
+<SectionContainer id="achievements" class="py-16" heading={t('sections.achievements')}>
   <div
     class="flex flex-col items-center justify-center md:flex-row md:items-start md:space-x-4 lg:space-x-8"
   >

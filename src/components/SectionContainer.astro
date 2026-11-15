@@ -2,9 +2,10 @@
 interface Props {
   id?: string;
   class?: string;
+  heading?: string;
 }
 
-const { class: className, id } = Astro.props;
+const { class: className, id, heading } = Astro.props;
 ---
 
 <section
@@ -12,5 +13,10 @@ const { class: className, id } = Astro.props;
   data-section={id}
   class:list={['section', className, 'mx-auto w-full pb-24 lg:w-[760px]']}
 >
+  {
+    heading && (
+      <h2 class="mb-10 text-center text-2xl font-bold text-foreground xss:text-3xl">{heading}</h2>
+    )
+  }
   <slot />
 </section>

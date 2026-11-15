@@ -14,10 +14,7 @@ const t = useTranslations(locale);
 const { projects } = await getLocalized({ collection: 'projects', locale });
 ---
 
-<SectionContainer id="projects" class="py-16">
-  <h2 class="mb-10 text-center text-2xl font-bold text-foreground xss:text-3xl">
-    {t('sections.projects')}
-  </h2>
+<SectionContainer id="projects" class="py-16" heading={t('sections.projects')}>
   <div class="mx-6 lg:mx-0">
     {
       projects.map(async (project) => (
