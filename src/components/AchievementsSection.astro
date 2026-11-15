@@ -14,10 +14,7 @@ const { locale } = Astro.props;
 const t = useTranslations(locale);
 const { achievements } = await getLocalized({ collection: 'achievements', locale });
 // The Card is React, which cannot use Astro's <Image>, so the optimized image is built here.
-const imageSize = { width: 1920, height: 1080 };
-const images = await Promise.all(
-  achievements.map(({ image }) => getImage({ src: image, ...imageSize })),
-);
+const optimize = (src: ImageMetadata) => getImage({ src, width: 1920, height: 1080 });
 ---
 
 <SectionContainer id="achievements" class="py-16" heading={t('sections.achievements')}>
@@ -25,12 +22,10 @@ const images = await Promise.all(
     class="flex flex-col items-center justify-center md:flex-row md:items-start md:space-x-4 lg:space-x-8"
   >
     {
-      achievements.map(({ title, description, link }, index) => (
+      achievements.map(async (achievement) => (
         <Achievement
-          title={title}
-          description={description}
-          image={{ src: images[index].src, ...imageSize }}
-          link={link}
+          achievement={achievement}
+          image={await optimize(achievement.image)}
           learnMoreLabel={t('achievement.learnMore')}
         />
       ))

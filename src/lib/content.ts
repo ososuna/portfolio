@@ -30,3 +30,5 @@ export const getReferenced = async <C extends CollectionKey>(
       return entry.data;
     }),
   );
+
+export type Achievement = CollectionEntry<'achievements'>['data']['achievements'][number];
