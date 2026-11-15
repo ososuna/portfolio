@@ -15,7 +15,7 @@ interface Props {
   ui?: string;
   image: string;
   lang: Lang;
-  tags: { name: string; class: string; icon: any }[];
+  tags: { name: string; class: string; icon: typeof GitHubIcon }[];
 }
 
 const { title, description, link, github, image, tags, restApi, ui, lang } = Astro.props;

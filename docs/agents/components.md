@@ -40,7 +40,9 @@ Use `<Image>` from `astro:assets`. Content images live in `src/assets/img/`, nev
 - Image named in JSON: `import.meta.glob` plus a build-time guard. This guard is the codebase's only error handling; keep it on every glob:
 
 ```astro
+---
 const images = import.meta.glob<{ default: ImageMetadata }>('/src/assets/img/projects/*.png');
 if (!images[image]) throw new Error(`"${image}" does not exist in glob: "/src/assets/img/projects/*.png"`);
+---
 <Image src={images[image]()} alt={title} width="1920" height="1080" />
 ```

@@ -1,0 +1,13 @@
+dist/
+.vercel/
+.astro/
+.claude/
+node_modules/
+playwright-report/
+test-results/
+pnpm-lock.yaml
+# Byte-exact content baseline.
+tests/e2e/content-baseline/
+# Claude workflows stay byte-for-byte as installed.
+.github/workflows/claude.yml
+.github/workflows/claude-code-review.yml

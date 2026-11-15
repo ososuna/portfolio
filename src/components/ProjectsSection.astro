@@ -35,7 +35,18 @@ interface Props {
 
 const { lang } = Astro.props;
 const t = useTranslations(lang);
-const projectsData = lang === 'es' ? es : en;
+interface ProjectData {
+  title: string;
+  description: string;
+  link?: string;
+  github?: string;
+  ui?: string;
+  restApi?: string;
+  image: string;
+  tags: string[];
+}
+
+const projectsData: ProjectData[] = lang === 'es' ? es : en;
 
 const tags = {
   next: {
