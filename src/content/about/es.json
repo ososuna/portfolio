@@ -1,0 +1,9 @@
+{
+  "photo": "../../assets/img/oswaldo-osuna-02.png",
+  "photoAlt": "Foto de perfil",
+  "paragraphs": [
+    "Mi nombre es **Oswaldo Osuna** y soy **AI Engineer**. Llevo más de **6 años** trabajando en la industria tecnológica. Me apasiona crear software efectivo y aprender cada día para crecer profesionalmente en un entorno dinámico.",
+    "En **ARCOS LLC**, entregué **la plataforma MCP de la empresa sobre una arquitectura escalable**, al mismo tiempo que introduje flujos de trabajo de codificación basados en agentes que aceleraron de forma significativa la entrega y elevaron la calidad en el equipo. Antes de eso, lideré el desarrollo full stack para **Oracle Cloud Infrastructure en el servicio de Log Analytics**.",
+    "También he trabajado en el desarrollo de soluciones para la **industria aeroespacial** creando aplicaciones web para **gestionar procesos de negocio críticos**."
+  ]
+}

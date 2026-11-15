@@ -1,33 +1,9 @@
 ---
-import en from '@data/projects/en.json';
-import es from '@data/projects/es.json';
 import { useTranslations } from '@data/i18n/ui';
 import type { Locale } from '@data/i18n/locales';
-
+import { getLocalized, getReferenced } from '@lib/content';
 import SectionContainer from '@components/SectionContainer.astro';
 import Project from '@components/Project.astro';
-import NextJSIcon from '@icons/NextJSIcon.astro';
-import TailwindIcon from '@icons/TailwindIcon.astro';
-import VueIcon from '@icons/VueIcon.astro';
-import BootstrapIcon from '@icons/BootstrapIcon.astro';
-import PythonIcon from '@icons/PythonIcon.astro';
-import MongoDbIcon from '@icons/MongoDbIcon.astro';
-import NodeJsIcon from '@icons/NodeJsIcon.astro';
-import AwsIcon from '@icons/AwsIcon.astro';
-import SpringIcon from '@icons/SpringIcon.astro';
-import MySqlIcon from '@icons/MySqlIcon.astro';
-import DockerIcon from '@icons/DockerIcon.astro';
-import AstroIcon from '@icons/AstroIcon.astro';
-import ReactIcon from '@icons/ReactIcon.astro';
-import ShadcnUiIcon from '@icons/ShadcnUiIcon.astro';
-import ExpressJsIcon from '@icons/ExpressJsIcon.astro';
-import VercelIcon from '@icons/VercelIcon.astro';
-import VitestIcon from '@icons/VitestIcon.astro';
-import TypeScriptIcon from '@icons/TypeScriptIcon.astro';
-import PostgreSqlIcon from '@icons/PostgreSqlIcon.astro';
-import OpenAiIcon from '@icons/OpenAiIcon.astro';
-import LangfuseIcon from '@icons/LangfuseIcon.astro';
-import OpenTelemetryIcon from '@icons/OpenTelemetryIcon.astro';
 
 interface Props {
   locale: Locale;
@@ -35,141 +11,7 @@ interface Props {
 
 const { locale } = Astro.props;
 const t = useTranslations(locale);
-interface ProjectData {
-  title: string;
-  description: string;
-  link?: string;
-  github?: string;
-  ui?: string;
-  restApi?: string;
-  image: string;
-  tags: string[];
-}
-
-const projectsData: ProjectData[] = locale === 'es' ? es : en;
-
-const tags = {
-  next: {
-    name: 'Next.js',
-    class: 'bg-black text-white',
-    icon: NextJSIcon,
-  },
-  tailwind: {
-    name: 'Tailwind CSS',
-    class: 'bg-[#003159] text-white',
-    icon: TailwindIcon,
-  },
-  vue: {
-    name: 'Vue.js',
-    class: 'bg-[#35495e] text-white',
-    icon: VueIcon,
-  },
-  bootstrap: {
-    name: 'Bootstrap',
-    class: 'bg-[#7952b3] text-white',
-    icon: BootstrapIcon,
-  },
-  python: {
-    name: 'Python',
-    class: 'bg-[#306998] text-white',
-    icon: PythonIcon,
-  },
-  mongodb: {
-    name: 'MongoDB',
-    class: 'bg-white text-black border-solid border border-zinc-950 dark:border-none',
-    icon: MongoDbIcon,
-  },
-  nodejs: {
-    name: 'Node.js',
-    class: 'bg-[#68a063] text-white',
-    icon: NodeJsIcon,
-  },
-  aws: {
-    name: 'AWS',
-    class: 'bg-white text-black border-solid border border-zinc-950 dark:border-none',
-    icon: AwsIcon,
-  },
-  spring: {
-    name: 'Spring',
-    class: 'bg-white text-black border-solid border border-zinc-950 dark:border-none',
-    icon: SpringIcon,
-  },
-  mysql: {
-    name: 'My SQL',
-    class: 'bg-[#00758f] text-white',
-    icon: MySqlIcon,
-  },
-  docker: {
-    name: 'Docker',
-    class: 'bg-[#0db7ed] text-white',
-    icon: DockerIcon,
-  },
-  astro: {
-    name: 'Astro',
-    class: 'bg-[#ff5d01] text-white',
-    icon: AstroIcon,
-  },
-  react: {
-    name: 'React',
-    class: 'bg-[#20232a] text-white',
-    icon: ReactIcon,
-  },
-  shadcn: {
-    name: 'shadcn/ui',
-    class: 'bg-white text-black border-solid border border-zinc-950 dark:border-none',
-    icon: ShadcnUiIcon,
-  },
-  express: {
-    name: 'Express.js',
-    class: 'bg-white text-black border-solid border border-zinc-950 dark:border-none',
-    icon: ExpressJsIcon,
-  },
-  vercel: {
-    name: 'Vercel',
-    class: 'bg-black text-white',
-    icon: VercelIcon,
-  },
-  vitest: {
-    name: 'Vitest',
-    class: 'bg-[#003159] text-white',
-    icon: VitestIcon,
-  },
-  typescript: {
-    name: 'TypeScript',
-    class: 'bg-[#3178c6] text-white',
-    icon: TypeScriptIcon,
-  },
-  postgresql: {
-    name: 'PostgreSQL',
-    class: 'bg-[#336791] text-white',
-    icon: PostgreSqlIcon,
-  },
-  openai: {
-    name: 'OpenAI',
-    class: 'bg-black text-white',
-    icon: OpenAiIcon,
-  },
-  aisdk: {
-    name: 'Vercel AI SDK',
-    class: 'bg-black text-white',
-    icon: VercelIcon,
-  },
-  langfuse: {
-    name: 'Langfuse',
-    class: 'bg-white text-black border-solid border border-zinc-950 dark:border-none',
-    icon: LangfuseIcon,
-  },
-  opentelemetry: {
-    name: 'OpenTelemetry',
-    class: 'bg-[#425cc7] text-white',
-    icon: OpenTelemetryIcon,
-  },
-};
-
-const projects = projectsData.map((project) => ({
-  ...project,
-  tags: project.tags.map((tagKey) => tags[tagKey as keyof typeof tags]),
-}));
+const { projects } = await getLocalized('projects', locale);
 ---
 
 <SectionContainer id="projects" class="py-16">
@@ -178,16 +20,13 @@ const projects = projectsData.map((project) => ({
   </h2>
   <div class="mx-6 lg:mx-0">
     {
-      projects.map((project) => (
+      projects.map(async (project) => (
         <Project
           title={project.title}
           description={project.description}
-          link={project.link}
-          github={project.github}
-          ui={project.ui}
-          restApi={project.restApi}
           image={project.image}
-          tags={project.tags}
+          technologies={await getReferenced(project.technologies)}
+          links={project.links}
           locale={locale}
         />
       ))

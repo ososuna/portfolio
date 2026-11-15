@@ -36,15 +36,4 @@ No barrel file; import each icon by path.
 
 Use `<Image>` from `astro:assets`. Content images live in `src/assets/img/`, never `public/`.
 
-- Known single image: static import (`import me from '@img/oswaldo-osuna-01.jpeg'`).
-- Image named in JSON: `import.meta.glob` plus a build-time guard. This guard is the codebase's only error handling; keep it on every glob:
-
-```astro
----
-const images = import.meta.glob<{ default: ImageMetadata }>('/src/assets/img/projects/*.png');
-if (!images[image])
-  throw new Error(`"${image}" does not exist in glob: "/src/assets/img/projects/*.png"`);
----
-
-<Image src={images[image]()} alt={title} width="1920" height="1080" />
-```
+Content images are `image()` fields in the collection schema: the JSON holds a path relative to the JSON file, a missing file fails the build, and the component passes the resulting `ImageMetadata` straight to `<Image src>`.

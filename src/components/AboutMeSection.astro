@@ -1,54 +1,51 @@
 ---
 import { Image } from 'astro:assets';
-import SectionContainer from '@components/SectionContainer.astro';
-import meImage from '@img/oswaldo-osuna-02.png';
-import en from '@data/about/en.json';
-import es from '@data/about/es.json';
+import { useTranslations } from '@data/i18n/ui';
 import type { Locale } from '@data/i18n/locales';
+import { getLocalized } from '@lib/content';
+import { parseHighlights } from '@lib/highlights';
+import SectionContainer from '@components/SectionContainer.astro';
 
 interface Props {
   locale: Locale;
 }
 
 const { locale } = Astro.props;
-const aboutData = locale === 'es' ? es : en;
+const t = useTranslations(locale);
+const about = await getLocalized('about', locale);
 ---
 
 <SectionContainer id="about-me" class="py-16">
   <h2 class="mb-10 text-center text-2xl font-bold text-zinc-950 xss:text-3xl dark:text-white">
-    {aboutData.title}
+    {t('sections', 'about')}
   </h2>
   <div class="mx-6 flex flex-col items-center justify-center md:flex-row lg:mx-0">
     <div class="w-full md:w-4/12">
       <Image
-        src={meImage}
-        alt={aboutData.imageAlt}
+        src={about.photo}
+        alt={about.photoAlt}
         class="h-w-56 mx-auto mb-6 w-56 rounded-full md:mx-0 md:mb-0"
       />
     </div>
     <div class="w-full md:w-8/12">
       {
-        aboutData.paragraphs[0] &&
-          // Formatting would add spaces around the Highlights.
-          // prettier-ignore
-          <p class="text-base xss:text-lg font-normal text-gray-500 dark:text-gray-400 text-center md:text-left mb-2">
-        {aboutData.paragraphs[0].preName}<span class="text-zinc-950 dark:text-white font-bold">{aboutData.paragraphs[0].name}</span>{aboutData.paragraphs[0].afterName}<span class="text-zinc-950 dark:text-white font-bold">{aboutData.paragraphs[0].role}</span>{aboutData.paragraphs[0].afterRole}<span class="text-zinc-950 dark:text-white font-bold">{aboutData.paragraphs[0].years}</span>{aboutData.paragraphs[0].afterYears}
-      </p>
-      }
-      {
-        aboutData.paragraphs[1] &&
-          // prettier-ignore
-          <p class="text-base xss:text-lg font-normal text-gray-500 dark:text-gray-400 text-center md:text-left mb-2">
-        {aboutData.paragraphs[1].preCompany}<span class="text-zinc-950 dark:text-white font-bold">{aboutData.paragraphs[1].company}</span>{aboutData.paragraphs[1].afterCompany}<span class="text-zinc-950 dark:text-white font-bold">{aboutData.paragraphs[1].focus}</span>{aboutData.paragraphs[1].afterFocus}<span class="text-zinc-950 dark:text-white font-bold">{aboutData.paragraphs[1].platform}</span>{aboutData.paragraphs[1].afterPlatform}
-      </p>
-      }
-      {
-        aboutData.paragraphs[2] &&
-          // prettier-ignore
-          <p class="text-base xss:text-lg font-normal text-gray-500 dark:text-gray-400 text-center md:text-left">
-        {aboutData.paragraphs[2].preIndustry}<span class="text-zinc-950 dark:text-white font-bold">{aboutData.paragraphs[2].industry}</span>
-        {aboutData.paragraphs[2].afterIndustry}<span class="text-zinc-950 dark:text-white font-bold">{aboutData.paragraphs[2].outcome}</span>{aboutData.paragraphs[2].afterOutcome}
-      </p>
+        about.paragraphs.map((paragraph, index) => (
+          <p
+            class:list={[
+              'text-center text-base font-normal text-gray-500 xss:text-lg md:text-left dark:text-gray-400',
+              { 'mb-2': index < about.paragraphs.length - 1 },
+            ]}
+          >
+            {/* `set:text` keeps the Highlight free of the whitespace a formatter adds. */}
+            {parseHighlights(paragraph).map(({ text, highlighted }) =>
+              highlighted ? (
+                <span class="font-bold text-zinc-950 dark:text-white" set:text={text} />
+              ) : (
+                <Fragment set:text={text} />
+              ),
+            )}
+          </p>
+        ))
       }
     </div>
   </div>

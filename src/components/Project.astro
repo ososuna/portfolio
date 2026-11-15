@@ -1,28 +1,35 @@
 ---
 import { Image } from 'astro:assets';
 import ProjectLinkButton from '@components/ProjectLinkButton.astro';
-import GitHubIcon from '@icons/GitHubIcon.astro';
-import WebIcon from '@icons/WebIcon.astro';
 import { useTranslations } from '@data/i18n/ui';
 import type { Locale } from '@data/i18n/locales';
+import type { ProjectLinkKind } from '@lib/project-links';
+import { icons } from '@icons/index';
+import type { IconName } from '@icons/names';
+import GitHubIcon from '@icons/GitHubIcon.astro';
+import WebIcon from '@icons/WebIcon.astro';
 
 interface Props {
   title: string;
   description: string;
-  link?: string;
-  github?: string;
-  restApi?: string;
-  ui?: string;
-  image: string;
+  image: ImageMetadata;
+  technologies: { name: string; icon: IconName }[];
+  links: { kind: ProjectLinkKind; url: string }[];
   locale: Locale;
-  tags: { name: string; class: string; icon: typeof GitHubIcon }[];
 }
 
-const { title, description, link, github, image, tags, restApi, ui, locale } = Astro.props;
+const { title, description, image, technologies, links, locale } = Astro.props;
 const t = useTranslations(locale);
-const images = import.meta.glob<{ default: ImageMetadata }>('/src/assets/img/projects/*.png');
-if (!images[image])
-  throw new Error(`"${image}" does not exist in glob: "/src/assets/img/projects/*.png"`);
+
+const linkLabelKeys = {
+  live: 'goToProject',
+  source: 'sourceCode',
+  'ui-source': 'ui',
+  'api-source': 'restApi',
+} as const satisfies Record<ProjectLinkKind, string>;
+
+// The live site also wraps the Project image.
+const liveUrl = links.find(({ kind }) => kind === 'live')?.url;
 ---
 
 <div class="mb-14">
@@ -34,57 +41,36 @@ if (!images[image])
   </p>
   <ul class="flex flex-row flex-wrap gap-x-2">
     {
-      tags.map((tag) => (
-        <li class="mt-4">
-          <span class={`flex gap-x-2 rounded-full text-sm ${tag.class} px-2 py-1`}>
-            <tag.icon class="mt-0.5 size-4" />
-            {tag.name}
-          </span>
-        </li>
-      ))
+      technologies.map(({ name, icon }) => {
+        const Icon = icons[icon];
+        return (
+          <li class="mt-4">
+            <span class="flex gap-x-2 rounded-full border border-gray-300 px-2 py-1 text-sm text-gray-900 dark:border-zinc-800 dark:text-white">
+              <Icon class="mt-0.5 size-4" />
+              {name}
+            </span>
+          </li>
+        );
+      })
     }
   </ul>
   {
-    link ? (
-      <a href={link} target="_blank">
-        <Image src={images[image]()} alt={title} class="mt-4" width="1920" height="1080" />
+    liveUrl ? (
+      <a href={liveUrl} target="_blank">
+        <Image src={image} alt={title} class="mt-4" width="1920" height="1080" />
       </a>
     ) : (
-      <Image src={images[image]()} alt={title} class="mt-4" width="1920" height="1080" />
+      <Image src={image} alt={title} class="mt-4" width="1920" height="1080" />
     )
   }
   <footer class="mt-4 flex items-center justify-center gap-x-4">
     {
-      github && (
-        <ProjectLinkButton href={github}>
-          <GitHubIcon class="me-2 size-4" />
-          {t('project', 'sourceCode')}
+      links.map(({ kind, url }) => (
+        <ProjectLinkButton href={url}>
+          {kind === 'live' ? <WebIcon class="me-2 size-5" /> : <GitHubIcon class="me-2 size-4" />}
+          {t('project', linkLabelKeys[kind])}
         </ProjectLinkButton>
-      )
-    }
-    {
-      ui && (
-        <ProjectLinkButton href={ui}>
-          <GitHubIcon class="me-2 size-4" />
-          {t('project', 'ui')}
-        </ProjectLinkButton>
-      )
-    }
-    {
-      restApi && (
-        <ProjectLinkButton href={restApi}>
-          <GitHubIcon class="me-2 size-4" />
-          {t('project', 'restApi')}
-        </ProjectLinkButton>
-      )
-    }
-    {
-      link && (
-        <ProjectLinkButton href={link}>
-          <WebIcon class="me-2 size-5" />
-          {t('project', 'goToProject')}
-        </ProjectLinkButton>
-      )
+      ))
     }
   </footer>
 </div>

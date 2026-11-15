@@ -1,0 +1,117 @@
+[
+  {
+    "id": "next",
+    "name": "Next.js",
+    "icon": "nextjs"
+  },
+  {
+    "id": "tailwind",
+    "name": "Tailwind CSS",
+    "icon": "tailwind"
+  },
+  {
+    "id": "vue",
+    "name": "Vue.js",
+    "icon": "vue"
+  },
+  {
+    "id": "bootstrap",
+    "name": "Bootstrap",
+    "icon": "bootstrap"
+  },
+  {
+    "id": "python",
+    "name": "Python",
+    "icon": "python"
+  },
+  {
+    "id": "mongodb",
+    "name": "MongoDB",
+    "icon": "mongodb"
+  },
+  {
+    "id": "nodejs",
+    "name": "Node.js",
+    "icon": "nodejs"
+  },
+  {
+    "id": "aws",
+    "name": "AWS",
+    "icon": "aws"
+  },
+  {
+    "id": "spring",
+    "name": "Spring",
+    "icon": "spring"
+  },
+  {
+    "id": "mysql",
+    "name": "My SQL",
+    "icon": "mysql"
+  },
+  {
+    "id": "docker",
+    "name": "Docker",
+    "icon": "docker"
+  },
+  {
+    "id": "astro",
+    "name": "Astro",
+    "icon": "astro"
+  },
+  {
+    "id": "react",
+    "name": "React",
+    "icon": "react"
+  },
+  {
+    "id": "shadcn",
+    "name": "shadcn/ui",
+    "icon": "shadcn"
+  },
+  {
+    "id": "express",
+    "name": "Express.js",
+    "icon": "express"
+  },
+  {
+    "id": "vercel",
+    "name": "Vercel",
+    "icon": "vercel"
+  },
+  {
+    "id": "vitest",
+    "name": "Vitest",
+    "icon": "vitest"
+  },
+  {
+    "id": "typescript",
+    "name": "TypeScript",
+    "icon": "typescript"
+  },
+  {
+    "id": "postgresql",
+    "name": "PostgreSQL",
+    "icon": "postgresql"
+  },
+  {
+    "id": "openai",
+    "name": "OpenAI",
+    "icon": "openai"
+  },
+  {
+    "id": "aisdk",
+    "name": "Vercel AI SDK",
+    "icon": "vercel"
+  },
+  {
+    "id": "langfuse",
+    "name": "Langfuse",
+    "icon": "langfuse"
+  },
+  {
+    "id": "opentelemetry",
+    "name": "OpenTelemetry",
+    "icon": "opentelemetry"
+  }
+]

@@ -1,7 +1,7 @@
 import { getEntry, type CollectionEntry, type CollectionKey } from 'astro:content';
 import type { Locale } from '@data/i18n/locales';
 
-type LocalizedCollection = 'hero' | 'roles' | 'achievements';
+type LocalizedCollection = 'hero' | 'roles' | 'achievements' | 'projects' | 'about';
 
 /** The entry of a per-Locale collection for one Locale. A missing Locale fails the build. */
 export const getLocalized = async <C extends LocalizedCollection>(
