@@ -15,12 +15,12 @@
     "baseline:update": "astro build && playwright test content-baseline --update-snapshots"
   },
   "dependencies": {
-    "@astrojs/vercel": "^9.0.4",
-    "@tailwindcss/vite": "^4.2.1",
+    "@astrojs/vercel": "^10.0.8",
+    "@tailwindcss/vite": "^4.3.5",
     "@vercel/analytics": "^1.6.1",
-    "astro": "^5.18.0",
-    "sharp": "^0.33.5",
-    "tailwindcss": "^4.2.1"
+    "astro": "^6.4.8",
+    "sharp": "^0.34.5",
+    "tailwindcss": "^4.3.5"
   },
   "packageManager": "pnpm@12.21.0",
   "devDependencies": {
