@@ -1,17 +1,22 @@
 # Code style
 
+## Formatting and linting
+
+Prettier formats everything (`pnpm format` writes, `pnpm lint` checks); its config is `prettier.config.mjs`, with the Astro and Tailwind class sorting plugins. Classes inside `cn()` and `cva()` are sorted too. Run `pnpm format` rather than matching the style by hand.
+
+ESLint uses the flat config in `eslint.config.mjs`: recommended JS, typescript-eslint and Astro rules, with `eslint-config-prettier` last. `no-undef` is off for `.ts`, `.tsx` and `.astro`, since TypeScript reports undefined names.
+
 ## Imports
 
-Import through the `tsconfig.json` path aliases (`@components/`, `@layouts/`, `@icons/`, `@data/`, `@assets/`, `@img/`, `@styles/`), never relative paths.
+Import through the `tsconfig.json` path aliases, never relative paths:
 
-Order: framework (`astro:assets`, `@vercel/analytics`), then data and i18n, then components, then icons.
+- `@/` for Shadcn code and what it generates: `@/components/ui/*`, `@/lib/utils`, `@/hooks/*`. It matches the aliases in `components.json`, so `shadcn add` output works unchanged.
+- The named aliases for everything else: `@components/`, `@layouts/`, `@icons/`, `@data/`, `@lib/`, `@assets/`, `@img/`, `@styles/`.
 
 ## Naming
 
-- Components: PascalCase `.astro` (`SectionContainer.astro`).
+- Use the GLOSSARY.md terms in names (`Hero`, `locale`, `period`, `ProjectLink`).
+- `.astro` components and React components: PascalCase (`SectionContainer.astro`, `ThemeToggle.tsx`).
+- Shadcn components and hooks: kebab-case files as the CLI writes them (`button.tsx`, `use-hydrated.ts`).
 - Icons: `{Name}Icon.astro`.
 - Variables and functions: camelCase.
-
-## Formatting
-
-No formatter runs. Match these: 2-space indent, semicolons in frontmatter, single quotes in JS/TS, double quotes in HTML attributes, trailing commas in multi-line literals.

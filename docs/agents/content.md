@@ -1,15 +1,26 @@
 # Content and i18n
 
-All content is in content collections (`src/content.config.ts`, data in `src/content/`). Hero, Roles, Projects, Achievements and About hold one file per Locale (`en.json`, `es.json`), read with `getLocalized(collection, locale)` from `src/lib/content.ts`; Social Links, Companies and Technologies are shared by every Locale. Keep the two Locale files structurally identical (same entries, same order, same keys); only the text differs.
+## Collections
 
-UI strings (nav, section titles, button labels) live in `src/data/i18n/ui.ts`, read via `useTranslations(locale)`. Add every key to both `en` and `es`; missing `es` keys silently fall back to English.
+All content is in Astro content collections: schemas in `src/content.config.ts`, data in `src/content/`. A schema violation, an unknown id or a missing image fails the build.
 
-Pages: `src/pages/index.astro` (en, unprefixed) and `src/pages/es/index.astro`. Both render the same five sections, each receiving `lang`. A section change lands in both pages.
+- **Per Locale**: Hero, Roles, Projects, Achievements and About hold one file per Locale (`en.json`, `es.json`), each with an ordered list, read with `getLocalized(collection, locale)` from `@lib/content`. Keep both Locale files structurally identical (same entries, same order, same keys); only the text differs. Entries render in data order.
+- **Shared by every Locale**: Social Links, Companies and Technologies, one `file()` collection each (`src/content/{social-links,companies,technologies}.json`).
+- **References**: a Role's `company` and a Project's `technologies` are ids into the shared collections. Resolve them with `getReferenced` from `@lib/content`: Astro only logs an unknown `reference()` id and still exits 0, while `getReferenced` throws.
+- **Icons**: `icon` and `logo` fields are names from `src/icons/names.ts`, rendered through the registry in `src/icons/index.ts`. A new name goes in both files.
+- **Images**: `image()` fields hold a path relative to the JSON file, pointing into `src/assets/img/`.
+
+## UI strings
+
+Strings that are not content (nav, Section headings, control labels, Project Link labels, the 404 page) live in `src/data/i18n/ui.ts`, read with `useTranslations(locale)`. Add every key to both `en` and `es`. The 404 page is published in the Default Locale only; its `es` strings keep the two Locales' keys identical.
+
+## Pages
+
+`src/pages/index.astro` (Default Locale, unprefixed) and `src/pages/es/index.astro` render the same five Sections, each receiving `locale`. A Section change lands in both pages. A new Locale needs an entry in `src/data/i18n/locales.ts` and `astro.config.mjs` `i18n.locales`, a file in every per-Locale collection, its UI strings and a page. The Navbar links, `LocaleToggle.tsx` and the Locale detection script in `Layout.astro` assume exactly `en` and `es`, and with a third Locale the toggle has to become a menu.
 
 ## Recipes
 
-- **Project**: add the entry to `projects` in both `src/content/projects/{en,es}.json`. `technologies` are ids from `src/content/technologies.json` (resolved with `getReferenced`, so an unknown id fails the build); a new Technology needs an entry there and its icon registered in `src/icons/names.ts` and `src/icons/index.ts`. `links` are Project Links `{ kind, url }` with kind `live`, `source`, `ui-source` or `api-source`, rendered in data order with labels from the `project` UI strings; the `live` link also wraps the image. The image goes in `src/assets/img/projects/`; a missing image fails the build.
-- **Bio Paragraph**: one string in `paragraphs` in both `src/content/about/{en,es}.json`, with each Highlight wrapped in `**...**` (parsed by `src/lib/highlights.ts`). An unclosed `**` renders as literal text.
-- **Experience**: add the Role to `roles` in both `src/content/roles/{en,es}.json` (newest first). `company` is an id from `src/content/companies.json`; a new Company needs an entry there and its logo registered in `src/icons/names.ts` and `src/icons/index.ts`. An unknown id fails the build.
-- **Achievement**: add the entry to `achievements` in both `src/content/achievements/{en,es}.json`; its image goes in `src/assets/img/achievements/` and `image` is a path relative to the JSON file. A missing image fails the build.
-- **Image referenced from JSON**: a path relative to the JSON file; a missing file fails the build (see [components.md](components.md#images)).
+- **Project**: an entry in `projects` in both `src/content/projects/{en,es}.json`. `technologies` are Technology ids; a new Technology needs an entry in `technologies.json` and its icon registered. `links` are Project Links `{ kind, url }`, kind one of `live`, `source`, `ui-source`, `api-source` (`src/lib/project-links.ts`), rendered in data order with labels from the `project` UI strings; the `live` link also wraps the image. The image goes in `src/assets/img/projects/`.
+- **Role**: an entry in `roles` in both `src/content/roles/{en,es}.json`, newest first. `company` is a Company id; a new Company needs an entry in `companies.json` and its logo registered. `period` is free text per Locale (ADR-0002).
+- **Achievement**: an entry in `achievements` in both `src/content/achievements/{en,es}.json`; its image goes in `src/assets/img/achievements/`.
+- **Bio Paragraph**: one string in `paragraphs` in both `src/content/about/{en,es}.json`, each Highlight wrapped in `**...**` (parsed by `src/lib/highlights.ts`). An unclosed `**` renders as literal text. The third English Bio Paragraph's "aerospace industry , building" is published as is; keep the space before the comma.
