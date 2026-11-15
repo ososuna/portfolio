@@ -106,16 +106,14 @@ Title: Oswaldo Osuna - AI Engineer
 - MongoDB
 - Docker
 - Vitest
-- UI
-- API REST
+- Código fuente
 - Ir al proyecto
 
 ## Links
 - https://finance-assistant.ososuna.dev/
 - https://finance-assistant.ososuna.dev/
 - https://cliplink.app
-- https://github.com/ososuna/cliplink-ui
-- https://github.com/ososuna/cliplink-rest
+- https://github.com/ososuna/cliplink
 - https://cliplink.app
 
 ## Image alt text

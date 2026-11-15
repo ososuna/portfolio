@@ -44,12 +44,8 @@
       ],
       "links": [
         {
-          "kind": "ui-source",
-          "url": "https://github.com/ososuna/cliplink-ui"
-        },
-        {
-          "kind": "api-source",
-          "url": "https://github.com/ososuna/cliplink-rest"
+          "kind": "source",
+          "url": "https://github.com/ososuna/cliplink"
         },
         {
           "kind": "live",
