@@ -1,7 +1,16 @@
 ---
+interface Props {
+  id?: string;
+  class?: string;
+}
+
 const { class: className, id } = Astro.props;
 ---
 
-<section id={id} data-section={id} class={`section ${className} w-full mx-auto lg:w-[760px] pb-24`}>
+<section
+  id={id}
+  data-section={id}
+  class:list={['section', className, 'mx-auto w-full pb-24 lg:w-[760px]']}
+>
   <slot />
 </section>
