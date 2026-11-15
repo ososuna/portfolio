@@ -37,17 +37,20 @@ const menuOptions = [
 ---
 
 <header
-  class="w-full fixed h-14 flex items-center xs:justify-between justify-center xs:px-6 shadow-sm backdrop-blur z-50"
+  class="fixed z-50 flex h-14 w-full items-center justify-center shadow-sm backdrop-blur xs:justify-between xs:px-6"
 >
-  <a href={lang === 'es' ? '/es/#' : '/#'} aria-label={t('nav', 'home')} class="xss:hidden xs:block block">
+  <a
+    href={lang === 'es' ? '/es/#' : '/#'}
+    aria-label={t('nav', 'home')}
+    class="block xss:hidden xs:block"
+  >
     <LogoIcon />
   </a>
-  <nav class="flex items-center xs:space-x-4 space-x-3">
+  <nav class="flex items-center space-x-3 xs:space-x-4">
     {
       menuOptions.map((option) => (
         <a
-          class="text-sm text-zinc-500 dark:text-zinc-400
-            hover:text-zinc-600 dark:hover:text-zinc-300 transition-all xss:block hidden"
+          class="hidden text-sm text-zinc-500 transition-all hover:text-zinc-600 xss:block dark:text-zinc-400 dark:hover:text-zinc-300"
           aria-label={option.label}
           href={option.url}
         >

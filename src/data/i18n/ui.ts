@@ -59,7 +59,7 @@ export const ui = {
   },
 } as const;
 
-type TranslationMap = typeof ui[typeof defaultLang];
+type TranslationMap = (typeof ui)[typeof defaultLang];
 type SectionKey = keyof TranslationMap;
 type TranslationKey<T extends SectionKey> = keyof TranslationMap[T];
 

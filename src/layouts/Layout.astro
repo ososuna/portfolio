@@ -31,7 +31,9 @@ const { title, description } = Astro.props;
           return;
         }
 
-        const preferredBrowserLang = navigator.language.toLowerCase().startsWith('es') ? 'es' : 'en';
+        const preferredBrowserLang = navigator.language.toLowerCase().startsWith('es')
+          ? 'es'
+          : 'en';
         localStorage.setItem(storageKey, preferredBrowserLang);
 
         const pathname = window.location.pathname;

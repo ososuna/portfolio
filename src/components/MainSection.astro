@@ -15,13 +15,21 @@ const { lang } = Astro.props;
 const mainData = lang === 'es' ? es : en;
 ---
 
-<SectionContainer class="py-44 pb-32 w-10/12">
+<SectionContainer class="w-10/12 py-44 pb-32">
   <div class="mx-6 lg:mx-0">
-    <div class="flex items-center justify-center mb-4">
-      <h1 class="text-zinc-950 dark:text-white md:text-6xl xss:text-4xl text-3xl font-extrabold text-center">{mainData.name}</h1>
-      <Image src={meImage} alt={mainData.photoAlt} class="xss:size-20 size-16 rounded-full xss:mx-10 mx-6" />
+    <div class="mb-4 flex items-center justify-center">
+      <h1
+        class="text-center text-3xl font-extrabold text-zinc-950 xss:text-4xl md:text-6xl dark:text-white"
+      >
+        {mainData.name}
+      </h1>
+      <Image
+        src={meImage}
+        alt={mainData.photoAlt}
+        class="mx-6 size-16 rounded-full xss:mx-10 xss:size-20"
+      />
     </div>
-    <p class="md:text-xl xs:text-lg text-base text-center text-zinc-500 dark:text-zinc-400">
+    <p class="text-center text-base text-zinc-500 xs:text-lg md:text-xl dark:text-zinc-400">
       {mainData.summary.lineOne}
       {mainData.summary.lineTwo}
     </p>

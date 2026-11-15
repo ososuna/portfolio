@@ -10,21 +10,24 @@ interface Props {
 }
 const { date, title, bulletPoints, company } = Astro.props;
 ---
-<li class="mb-10 ms-8 me-6 lg:me-0">
-  <span class="absolute flex items-center justify-center p-0.5 w-6 h-6 dark:bg-white bg-zinc-50 rounded-full -start-3">
-    { company === 'ARCOS LLC' && ( <ArcosIcon /> ) }
-    { company === 'Oracle' && ( <OracleIcon /> ) }
-    { company === 'GE Aerospace' && ( <GEIcon /> ) }
+
+<li class="ms-8 me-6 mb-10 lg:me-0">
+  <span
+    class="absolute -start-3 flex h-6 w-6 items-center justify-center rounded-full bg-zinc-50 p-0.5 dark:bg-white"
+  >
+    {company === 'ARCOS LLC' && <ArcosIcon />}
+    {company === 'Oracle' && <OracleIcon />}
+    {company === 'GE Aerospace' && <GEIcon />}
   </span>
-  <time class="mb-1 text-sm font-normal leading-none text-zinc-400 dark:text-gray-400">
+  <time class="mb-1 text-sm leading-none font-normal text-zinc-400 dark:text-gray-400">
     {date}
   </time>
   <h3 class="text-lg font-semibold text-gray-900 dark:text-white">
     {title}
   </h3>
-  <ul class="text-sm xss:text-base font-normal text-gray-500 dark:text-gray-400 list-disc list-outside pl-4 space-y-1">
-    {bulletPoints?.map((point) => (
-      <li>{point}</li>
-    ))}
+  <ul
+    class="list-outside list-disc space-y-1 pl-4 text-sm font-normal text-gray-500 xss:text-base dark:text-gray-400"
+  >
+    {bulletPoints?.map((point) => <li>{point}</li>)}
   </ul>
 </li>

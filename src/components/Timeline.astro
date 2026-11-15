@@ -11,7 +11,8 @@ interface Props {
 const { lang } = Astro.props;
 const experience = lang === 'es' ? es : en;
 ---
-<div class="mx-auto lg:ms-0 ms-6">
+
+<div class="mx-auto ms-6 lg:ms-0">
   <ol class="relative border-s border-gray-200 dark:border-gray-700">
     {
       experience.map((item) => (

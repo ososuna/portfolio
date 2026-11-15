@@ -16,11 +16,21 @@ const achievements = lang === 'es' ? es : en;
 ---
 
 <SectionContainer id="achievements" class="py-16">
-  <h2 class="text-zinc-950 dark:text-white xss:text-3xl text-2xl font-bold text-center mb-10">{t('sections', 'achievements')}</h2>
-  <div class="flex md:flex-row flex-col justify-center md:items-start items-center lg:space-x-8 md:space-x-4">
+  <h2 class="mb-10 text-center text-2xl font-bold text-zinc-950 xss:text-3xl dark:text-white">
+    {t('sections', 'achievements')}
+  </h2>
+  <div
+    class="flex flex-col items-center justify-center md:flex-row md:items-start md:space-x-4 lg:space-x-8"
+  >
     {
-      achievements.map(({title, description, image, link}) => (
-        <AchievementCard title={title} description={description} image={image} link={link} lang={lang} />
+      achievements.map(({ title, description, image, link }) => (
+        <AchievementCard
+          title={title}
+          description={description}
+          image={image}
+          link={link}
+          lang={lang}
+        />
       ))
     }
   </div>
