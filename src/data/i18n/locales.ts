@@ -5,4 +5,4 @@ export const locales = {
 
 export type Locale = keyof typeof locales;
 
-export const defaultLocale: Locale = 'en';
+export const defaultLocale = 'en' satisfies Locale;

@@ -10,7 +10,7 @@ interface Props {
 }
 
 const { locale } = Astro.props;
-const hero = await getLocalized('hero', locale);
+const hero = await getLocalized({ collection: 'hero', locale });
 ---
 
 <SectionContainer class="w-10/12 py-44 pb-32">

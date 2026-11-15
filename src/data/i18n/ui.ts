@@ -77,12 +77,19 @@ export const ui = {
 
 type TranslationMap = (typeof ui)[typeof defaultLocale];
 type SectionKey = keyof TranslationMap;
-type TranslationKey<T extends SectionKey> = keyof TranslationMap[T];
+type Translations = { [S in SectionKey]: Record<keyof TranslationMap[S], string> };
+
+// Fails to compile when a Locale is missing a key the Default Locale has.
+const translations: Record<Locale, Translations> = ui;
+
+/** A UI string's path, `section.key` (for example `nav.home`). */
+export type TranslationKey = {
+  [S in SectionKey]: `${S}.${keyof TranslationMap[S] & string}`;
+}[SectionKey];
 
 export const useTranslations = (locale: Locale) => {
-  return <T extends SectionKey>(section: T, key: TranslationKey<T>) => {
-    const selected = ui[locale][section][key];
-    const fallback = ui[defaultLocale][section][key];
-    return selected ?? fallback;
+  return (path: TranslationKey): string => {
+    const [section, key] = path.split('.') as [SectionKey, string];
+    return (translations[locale][section] as Record<string, string>)[key]!;
   };
 };

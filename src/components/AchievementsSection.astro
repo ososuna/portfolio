@@ -12,7 +12,7 @@ interface Props {
 
 const { locale } = Astro.props;
 const t = useTranslations(locale);
-const { achievements } = await getLocalized('achievements', locale);
+const { achievements } = await getLocalized({ collection: 'achievements', locale });
 // The Card is React, which cannot use Astro's <Image>, so the optimized image is built here.
 const imageSize = { width: 1920, height: 1080 };
 const images = await Promise.all(
@@ -22,7 +22,7 @@ const images = await Promise.all(
 
 <SectionContainer id="achievements" class="py-16">
   <h2 class="mb-10 text-center text-2xl font-bold text-foreground xss:text-3xl">
-    {t('sections', 'achievements')}
+    {t('sections.achievements')}
   </h2>
   <div
     class="flex flex-col items-center justify-center md:flex-row md:items-start md:space-x-4 lg:space-x-8"
@@ -34,7 +34,7 @@ const images = await Promise.all(
           description={description}
           image={{ src: images[index].src, ...imageSize }}
           link={link}
-          learnMoreLabel={t('achievement', 'learnMore')}
+          learnMoreLabel={t('achievement.learnMore')}
         />
       ))
     }

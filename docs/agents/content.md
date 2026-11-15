@@ -4,7 +4,7 @@
 
 All content is in Astro content collections: schemas in `src/content.config.ts`, data in `src/content/`. A schema violation, an unknown id or a missing image fails the build.
 
-- **Per Locale**: Hero, Roles, Projects, Achievements and About hold one file per Locale (`en.json`, `es.json`), each with an ordered list, read with `getLocalized(collection, locale)` from `@lib/content`. Keep both Locale files structurally identical (same entries, same order, same keys); only the text differs. Entries render in data order.
+- **Per Locale**: Hero, Roles, Projects, Achievements and About hold one file per Locale (`en.json`, `es.json`), each with an ordered list, read with `getLocalized({ collection, locale })` from `@lib/content`. Keep both Locale files structurally identical (same entries, same order, same keys); only the text differs. Entries render in data order.
 - **Shared by every Locale**: Social Links, Companies and Technologies, one `file()` collection each (`src/content/{social-links,companies,technologies}.json`).
 - **References**: a Role's `company` and a Project's `technologies` are ids into the shared collections. Resolve them with `getReferenced` from `@lib/content`: Astro only logs an unknown `reference()` id and still exits 0, while `getReferenced` throws.
 - **Icons**: `icon` and `logo` fields are names from `src/icons/names.ts`, rendered through the registry in `src/icons/index.ts`. A new name goes in both files.
@@ -12,7 +12,7 @@ All content is in Astro content collections: schemas in `src/content.config.ts`,
 
 ## UI strings
 
-Strings that are not content (nav, Section headings, control labels, Project Link labels, the 404 page) live in `src/data/i18n/ui.ts`, read with `useTranslations(locale)`. Add every key to both `en` and `es`. The 404 page is published in the Default Locale only; its `es` strings keep the two Locales' keys identical.
+Strings that are not content (nav, Section headings, control labels, Project Link labels, the 404 page) live in `src/data/i18n/ui.ts`, read with `useTranslations(locale)`, which returns `t`: pass the string's `section.key` path, as in `t('nav.home')`. Add every key to both `en` and `es`; a key missing from one Locale fails `pnpm typecheck`. The 404 page is published in the Default Locale only; its `es` strings keep the two Locales' keys identical.
 
 ## Pages
 

@@ -75,7 +75,7 @@ const liveUrl = links.find(({ kind }) => kind === 'live')?.url;
       links.map(({ kind, url }) => (
         <a href={url} target="_blank" class={cn(buttonVariants({ variant: 'outline' }))}>
           {kind === 'live' ? <WebIcon aria-hidden="true" /> : <GitHubIcon aria-hidden="true" />}
-          {t('project', linkLabelKeys[kind])}
+          {t(`project.${linkLabelKeys[kind]}`)}
         </a>
       ))
     }

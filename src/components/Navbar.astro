@@ -16,23 +16,23 @@ const t = useTranslations(locale);
 
 const menuOptions = [
   {
-    name: t('nav', 'experience'),
-    label: t('nav', 'experience').toLowerCase(),
+    name: t('nav.experience'),
+    label: t('nav.experience').toLowerCase(),
     url: locale === 'es' ? '/es/#experience' : '/#experience',
   },
   {
-    name: t('nav', 'projects'),
-    label: t('nav', 'projects').toLowerCase(),
+    name: t('nav.projects'),
+    label: t('nav.projects').toLowerCase(),
     url: locale === 'es' ? '/es/#projects' : '/#projects',
   },
   {
-    name: t('nav', 'achievements'),
-    label: t('nav', 'achievements').toLowerCase(),
+    name: t('nav.achievements'),
+    label: t('nav.achievements').toLowerCase(),
     url: locale === 'es' ? '/es/#achievements' : '/#achievements',
   },
   {
-    name: t('nav', 'about'),
-    label: t('nav', 'about').toLowerCase(),
+    name: t('nav.about'),
+    label: t('nav.about').toLowerCase(),
     url: locale === 'es' ? '/es/#about-me' : '/#about-me',
   },
 ];
@@ -43,7 +43,7 @@ const menuOptions = [
 >
   <a
     href={locale === 'es' ? '/es/#' : '/#'}
-    aria-label={t('nav', 'home')}
+    aria-label={t('nav.home')}
     class="block xss:hidden xs:block"
   >
     <LogoIcon />
@@ -63,7 +63,7 @@ const menuOptions = [
         </a>
       ))
     }
-    <LocaleToggle client:load locale={locale} label={t('controls', 'switchLocale')} />
-    <ThemeToggle client:load label={t('controls', 'toggleTheme')} />
+    <LocaleToggle client:load locale={locale} label={t('controls.switchLocale')} />
+    <ThemeToggle client:load label={t('controls.toggleTheme')} />
   </nav>
 </header>

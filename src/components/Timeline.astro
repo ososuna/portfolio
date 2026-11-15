@@ -8,7 +8,7 @@ interface Props {
 }
 
 const { locale } = Astro.props;
-const { roles } = await getLocalized('roles', locale);
+const { roles } = await getLocalized({ collection: 'roles', locale });
 const companies = await getReferenced(roles.map((role) => role.company));
 ---
 

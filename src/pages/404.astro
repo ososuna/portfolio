@@ -10,22 +10,22 @@ const locale = defaultLocale;
 const t = useTranslations(locale);
 ---
 
-<Layout locale={locale} title={t('notFound', 'title')} description={t('notFound', 'description')}>
+<Layout locale={locale} title={t('notFound.title')} description={t('notFound.description')}>
   <main
     class="mx-auto flex min-h-screen w-10/12 items-center justify-center px-6 pt-14 lg:w-[760px]"
   >
     <section class="w-full text-center">
       <p class="text-sm font-medium tracking-widest text-muted-foreground">
-        {t('notFound', 'eyebrow')}
+        {t('notFound.eyebrow')}
       </p>
       <h1 class="mt-3 text-4xl font-extrabold text-foreground xss:text-5xl md:text-6xl">
-        {t('notFound', 'heading')}
+        {t('notFound.heading')}
       </h1>
       <p class="mt-4 text-base text-muted-foreground xss:text-lg">
-        {t('notFound', 'message')}
+        {t('notFound.message')}
       </p>
       <a href="/" class={cn(buttonVariants({ variant: 'outline', size: 'lg' }), 'mt-8 px-5')}>
-        {t('notFound', 'home')}
+        {t('notFound.home')}
       </a>
     </section>
   </main>

@@ -4,10 +4,13 @@ import type { Locale } from '@data/i18n/locales';
 type LocalizedCollection = 'hero' | 'roles' | 'achievements' | 'projects' | 'about';
 
 /** The entry of a per-Locale collection for one Locale. A missing Locale fails the build. */
-export const getLocalized = async <C extends LocalizedCollection>(
-  collection: C,
-  locale: Locale,
-): Promise<CollectionEntry<C>['data']> => {
+export const getLocalized = async <C extends LocalizedCollection>({
+  collection,
+  locale,
+}: {
+  collection: C;
+  locale: Locale;
+}): Promise<CollectionEntry<C>['data']> => {
   const entry = await getEntry(collection, locale);
   if (!entry) throw new Error(`Collection "${collection}" has no entry for Locale "${locale}"`);
   return entry.data;
