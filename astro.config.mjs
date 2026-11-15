@@ -6,6 +6,8 @@ import vercel from '@astrojs/vercel';
 export default defineConfig({
   output: 'static',
   adapter: vercel(),
+  // Astro 7 defaults to 'jsx', which drops spaces between expressions on separate lines and changes visible text.
+  compressHTML: true,
   i18n: {
     defaultLocale: 'en',
     locales: ['en', 'es'],

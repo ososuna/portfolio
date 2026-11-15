@@ -22,6 +22,8 @@ export default defineConfig({
   projects: [{ name: 'chromium', use: { ...devices['Desktop Chrome'] } }],
   webServer: {
     command: `pnpm exec astro preview --port ${port}`,
+    // Astro 7 detaches the preview server when it detects an AI agent, so Playwright would lose it.
+    env: { ASTRO_PREVIEW_BACKGROUND: '0' },
     url: baseURL,
     reuseExistingServer: false,
   },
