@@ -1,5 +1,5 @@
 import { expect, test } from '@playwright/test';
-import { renderContentBaseline } from './support/content';
+import { renderContentBaseline } from '@tests/e2e/support/content';
 
 // Regenerate with `pnpm baseline:update` when a content change is intended.
 const pages = [

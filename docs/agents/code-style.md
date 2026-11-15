@@ -11,7 +11,7 @@ ESLint uses the flat config in `eslint.config.mjs`: recommended JS, typescript-e
 Import through the `tsconfig.json` path aliases, never relative paths:
 
 - `@/` for Shadcn code and what it generates: `@/components/ui/*`, `@/lib/utils`, `@/hooks/*`. It matches the aliases in `components.json`, so `shadcn add` output works unchanged.
-- The named aliases for everything else: `@components/`, `@layouts/`, `@icons/`, `@data/`, `@lib/`, `@assets/`, `@img/`, `@styles/`.
+- The named aliases for everything else: `@components/`, `@layouts/`, `@icons/`, `@data/`, `@lib/`, `@assets/`, `@img/`, `@styles/`, and `@tests/` for the Playwright support code.
 
 ## Naming
 
