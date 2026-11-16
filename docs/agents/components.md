@@ -6,6 +6,8 @@ The UI is official Shadcn components (React) in `src/components/ui/`, rendered o
 
 Client islands are the exception, since each `client:*` directive ships JavaScript to every visitor. The only two are `ThemeToggle` and `LocaleToggle` (`client:load` in `Navbar.astro`, labels passed as props). Both render `disabled` until `useHydrated()` reports hydration, so an early click is never lost. The theme and Locale detection scripts stay `<script is:inline>` in `Layout.astro`, so they run before first paint.
 
+Below `sm` the Navbar's Section links collapse into a menu built on the native Popover API (`popover` and `popovertarget`), not an island: the same links render inline from `sm` up, so they exist once in the page. A small `<script>` in `Navbar.astro` closes the menu when a link is followed. `tests/e2e/navbar.spec.ts` checks every Navbar control fits common phone and tablet widths.
+
 Composing Shadcn from `.astro`:
 
 - Style links and other plain elements with the variant functions: `cn(buttonVariants({ variant: 'outline' }), extra)` on an `<a>`, `cn(badgeVariants({ variant: 'outline' }))` on a `<span>`. Always wrap them in `cn`: only `cn` drops the conflicting `border-transparent`, so a bare `buttonVariants()` outline has no border. `<Button asChild>` does not work from `.astro`.
