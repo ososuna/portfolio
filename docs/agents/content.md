@@ -20,9 +20,9 @@ Strings that are not content (nav, Section headings, control labels, Project Lin
 
 ## Search and sharing metadata
 
-`Layout.astro` writes the canonical URL, the hreflang links to every Locale, the Open Graph and Twitter tags and the `Person` structured data (`PersonStructuredData.astro`), all built on `site` in `astro.config.mjs`. `@astrojs/sitemap` and `src/pages/robots.txt.ts` publish the sitemap. `tests/e2e/seo.spec.ts` covers all of it.
+`Layout.astro` writes the canonical URL, the hreflang links to every Locale, the Open Graph and Twitter tags and the `Person` and `WebSite` structured data (`StructuredData.astro`), all built on `site` in `astro.config.mjs`. `@astrojs/sitemap` and `src/pages/robots.txt.ts` publish the sitemap. `tests/e2e/seo.spec.ts` covers all of it.
 
-- A page's `description` stays within 160 characters, where search engines cut it off.
+- A page's `description` stays within 155 characters, where search engines cut it off.
 - A page that should stay out of search results passes `noindex` to the Layout, as the 404 page does.
 - The link preview image is `src/assets/img/social-card.png` (1200x630). It shows the name, job title and city, so redraw it when one of them changes.
 

@@ -8,7 +8,7 @@ const pages = [
 ];
 
 for (const { locale, path, url, ogLocale, ogLocaleAlternate } of pages) {
-  test(`the ${locale} page names its canonical URL and its translations`, async ({ page }) => {
+  test(`the ${locale} page names its canonical URL and its other Locales`, async ({ page }) => {
     await page.goto(path);
 
     await expect(page.locator('link[rel="canonical"]')).toHaveAttribute('href', url);
@@ -28,9 +28,9 @@ for (const { locale, path, url, ogLocale, ogLocaleAlternate } of pages) {
       page.locator(`meta[name="${key}"], meta[property="${key}"]`).getAttribute('content');
 
     const description = await meta('description');
-    // Search engines cut a description off at about 160 characters.
+    // Search engines cut a description off at about 155 characters.
     expect(description!.length).toBeGreaterThan(50);
-    expect(description!.length).toBeLessThanOrEqual(160);
+    expect(description!.length).toBeLessThanOrEqual(155);
 
     expect(await meta('og:type')).toBe('profile');
     expect(await meta('og:site_name')).toBe('Oswaldo Osuna');
@@ -91,22 +91,34 @@ for (const { locale, path, url, ogLocale, ogLocaleAlternate } of pages) {
     }
   });
 
-  test(`the ${locale} page identifies its owner in structured data`, async ({ page }) => {
+  test(`the ${locale} page identifies the site and its owner in structured data`, async ({
+    page,
+  }) => {
     await page.goto(path);
-    const person = JSON.parse(
+    const data = JSON.parse(
       (await page.locator('script[type="application/ld+json"]').textContent())!,
     );
+    const byType = (type: string) =>
+      data['@graph'].find((node: { '@type': string }) => node['@type'] === type);
 
-    expect(person).toMatchObject({
-      '@context': 'https://schema.org',
-      '@type': 'Person',
+    expect(data['@context']).toBe('https://schema.org');
+    // The same ids on every Locale, so both pages describe one person and one site.
+    expect(byType('Person')).toMatchObject({
+      '@id': `${site}/#person`,
       name: 'Oswaldo Osuna',
-      url,
+      url: `${site}/`,
       jobTitle: 'AI Engineer',
       worksFor: { '@type': 'Organization', name: 'ARCOS LLC' },
       sameAs: ['https://github.com/ososuna', 'https://www.linkedin.com/in/ososuna/'],
     });
-    expect(person.image).toMatch(new RegExp(`^${site}/_astro/.+`));
+    expect(byType('Person').image).toMatch(new RegExp(`^${site}/_astro/.+`));
+    expect(byType('WebSite')).toMatchObject({
+      '@id': `${site}/#website`,
+      name: 'Oswaldo Osuna',
+      url: `${site}/`,
+      inLanguage: ['en', 'es'],
+      publisher: { '@id': `${site}/#person` },
+    });
   });
 }
 
@@ -132,4 +144,10 @@ test('robots.txt allows crawling and points at a sitemap of both Locales', async
   const sitemap = await (await request.get('/sitemap-0.xml')).text();
   const urls = [...sitemap.matchAll(/<loc>([^<]+)<\/loc>/g)].map(([, url]) => url);
   expect(urls).toEqual(pages.map(({ url }) => url));
+});
+
+test('browsers that ask for /favicon.ico get an icon', async ({ request }) => {
+  const icon = await request.get('/favicon.ico');
+  expect(icon.status()).toBe(200);
+  expect(icon.headers()['content-type']).toMatch(/icon/);
 });

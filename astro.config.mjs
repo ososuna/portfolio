@@ -5,6 +5,9 @@ import vercel from '@astrojs/vercel';
 import react from '@astrojs/react';
 import sitemap from '@astrojs/sitemap';
 
+const defaultLocale = 'en';
+const locales = ['en', 'es'];
+
 // https://astro.build/config
 export default defineConfig({
   // The production domain: canonical URLs, hreflang links, the sitemap and social tags are built on it.
@@ -16,8 +19,8 @@ export default defineConfig({
   compressHTML: true,
 
   i18n: {
-    defaultLocale: 'en',
-    locales: ['en', 'es'],
+    defaultLocale,
+    locales,
     routing: {
       prefixDefaultLocale: false,
       redirectToDefaultLocale: false,
@@ -30,7 +33,12 @@ export default defineConfig({
 
   integrations: [
     react(),
-    // The i18n option lists each page's translations in the sitemap, mirroring the hreflang links.
-    sitemap({ i18n: { defaultLocale: 'en', locales: { en: 'en', es: 'es' } } }),
+    // The i18n option lists every Locale of a page in the sitemap, mirroring the hreflang links.
+    sitemap({
+      i18n: {
+        defaultLocale,
+        locales: Object.fromEntries(locales.map((locale) => [locale, locale])),
+      },
+    }),
   ],
 });

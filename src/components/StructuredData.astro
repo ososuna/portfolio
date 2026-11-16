@@ -1,0 +1,62 @@
+---
+import { getCollection } from 'astro:content';
+import { getImage } from 'astro:assets';
+import { getAbsoluteLocaleUrl } from 'astro:i18n';
+import { defaultLocale, locales, type Locale } from '@data/i18n/locales';
+import { getLocalized, getReferenced } from '@lib/content';
+
+interface Props {
+  locale: Locale;
+}
+
+const { locale } = Astro.props;
+const hero = await getLocalized({ collection: 'hero', locale });
+const { roles } = await getLocalized({ collection: 'roles', locale });
+// Roles are listed newest first, so the first one is the current Role.
+const company = await getReferenced(roles[0]!.company);
+const socialLinks = await getCollection('socialLinks');
+const photo = await getImage({ src: hero.photo });
+
+// Every Locale's page uses the same ids and URL, so search engines see one person and one site
+// described in several Locales, not one of each per page.
+const siteUrl = getAbsoluteLocaleUrl(defaultLocale);
+const personId = `${siteUrl}#person`;
+
+const structuredData = {
+  '@context': 'https://schema.org',
+  '@graph': [
+    {
+      '@type': 'Person',
+      '@id': personId,
+      name: hero.name,
+      url: siteUrl,
+      image: new URL(photo.src, Astro.site).href,
+      description: `${hero.summary.lineOne} ${hero.summary.lineTwo}`,
+      // Not content yet: the job title, city and university only exist inside prose.
+      jobTitle: 'AI Engineer',
+      worksFor: { '@type': 'Organization', name: company.name },
+      alumniOf: { '@type': 'CollegeOrUniversity', name: 'Universidad Anáhuac Querétaro' },
+      address: {
+        '@type': 'PostalAddress',
+        addressLocality: 'Guadalajara',
+        addressRegion: 'Jalisco',
+        addressCountry: 'MX',
+      },
+      sameAs: socialLinks.map(({ data }) => data.url),
+    },
+    {
+      '@type': 'WebSite',
+      '@id': `${siteUrl}#website`,
+      name: hero.name,
+      url: siteUrl,
+      inLanguage: locales,
+      publisher: { '@id': personId },
+    },
+  ],
+};
+
+// Escaped so no content string can close the script element early.
+const json = JSON.stringify(structuredData).replace(/</g, '\\u003c');
+---
+
+<script type="application/ld+json" is:inline set:html={json} />

@@ -4,7 +4,7 @@ import Navbar from '@components/Navbar.astro';
 import Analytics from '@vercel/analytics/astro';
 import { getImage } from 'astro:assets';
 import { getAbsoluteLocaleUrl } from 'astro:i18n';
-import PersonStructuredData from '@components/PersonStructuredData.astro';
+import StructuredData from '@components/StructuredData.astro';
 import socialCard from '@img/social-card.png';
 import { getLocalized } from '@lib/content';
 import { defaultLocale, locales, type Locale } from '@data/i18n/locales';
@@ -13,7 +13,7 @@ interface Props {
   title: string;
   description: string;
   locale: Locale;
-  /** Keeps the page out of search results: no canonical URL, no translations. */
+  /** Keeps the page out of search results: no canonical URL, no links to other Locales. */
   noindex?: boolean;
 }
 
@@ -26,7 +26,7 @@ const alternates = [
   { hreflang: 'x-default', href: getAbsoluteLocaleUrl(defaultLocale) },
 ];
 
-// Open Graph wants a territory with each language; Mexico is where the Spanish copy is written.
+// Open Graph wants a territory with each Locale; Mexico is where the Spanish copy is written.
 const openGraphLocales: Record<Locale, string> = { en: 'en_US', es: 'es_MX' };
 const { name } = await getLocalized({ collection: 'hero', locale });
 // Link previews do not render WebP everywhere, so the card stays a PNG.
@@ -40,6 +40,7 @@ const socialCardUrl = new URL(socialCardImage.src, Astro.site);
     <meta charset="UTF-8" />
     <meta name="description" content={description} />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link rel="icon" href="/favicon.ico" sizes="32x32" />
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
     <meta name="generator" content={Astro.generator} />
@@ -60,16 +61,16 @@ const socialCardUrl = new URL(socialCardImage.src, Astro.site);
           <meta property="og:url" content={canonicalUrl} />
           <meta property="og:locale" content={openGraphLocales[locale]} />
           {locales
-            .filter((other) => other !== locale)
-            .map((other) => (
-              <meta property="og:locale:alternate" content={openGraphLocales[other]} />
+            .filter((otherLocale) => otherLocale !== locale)
+            .map((otherLocale) => (
+              <meta property="og:locale:alternate" content={openGraphLocales[otherLocale]} />
             ))}
           <meta property="og:image" content={socialCardUrl} />
           <meta property="og:image:width" content={String(socialCard.width)} />
           <meta property="og:image:height" content={String(socialCard.height)} />
           <meta property="og:image:alt" content={title} />
           <meta name="twitter:card" content="summary_large_image" />
-          <PersonStructuredData locale={locale} url={canonicalUrl} />
+          <StructuredData locale={locale} />
         </>
       )
     }

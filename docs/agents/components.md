@@ -12,7 +12,7 @@ Composing Shadcn from `.astro`:
 
 - Style links and other plain elements with the variant functions: `cn(buttonVariants({ variant: 'outline' }), extra)` on an `<a>`, `cn(badgeVariants({ variant: 'outline' }))` on a `<span>`. Always wrap them in `cn`: only `cn` drops the conflicting `border-transparent`, so a bare `buttonVariants()` outline has no border. `<Button asChild>` does not work from `.astro`.
 - Write a composition that nests Shadcn components (a Card with its image) as a whole `.tsx` component, as `Achievement.tsx` does. `.astro` children passed into a React component arrive wrapped in `<astro-static-slot>`, which breaks Shadcn's child selectors.
-- React cannot use Astro's `<Image>`: build the optimized image with `getImage` in the `.astro` parent and pass the result, as `Achievement.tsx` does (`<img src={image.src} {...image.attributes} />`).
+- React cannot use Astro's `<Image>`: build the optimized image with `getImage` in the `.astro` parent and pass the result, as `Achievement.tsx` does (`<img src={image.src} srcSet={image.srcSet.attribute} {...image.attributes} />`).
 - `CardTitle` is a `div`: give it `role="heading"` and `aria-level` so Sections keep their heading outline.
 
 ## `.astro` structure
