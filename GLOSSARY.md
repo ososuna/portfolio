@@ -54,7 +54,7 @@ Something Oswaldo built and presents with a title, description, image, Technolog
 _Avoid_: Work, app, repo
 
 **Project Link**:
-A link from a Project to one of its destinations, identified by its kind: the live site, its source code, its UI source or its REST API source.
+A link from a Project to one of its destinations, identified by its kind: the live site or its source code.
 _Avoid_: Button, URL
 
 **Technology**:

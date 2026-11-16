@@ -20,7 +20,7 @@ Strings that are not content (nav, Section headings, control labels, Project Lin
 
 ## Recipes
 
-- **Project**: an entry in `projects` in both `src/content/projects/{en,es}.json`. `technologies` are Technology ids; a new Technology needs an entry in `technologies.json` and its icon registered. `links` are Project Links `{ kind, url }`, kind one of `live`, `source`, `ui-source`, `api-source` (`src/lib/project-links.ts`), rendered in data order with labels from the `project` UI strings, keyed by kind; the `live` link also wraps the image. The image goes in `src/assets/img/projects/`.
+- **Project**: an entry in `projects` in both `src/content/projects/{en,es}.json`. `technologies` are Technology ids; a new Technology needs an entry in `technologies.json` and its icon registered. `links` are Project Links `{ kind, url }`, kind `live` or `source` (`src/lib/project-links.ts`), rendered in data order with labels from the `project` UI strings, keyed by kind; the `live` link also wraps the image. The image goes in `src/assets/img/projects/`.
 - **Role**: an entry in `roles` in both `src/content/roles/{en,es}.json`, newest first. `company` is a Company id; a new Company needs an entry in `companies.json` and its logo registered. `period` is free text per Locale (ADR-0002).
 - **Achievement**: an entry in `achievements` in both `src/content/achievements/{en,es}.json`; its image goes in `src/assets/img/achievements/`.
 - **Bio Paragraph**: one string in `paragraphs` in both `src/content/about/{en,es}.json`, each Highlight wrapped in `**...**` (parsed by `src/lib/highlights.ts`). An unclosed `**` renders as literal text. The third English Bio Paragraph's "aerospace industry , building" is published as is; keep the space before the comma.
