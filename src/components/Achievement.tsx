@@ -16,7 +16,13 @@ export default function Achievement({ achievement, image, learnMoreLabel }: Prop
   const { title, description, link } = achievement;
   return (
     <Card className="mb-6 max-w-sm md:w-1/2">
-      <img src={image.src} {...image.attributes} alt={title} />
+      <img
+        src={image.src}
+        srcSet={image.srcSet.attribute}
+        sizes="(min-width: 24rem) 24rem, 100vw"
+        {...image.attributes}
+        alt={title}
+      />
       <CardHeader>
         <CardTitle role="heading" aria-level={3} className="text-xl font-semibold">
           {title}

@@ -22,6 +22,8 @@ const hero = await getLocalized({ collection: 'hero', locale });
       <Image
         src={hero.photo}
         alt={hero.photoAlt}
+        width={160}
+        priority
         class="mx-6 size-16 rounded-full xss:mx-10 xss:size-20"
       />
     </div>

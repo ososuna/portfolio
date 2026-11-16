@@ -2,15 +2,36 @@
 import '@styles/global.css';
 import Navbar from '@components/Navbar.astro';
 import Analytics from '@vercel/analytics/astro';
-import type { Locale } from '@data/i18n/locales';
+import { getImage } from 'astro:assets';
+import { getAbsoluteLocaleUrl } from 'astro:i18n';
+import PersonStructuredData from '@components/PersonStructuredData.astro';
+import socialCard from '@img/social-card.png';
+import { getLocalized } from '@lib/content';
+import { defaultLocale, locales, type Locale } from '@data/i18n/locales';
 
 interface Props {
   title: string;
   description: string;
   locale: Locale;
+  /** Keeps the page out of search results: no canonical URL, no translations. */
+  noindex?: boolean;
 }
 
-const { title, description, locale } = Astro.props;
+const { title, description, locale, noindex = false } = Astro.props;
+
+const canonicalUrl = getAbsoluteLocaleUrl(locale);
+const alternates = [
+  ...locales.map((hreflang) => ({ hreflang, href: getAbsoluteLocaleUrl(hreflang) })),
+  // Where search engines send visitors whose language matches no Locale.
+  { hreflang: 'x-default', href: getAbsoluteLocaleUrl(defaultLocale) },
+];
+
+// Open Graph wants a territory with each language; Mexico is where the Spanish copy is written.
+const openGraphLocales: Record<Locale, string> = { en: 'en_US', es: 'es_MX' };
+const { name } = await getLocalized({ collection: 'hero', locale });
+// Link previews do not render WebP everywhere, so the card stays a PNG.
+const socialCardImage = await getImage({ src: socialCard, format: 'png' });
+const socialCardUrl = new URL(socialCardImage.src, Astro.site);
 ---
 
 <!doctype html>
@@ -18,10 +39,40 @@ const { title, description, locale } = Astro.props;
   <head>
     <meta charset="UTF-8" />
     <meta name="description" content={description} />
-    <meta name="viewport" content="width=device-width" />
-    <link rel="icon" type="image/svg" href="/favicon.svg" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
     <meta name="generator" content={Astro.generator} />
     <title>{title}</title>
+    {
+      noindex ? (
+        <meta name="robots" content="noindex" />
+      ) : (
+        <>
+          <link rel="canonical" href={canonicalUrl} />
+          {alternates.map(({ hreflang, href }) => (
+            <link rel="alternate" hreflang={hreflang} href={href} />
+          ))}
+          <meta property="og:type" content="profile" />
+          <meta property="og:site_name" content={name} />
+          <meta property="og:title" content={title} />
+          <meta property="og:description" content={description} />
+          <meta property="og:url" content={canonicalUrl} />
+          <meta property="og:locale" content={openGraphLocales[locale]} />
+          {locales
+            .filter((other) => other !== locale)
+            .map((other) => (
+              <meta property="og:locale:alternate" content={openGraphLocales[other]} />
+            ))}
+          <meta property="og:image" content={socialCardUrl} />
+          <meta property="og:image:width" content={String(socialCard.width)} />
+          <meta property="og:image:height" content={String(socialCard.height)} />
+          <meta property="og:image:alt" content={title} />
+          <meta name="twitter:card" content="summary_large_image" />
+          <PersonStructuredData locale={locale} url={canonicalUrl} />
+        </>
+      )
+    }
     <script is:inline>
       // Runs before first paint so the page never flashes the wrong theme. The first visit stores
       // the system preference, so the theme only changes afterwards through the toggle.

@@ -18,6 +18,14 @@ Strings that are not content (nav, Section headings, control labels, Project Lin
 
 `src/pages/index.astro` (Default Locale, unprefixed) and `src/pages/es/index.astro` render the same five Sections, each receiving `locale`. A Section change lands in both pages. A new Locale needs an entry in `src/data/i18n/locales.ts` and `astro.config.mjs` `i18n.locales`, a file in every per-Locale collection, its UI strings and a page. The Navbar links, `LocaleToggle.tsx` and the Locale detection script in `Layout.astro` assume exactly `en` and `es`, and with a third Locale the toggle has to become a menu.
 
+## Search and sharing metadata
+
+`Layout.astro` writes the canonical URL, the hreflang links to every Locale, the Open Graph and Twitter tags and the `Person` structured data (`PersonStructuredData.astro`), all built on `site` in `astro.config.mjs`. `@astrojs/sitemap` and `src/pages/robots.txt.ts` publish the sitemap. `tests/e2e/seo.spec.ts` covers all of it.
+
+- A page's `description` stays within 160 characters, where search engines cut it off.
+- A page that should stay out of search results passes `noindex` to the Layout, as the 404 page does.
+- The link preview image is `src/assets/img/social-card.png` (1200x630). It shows the name, job title and city, so redraw it when one of them changes.
+
 ## Recipes
 
 - **Project**: an entry in `projects` in both `src/content/projects/{en,es}.json`. `technologies` are Technology ids; a new Technology needs an entry in `technologies.json` and its icon registered. `links` are Project Links `{ kind, url }`, kind `live` or `source` (`src/lib/project-links.ts`), rendered in data order with labels from the `project` UI strings, keyed by kind; the `live` link also wraps the image. The image goes in `src/assets/img/projects/`.

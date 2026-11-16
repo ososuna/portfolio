@@ -1,0 +1,45 @@
+---
+import { getCollection } from 'astro:content';
+import { getImage } from 'astro:assets';
+import type { Locale } from '@data/i18n/locales';
+import { getLocalized, getReferenced } from '@lib/content';
+
+interface Props {
+  locale: Locale;
+  /** The canonical URL of the page describing Oswaldo. */
+  url: string;
+}
+
+const { locale, url } = Astro.props;
+const hero = await getLocalized({ collection: 'hero', locale });
+const { roles } = await getLocalized({ collection: 'roles', locale });
+// Roles are listed newest first, so the first one is the current Role.
+const company = await getReferenced(roles[0]!.company);
+const socialLinks = await getCollection('socialLinks');
+const photo = await getImage({ src: hero.photo });
+
+const person = {
+  '@context': 'https://schema.org',
+  '@type': 'Person',
+  name: hero.name,
+  url,
+  image: new URL(photo.src, Astro.site).href,
+  description: `${hero.summary.lineOne} ${hero.summary.lineTwo}`,
+  // Not content yet: the job title, city and university only exist inside prose.
+  jobTitle: 'AI Engineer',
+  worksFor: { '@type': 'Organization', name: company.name },
+  alumniOf: { '@type': 'CollegeOrUniversity', name: 'Universidad Anáhuac Querétaro' },
+  address: {
+    '@type': 'PostalAddress',
+    addressLocality: 'Guadalajara',
+    addressRegion: 'Jalisco',
+    addressCountry: 'MX',
+  },
+  sameAs: socialLinks.map(({ data }) => data.url),
+};
+
+// Escaped so no content string can close the script element early.
+const json = JSON.stringify(person).replace(/</g, '\\u003c');
+---
+
+<script type="application/ld+json" is:inline set:html={json} />

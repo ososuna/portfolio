@@ -38,6 +38,10 @@ Order: frontmatter (imports, `interface Props`, logic), template, optional `<sty
 
 Use `<Image>` from `astro:assets`, fed the `ImageMetadata` from an `image()` collection field. Content images live in `src/assets/img/`, never `public/`.
 
+- Never pass a `height` that is not the image's real shape: give `width` alone and Astro derives the height. A wrong pair reserves the wrong space and the page shifts as the image loads.
+- An image wider than a small screen gets `widths` and `sizes`, with the widths passed through `srcsetWidths` from `@lib/images`: Astro upscales any width beyond the source.
+- The Hero photo is the only image above the fold, so it alone takes `priority`.
+
 ## Rendered whitespace
 
 The content baseline catches any change in visible text, including a space gained or lost.
