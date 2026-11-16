@@ -5,6 +5,7 @@ import SectionContainer from '@components/SectionContainer.astro';
 import { useTranslations } from '@data/i18n/ui';
 import type { Locale } from '@data/i18n/locales';
 import { getLocalized } from '@lib/content';
+import { srcsetWidths } from '@lib/images';
 
 interface Props {
   locale: Locale;
@@ -14,7 +15,11 @@ const { locale } = Astro.props;
 const t = useTranslations(locale);
 const { achievements } = await getLocalized({ collection: 'achievements', locale });
 // The Card is React, which cannot use Astro's <Image>, so the optimized image is built here.
-const optimize = (src: ImageMetadata) => getImage({ src, width: 1920, height: 1080 });
+// The Card is at most `max-w-sm` (384px) wide; the second width covers double density.
+const optimize = (src: ImageMetadata) => {
+  const widths = srcsetWidths({ sourceWidth: src.width, widths: [384, 768] });
+  return getImage({ src, width: widths.at(-1), widths });
+};
 ---
 
 <SectionContainer id="achievements" class="py-16" heading={t('sections.achievements')}>

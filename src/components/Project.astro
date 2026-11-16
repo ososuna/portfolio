@@ -6,6 +6,7 @@ import { cn } from '@/lib/utils';
 import { useTranslations } from '@data/i18n/ui';
 import type { Locale } from '@data/i18n/locales';
 import { getReferenced, type Project } from '@lib/content';
+import { srcsetWidths } from '@lib/images';
 import { icons } from '@icons/index';
 import GitHubIcon from '@icons/GitHubIcon.astro';
 import WebIcon from '@icons/WebIcon.astro';
@@ -21,6 +22,17 @@ const technologies = await Promise.all(project.technologies.map(getReferenced));
 const t = useTranslations(locale);
 
 const liveUrl = links.find(({ kind }) => kind === 'live')?.url;
+
+// The image fills the Section: 760px from `lg` up, the screen less its margins below. The
+// widest candidate covers that at double density.
+const imageWidths = srcsetWidths({ sourceWidth: image.width, widths: [640, 960, 1520] });
+const imageProps = {
+  src: image,
+  alt: title,
+  width: imageWidths.at(-1),
+  widths: imageWidths,
+  sizes: '(min-width: 1024px) 760px, calc(100vw - 3rem)',
+};
 ---
 
 <article class="mb-14">
@@ -53,10 +65,10 @@ const liveUrl = links.find(({ kind }) => kind === 'live')?.url;
   {
     liveUrl ? (
       <a href={liveUrl} target="_blank" class="mt-4 block overflow-hidden rounded-lg border">
-        <Image src={image} alt={title} width="1920" height="1080" />
+        <Image {...imageProps} />
       </a>
     ) : (
-      <Image src={image} alt={title} class="mt-4 rounded-lg border" width="1920" height="1080" />
+      <Image {...imageProps} class="mt-4 rounded-lg border" />
     )
   }
   <footer class="mt-4 flex flex-wrap items-center justify-center gap-2">

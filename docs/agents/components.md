@@ -12,7 +12,7 @@ Composing Shadcn from `.astro`:
 
 - Style links and other plain elements with the variant functions: `cn(buttonVariants({ variant: 'outline' }), extra)` on an `<a>`, `cn(badgeVariants({ variant: 'outline' }))` on a `<span>`. Always wrap them in `cn`: only `cn` drops the conflicting `border-transparent`, so a bare `buttonVariants()` outline has no border. `<Button asChild>` does not work from `.astro`.
 - Write a composition that nests Shadcn components (a Card with its image) as a whole `.tsx` component, as `Achievement.tsx` does. `.astro` children passed into a React component arrive wrapped in `<astro-static-slot>`, which breaks Shadcn's child selectors.
-- React cannot use Astro's `<Image>`: build the optimized image with `getImage` in the `.astro` parent and pass the result, as `Achievement.tsx` does (`<img src={image.src} {...image.attributes} />`).
+- React cannot use Astro's `<Image>`: build the optimized image with `getImage` in the `.astro` parent and pass the result, as `Achievement.tsx` does (`<img src={image.src} srcSet={image.srcSet.attribute} {...image.attributes} />`).
 - `CardTitle` is a `div`: give it `role="heading"` and `aria-level` so Sections keep their heading outline.
 
 ## `.astro` structure
@@ -37,6 +37,10 @@ Order: frontmatter (imports, `interface Props`, logic), template, optional `<sty
 ## Images
 
 Use `<Image>` from `astro:assets`, fed the `ImageMetadata` from an `image()` collection field. Content images live in `src/assets/img/`, never `public/`.
+
+- Never pass a `height` that is not the image's real shape: give `width` alone and Astro derives the height. A wrong pair reserves the wrong space and the page shifts as the image loads.
+- An image wider than a small screen gets `widths` and `sizes`, with the widths passed through `srcsetWidths` from `@lib/images`: Astro upscales any width beyond the source.
+- The Hero photo is the only image above the fold, so it alone takes `priority`.
 
 ## Rendered whitespace
 
