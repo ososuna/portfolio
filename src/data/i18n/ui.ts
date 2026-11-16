@@ -18,6 +18,7 @@ export const ui = {
     controls: {
       toggleTheme: 'Toggle theme',
       switchLocale: 'Switch language',
+      menu: 'Section menu',
     },
     project: {
       live: 'Go to project',
@@ -52,6 +53,7 @@ export const ui = {
     controls: {
       toggleTheme: 'Cambiar tema',
       switchLocale: 'Cambiar idioma',
+      menu: 'Menú de secciones',
     },
     project: {
       live: 'Ir al proyecto',

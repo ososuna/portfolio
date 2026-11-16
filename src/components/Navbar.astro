@@ -1,5 +1,6 @@
 ---
 import { buttonVariants } from '@/components/ui/button';
+import { Menu } from 'lucide-react';
 import { cn } from '@/lib/utils';
 import ThemeToggle from '@components/ThemeToggle';
 import LocaleToggle from '@components/LocaleToggle';
@@ -27,30 +28,59 @@ const menuOptions = (
   const name = t(`nav.${navKey}`);
   return { name, label: name.toLowerCase(), url: `${homePath}#${sectionId}` };
 });
+
+// The Section links do not fit a phone on one line, so below `sm` they collapse into a popover
+// opened by the menu button. One set of links serves both layouts: the popover attribute only
+// takes effect below `sm`, where the classes keep the closed popover hidden and place the open
+// one under the header.
 ---
 
 <header
-  class="fixed z-50 flex h-14 w-full items-center justify-center border-b bg-background/80 backdrop-blur xs:justify-between xs:px-6"
+  class="fixed z-50 flex h-14 w-full items-center justify-between border-b bg-background/80 px-4 backdrop-blur xs:px-6"
 >
-  <a href={`${homePath}#`} aria-label={t('nav.home')} class="block xss:hidden xs:block">
+  <a href={`${homePath}#`} aria-label={t('nav.home')}>
     <LogoIcon />
   </a>
   <nav class="flex items-center gap-1 xs:gap-2">
-    {
-      menuOptions.map((option) => (
-        <a
-          class={cn(
-            buttonVariants({ variant: 'ghost', size: 'sm' }),
-            'hidden text-muted-foreground xss:inline-flex',
-          )}
-          aria-label={option.label}
-          href={option.url}
-        >
-          {option.name}
-        </a>
-      ))
-    }
+    <div
+      id="section-menu"
+      popover
+      class="static m-0 hidden items-center gap-1 overflow-visible border-0 bg-transparent p-0 text-inherit open:flex max-sm:fixed max-sm:inset-x-0 max-sm:top-14 max-sm:w-full max-sm:flex-col max-sm:items-stretch max-sm:border-b max-sm:bg-background max-sm:p-2 xs:gap-2 sm:flex"
+    >
+      {
+        menuOptions.map((option) => (
+          <a
+            class={cn(
+              buttonVariants({ variant: 'ghost', size: 'sm' }),
+              'text-muted-foreground max-sm:justify-start',
+            )}
+            aria-label={option.label}
+            href={option.url}
+          >
+            {option.name}
+          </a>
+        ))
+      }
+    </div>
     <LocaleToggle client:load locale={locale} label={t('controls.switchLocale')} />
     <ThemeToggle client:load label={t('controls.toggleTheme')} />
+    <button
+      type="button"
+      popovertarget="section-menu"
+      aria-label={t('controls.menu')}
+      class={cn(buttonVariants({ variant: 'ghost', size: 'icon' }), 'sm:hidden')}
+    >
+      <Menu aria-hidden="true" />
+    </button>
   </nav>
 </header>
+
+<script>
+  // Following a Section link scrolls the page but leaves the popover covering it.
+  const sectionMenu = document.getElementById('section-menu')!;
+  for (const link of sectionMenu.querySelectorAll('a')) {
+    link.addEventListener('click', () => {
+      if (sectionMenu.matches(':popover-open')) sectionMenu.hidePopover();
+    });
+  }
+</script>
